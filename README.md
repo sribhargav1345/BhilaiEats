@@ -1,3 +1,7 @@
 # CSD_Assignment
 
-In this Assignment, we are going to build a website on Food Delivery System in IIT Bhilai.
+This assignment is on Online Food Delivery Service
+Tech Stack Used:
+    1. NodeJS+ExpressJS for backend
+    2. ReactJS for frontend
+    3. MongoDB as database
