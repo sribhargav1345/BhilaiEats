@@ -13,19 +13,25 @@ import {
   Routes,
   Route,
   Link,
-} from "react-router-dom";
+} from "react-router-dom";      // Routing front-end and back-end
+import { CartProvider } from './components/ContextReducer.js';
 
 function App() {
   return (
-    <Router>
-      <div>
-        <Routes>
-          <Route exact path="/"  element = {<Home/>} />
-          <Route exact path="/login"  element = {<Login/>} />
-          <Route exact path="/signup"  element = {<SignUp/>} />
-        </Routes>
-      </div>
-    </Router>
+    <CartProvider>
+
+      <Router>
+        <div>
+          <Routes>
+            <Route exact path="/"  element = {<Home/>} />               {/* Paths specification (API Endpoint) -> /, /login, /signup */}
+            <Route exact path="/login"  element = {<Login/>} />
+            <Route exact path="/signup"  element = {<SignUp/>} />
+            <Route exact path="/myOrder"  element = {<myOrders/>} />
+          </Routes>
+        </div>
+      </Router>
+
+    </CartProvider>
   );
 }
 

@@ -1,33 +1,83 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import Login from '../screens/Login';
+import { Link, useNavigate } from 'react-router-dom';
+import Badge from 'react-bootstrap/Badge';
+import Modal from '../Model';
+import Cart from '../screens/cart';
+
 
 export default function Navbar() {
+  
+  const [cartView, setCartView] = useState(false);
+  let data = useCart();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('authToken');
+    navigate('/');
+  };
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-success">
         <div className="container-fluid">
-          <Link className="navbar-brand fs-1 fst-italic" to="/">GoodFood</Link>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <Link className="navbar-brand fs-1 fst-italic" to="/">
+            GoodFood
+          </Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul className="navbar-nav me-auto mb-2">
               <li className="nav-item">
-                <Link className="nav-link" aria-current="page" to="/">Home</Link>
+                <Link className="nav-link active fs-5" aria-current="page" to="/">
+                  Home
+                </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link2" to="/login" >Login</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link2" to="/signup" >Sign Up</Link>
-              </li>
+
+              {localStorage.getItem('authToken') ? (
+                <li className="nav-item">
+                  <Link className="nav-link active fs-5" aria-current="page" to="/myOrder">
+                    My Orders
+                  </Link>
+                </li>
+              ) : (
+                ''
+              )}
             </ul>
-            <form className="d-flex">
-              <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-              {/* Closing angle bracket added here */}
-              <button className="btn btn-outline-success" type="submit">Search</button>
-            </form>
+
+            {!localStorage.getItem('authToken') ? (
+              <div className="d-flex">
+                <Link className="btn bg-white text-success mx-1" to="/login">
+                  Login
+                </Link>
+                <Link className="btn bg-white text-success mx-1" to="/signup">
+                  Sign Up
+                </Link>
+
+                <div>
+                  <div className="btn bg-white text-success mx-2" onClick = {() => {setCartView(true)}}>
+                    My Cart
+                    <Badge pill bg="danger"> {data.length} </Badge>
+                  </div>
+
+        {cartView? <Modal onClose= {() => setCartView(false)}> </Modal>: null}
+
+                  <div className="btn bg-white text-danger mx-2" onClick={handleLogout}>
+                    Logout
+                  </div>
+                </div>
+              </div>
+            ) : (
+              ''
+            )}
           </div>
         </div>
       </nav>
