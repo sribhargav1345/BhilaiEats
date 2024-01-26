@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function SignUp() {
 
-    const [credentials,setCredentials] = useState({name:"",email:"",password:"",geolocation:""})
+    const [credentials,setCredentials] = useState({name:"",email:"",password:""})
 
     {/* Something called FetchApi is begin used here */}
     const handleSubmit = async(e) => {
@@ -14,7 +14,7 @@ export default function SignUp() {
             headers:{
                 'Content-Type':'application/json'
             },
-            body:JSON.stringify({name:credentials.name, email:credentials.email, password:credentials.password, location: credentials.geolocation})
+            body:JSON.stringify({name:credentials.name, email:credentials.email, password:credentials.password})
         })
         
         const json = await response.json()
@@ -26,8 +26,9 @@ export default function SignUp() {
     }
 
     const onChange = (event) => {
-        setCredentials({...credentials,[event.target.name]:event.target.value});
-    }
+        setCredentials({...credentials, [event.target.name]: event.target.value });
+    };
+    
 
     return (
         <div className='container'>
@@ -45,6 +46,7 @@ export default function SignUp() {
                     <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
                     <input type="password" className="form-control" name='password' value={credentials.password} onChange={onChange} id="exampleInputPassword1" />
                 </div>
+
                 <button type="submit" className="m-3 btn btn-success">Submit</button>
                 <Link to='../login' className='m-3 btn btn-danger'> Already an user</Link>
             </form>

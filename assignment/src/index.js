@@ -6,8 +6,8 @@ import reportWebVitals from './reportWebVitals';
 
 // This is the main part of the project of frontend , so here we will just call APP function, it combines everything.
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+const root = ReactDOM.createRoot(document.getElementById('root'));          // Create a root element for rendering React Components
+root.render(                                                                // Rendering "App" component inside the root element
   <React.StrictMode>
     <App />
   </React.StrictMode>

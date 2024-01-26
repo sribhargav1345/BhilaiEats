@@ -7,11 +7,11 @@ export default function Login() {
 
   let navigate = useNavigate()
 
-  {/* Something called FetchApi is begin used here */ }
+  {/* FetchApi is being used here */ }
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:5000/api/CreateUser", {
+    const response = await fetch("http://localhost:5000/api/loginUser", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -25,6 +25,7 @@ export default function Login() {
     if (!json.success) {
       alert("Enter Valid Credentials");
     }
+
     if (json.success) {
       localStorage.setItem("userEmail", credentials.email);
       localStorage.setItem("authToken",json.authToken);
@@ -39,7 +40,7 @@ export default function Login() {
 
   return (
     <div className='container'>
-      <form onSubmit={handleSubmit}>          {/* On submit = handleSubmit - Connecting Backend part */}
+      <form onSubmit={handleSubmit}>                                                                          {/* On submit = handleSubmit - Connecting Backend part */}
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
           <input type="email" className="form-control" name='email' value={credentials.email} onChange={onChange} id="exampleInputEmail1" aria-describedby="emailHelp" />
