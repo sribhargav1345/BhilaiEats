@@ -8,12 +8,9 @@ const mongoDB = async () => {
     console.log('Connected to MongoDB');
 
     const fetched_data = await mongoose.connection.db.collection("foods");
-    //console.log(1);
-
     const fetchedData = await mongoose.connection.db.collection("foods").find({}).toArray();        // If using mongoose, follow this type -> spent 1 hr to debug.
-    //console.log('Fetched data:', fetchedData);
 
-    const foodCategory = await mongoose.connection.db.collection("foodCategory");
+    const foodCategory = await mongoose.connection.db.collection("food_categories");
     foodCategory.find({}).toArray(function (err,catData){
       if(err) console.log(err);
       else
@@ -22,9 +19,6 @@ const mongoDB = async () => {
         global.foodCategory = catData;
       }
     })
-    //global.foods = fetchedData;
-    // console.log(global.foods);
-
 
   } catch (error) {
     console.error('MongoDB connection error:', error);

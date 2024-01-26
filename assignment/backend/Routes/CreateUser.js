@@ -11,7 +11,7 @@ const jwtSecret = "GunturKaramBokka"
 router.post("/CreateUser", [
     body('email', 'Email Format is not correct').isEmail(),
     body('name').isLength({ min: 4 }),
-    body('password', 'Incorrect Password').isLength({ min: 7 })]      // password should be of atleast 5 in length
+    body('password', 'Incorrect Password').isLength({ min: 7 })]      // password should be of atleast 7 in length
 
     , async (req, res) => {
         const errors = validationResult(req);
@@ -27,7 +27,6 @@ router.post("/CreateUser", [
                 name: req.body.name,
                 password: secPass,
                 email: req.body.email,
-                location: req.body.location
             })
 
             res.json({ success: true });

@@ -8,44 +8,49 @@ import Navbar from '../components/Navbar'
 
 export default function Home() {
 
-  const [search,setSearch] = useState('');
-  const [foodCat, setFoodCat] = useState([])      // Input is given as array, for using map if possible
+  const [search,setSearch] = useState('');                                        // State variables for search input, food categories, and food items
+  const [foodCat, setFoodCat] = useState([])      
   const [foodItem, setFoodItems] = useState([])
 
-  const loadData = async () => {
-    let response = await fetch("http://localhost:5000/api/auth/foodData", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+  const loadData = async () => {                                                  // Sending a POST request to fetch data from server.
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/foodData", {
+        method: 'POST',                                                           // HTTP req, is being made using POST method. -> used to submit data to server, for creating or updating resources on server.
+        headers: {
+          'Content-Type': 'application/json'                                      // To specify content is of type json format.
+        }
+      });
+      const data = await response.json();                                         // This parses json encoded response body and stores it in data.
+      
+      setFoodItems(data[0]);                                                      // Set food items and categories based on fetched data
+      setFoodCat(data[1]);
+    } 
+    
+    catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
-    response = await response.json();
-    //console.log(response[0],response[1]);
-    setFoodItems(response[0])
-    setFoodCat(response[1])
-  }
-
-  useEffect(() => {
+  useEffect(() => {                                                               // When components mounts for 1st time, run this effect, only once.
     loadData()
   }, [])
 
   return (
     <div >
 
-      <div> <Navbar /> </div>
-      <div> <Carousel/> </div>
+      <div> <Navbar /> </div>                                                     {/* Navbar at the top */}
+      <div> <Carousel/> </div>                                                    {/* Carousel at the middle */}
 
-      <div className='container'>
+      <div className='container'>     
       {
-        foodCat.length !== 0
-          ? foodCat.map((data) => {
+        (foodCat.length !== 0) ?
+          foodCat.map((data) => {
             return (
-              <div className='row mb-3'>    {/* This className of row-mb-3 and col-12, col-md-6 and these all are taken from bootstrap grid system */}
+              <div className='row mb-3'>                                                                                          {/* This className of row-mb-3 and col-12, col-md-6 and these all are taken from bootstrap grid system */}
                 <div key={data._id} className="fs-3 m-3">
                   {data.CategoryName}
-                </div>
-                {/* Displays the category name of the food on each card */}
+                </div>                                                                                                            {/* Displays the category name of the food on each card */}
+                                                                                                                                
                 <hr />
                 {foodItem.length !== 0
                   ? foodItem.filter((item) => (item.CategoryName === data.CategoryName) && (item.name.toLowerCase().includes(search.toLocaleLowerCase()))) 
@@ -63,10 +68,11 @@ export default function Home() {
               </div>
             )
           })
-          : <div>Hello is tag hiof</div>
+          : <div>" U have done something wrong "</div>
         }
       </div>
-      <div> <Footer /> </div>
+
+      <div> <Footer /> </div>                                                     {/* Footer at the End */}     
 
     </div>
   )

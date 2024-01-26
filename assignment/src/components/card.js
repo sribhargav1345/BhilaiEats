@@ -49,12 +49,12 @@ export default function Card(props) {
             }
             else if(food.size != size)
             {
-                await dispatch({type:"ADD", id:props.foodItem._id, name: props.foodItem.anme, price: props.finalPrice, qty:qty. size:size});
+                await dispatch({type:"ADD", id:props.foodItem._id, name: props.foodItem.anme, price: props.finalPrice, qty:qty, size:size});
                 return;
             }
             return;
         }
-        await dispatch({type:"ADD", id:props.foodItem._id, name: props.foodItem.anme, price: props.finalPrice, qty:qty. size:size});
+        await dispatch({type:"ADD", id:props.foodItem._id, name: props.foodItem.anme, price: props.finalPrice, qty:qty, size:size});
 
     }
 
