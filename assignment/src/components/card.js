@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatchCart, useCart } from './ContextReducer';
 
 export default function Card(props) {
+  console.log('Props:', props); 
   const [qty, setQty] = useState(1);
   const [size, setSize] = useState('');
   const [finalPrice, setFinalPrice] = useState(0);
@@ -54,7 +55,7 @@ export default function Card(props) {
 
   return (
     <div>
-      <div className="card mt-3" style={{ width: '20rem', maxHeight: '50px' }}>
+      <div className="card mt-3" style={{ width: '20rem', maxHeight: '50rem' }}>
         <img src={props.foodItem?.img} className="card-img-top" alt="..." style={{ height: '120px', objectFit: 'fill' }} />
         <div className="card-body">
           <h5 className="card-title">{props.foodItem?.name}</h5>
