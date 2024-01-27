@@ -4,7 +4,7 @@ export default function Carousel() {
     const [search, setSearch] = useState('');
 
     return (
-        <div>
+        <div>                   
 
             <div id="carouselExampleFade" className="carousel slide carousel-fade " data-bs-ride="carousel">
 

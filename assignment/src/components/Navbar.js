@@ -3,6 +3,7 @@ import { Link, useNavigate} from 'react-router-dom';
 import Badge from 'react-bootstrap/Badge';
 import Modal from '../Model';
 import { useCart } from '../components/ContextReducer';
+import './Navbarr.css';
 import Cart from '../screens/cart';
 
 
@@ -19,7 +20,7 @@ export default function Navbar() {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-success">                {/* Navbar with responsive class, and green in color of bg, text color dark */}
+      <nav className="navbar navbar-expand-lg navbar-dark bg-purple">                {/* Navbar with responsive class, and green in color of bg, text color dark */}
 
         <div className="container-fluid">                                             { /* Bootstrap class for full-width container */}
 
@@ -54,17 +55,13 @@ export default function Navbar() {
 
               {localStorage.getItem('authToken') ? (                                    /* If the account is Logged In, write My orders and Logout option on navbar */
               
-                <div>
+                <div className='d-flex'>
 
-                  <li className="nav-item">
+                  <Link className="nav-link active fs-5" aria-current="page" to="/myOrder">
+                    My Orders
+                  </Link>
 
-                    <Link className="nav-link active fs-5" aria-current="page" to="/myOrder">
-                      My Orders
-                    </Link>
-
-                  </li>
-
-                  <div className="btn bg-white text-danger mx-2" onClick={handleLogout}>
+                  <div className="btn bg-white text-danger mb-1 me-auto" onClick={handleLogout}>
                     Logout
                   </div>
 
@@ -86,7 +83,7 @@ export default function Navbar() {
                     Sign Up
                   </Link>
 
-                  <div>
+                <div>
 
                     <div className="btn bg-white text-success mx-2" onClick = {() => {setCartView(true)}}>
                       My Cart

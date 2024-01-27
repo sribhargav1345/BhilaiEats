@@ -7,22 +7,18 @@ const mongoDB = async () => {
     await mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
     console.log('Connected to MongoDB');
 
-    const fetched_data = await mongoose.connection.db.collection("foods");
-    const fetchedData = await mongoose.connection.db.collection("foods").find({}).toArray();        // If using mongoose, follow this type -> spent 1 hr to debug.
+    const foodsCollection = mongoose.connection.db.collection("foods");                     // Fetch data from 'foods' collection
+    const fetchedFoods = await foodsCollection.find({}).toArray();
 
-    const foodCategory = await mongoose.connection.db.collection("food_categories");
-    foodCategory.find({}).toArray(function (err,catData){
-      if(err) console.log(err);
-      else
-      {
-        global.foods = fetchedData;
-        global.foodCategory = catData;
-      }
-    })
+    const foodCategoriesCollection = mongoose.connection.db.collection("food_categories");  // Fetch data from 'food_categories' collection
+    const fetchedCategories = await foodCategoriesCollection.find({}).toArray();
 
-  } catch (error) {
-    console.error('MongoDB connection error:', error);
+    global.foods = fetchedFoods;                                                            // Store fetched data in global variables or process further
+    global.foodCategories = fetchedCategories;
   }
+    catch (error) {
+      console.error('MongoDB connection error:', error);
+    }
 };
 
 module.exports = mongoDB;
