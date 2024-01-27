@@ -56,19 +56,28 @@ export default function Home() {
                   ? foodItem.filter((item) => (item.CategoryName === data.CategoryName) && (item.name.toLowerCase().includes(search.toLocaleLowerCase()))) 
                     .map(filterItem => {
                       return (
+<<<<<<< HEAD
                         <div key={filterItem._id} className='col-12 col-md-6 col-lg-3'>
                           <Card foodName={filterItem.name} foodItem = {filterItem} ImgSrc={filterItem.img}
                               options = {filterItem.options[0]}
                           />
+=======
+                        <div key={filterItems._id} className='col-12 col-md-6 col-lg-3'>
+                          {/* <Card foodItems = {filterItems}>
+                              options = {filterItems.options[0]}
+                          </Card> */}
+                          <Card foodItems={filterItems} options={filterItems.options[0]} />
+
+>>>>>>> 71c61e10046d8b239afe6cfdbbb279fd8d4e2760
                         </div>
                       )
                     })
-                  : <div>"No such data found"</div>
+                  : <div key="noData">"No such data found"</div>
                 }
               </div>
             )
           })
-          : <div>" U have done something wrong "</div>
+          : <div key="somethingWrong">" U have done something wrong "</div>
         }
       </div>
 
