@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState ,useRef} from 'react'
 import Card from '../components/card'
 import Carousel from '../components/carousel'
 import Footer from '../components/Footer'
@@ -14,8 +14,8 @@ export default function Home() {
 
   const loadData = async () => {                                                  // Sending a POST request to fetch data from server.
     try {
-      const response = await fetch("http://localhost:5000/api/auth/foodData", {
-        method: 'POST',                                                           // HTTP req, is being made using POST method. -> used to submit data to server, for creating or updating resources on server.
+      const response = await fetch("http://localhost:5000/api/foodData", {
+        method: 'GET',                                                           // HTTP req, is being made using POST method. -> used to submit data to server, for creating or updating resources on server.
         headers: {
           'Content-Type': 'application/json'                                      // To specify content is of type json format.
         }

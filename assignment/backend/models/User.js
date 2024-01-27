@@ -1,13 +1,10 @@
 const mongoose = require('mongoose');
-
 const { Schema } = mongoose;
+
+// This contains the Schema of the database of User.
 
 const UserSchema = new Schema({
     name:{
-        type: String,
-        required: true
-    },
-    location:{
         type: String,
         required: true
     },
