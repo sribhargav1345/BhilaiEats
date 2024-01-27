@@ -3,8 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatchCart, useCart } from './ContextReducer';
 
 export default function Card(props) {
+<<<<<<< HEAD
 
   const [qty, setQty] = useState(1);                          // State variables for quantity,size and final price
+=======
+  console.log('Props:', props); 
+  const [qty, setQty] = useState(1);
+>>>>>>> 71c61e10046d8b239afe6cfdbbb279fd8d4e2760
   const [size, setSize] = useState('');
   const [finalPrice, setFinalPrice] = useState(0);
 
@@ -66,11 +71,16 @@ export default function Card(props) {
 
   return (      // JSX rendering
     <div>
+<<<<<<< HEAD
 
       <div className="card mt-3" style={{ width: '20rem', maxHeight: '50rem' }}>
 
         <img src={props.ImgSrc} className="card-img-top" alt="Not visible" style={{ height: '120px', objectFit: 'fill' }} />
 
+=======
+      <div className="card mt-3" style={{ width: '20rem', maxHeight: '50rem' }}>
+        <img src={props.foodItem?.img} className="card-img-top" alt="..." style={{ height: '120px', objectFit: 'fill' }} />
+>>>>>>> 71c61e10046d8b239afe6cfdbbb279fd8d4e2760
         <div className="card-body">
 
           <h5 className="card-title">{props.foodName}</h5>
