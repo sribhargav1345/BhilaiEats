@@ -54,12 +54,12 @@ export default function Home() {
                 <hr />
                 {foodItem.length !== 0
                   ? foodItem.filter((item) => (item.CategoryName === data.CategoryName) && (item.name.toLowerCase().includes(search.toLocaleLowerCase()))) 
-                    .map(filterItems => {
+                    .map(filterItem => {
                       return (
-                        <div key={filterItems._id} className='col-12 col-md-6 col-lg-3'>
-                          <Card foodItems = {filterItems}>
-                              options = {filterItems.options[0]}
-                          </Card>
+                        <div key={filterItem._id} className='col-12 col-md-6 col-lg-3'>
+                          <Card foodName={filterItem.name} foodItem = {filterItem} ImgSrc={filterItem.img}
+                              options = {filterItem.options[0]}
+                          />
                         </div>
                       )
                     })
