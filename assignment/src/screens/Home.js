@@ -57,18 +57,20 @@ export default function Home() {
                     .map(filterItems => {
                       return (
                         <div key={filterItems._id} className='col-12 col-md-6 col-lg-3'>
-                          <Card foodItems = {filterItems}>
+                          {/* <Card foodItems = {filterItems}>
                               options = {filterItems.options[0]}
-                          </Card>
+                          </Card> */}
+                          <Card foodItems={filterItems} options={filterItems.options[0]} />
+
                         </div>
                       )
                     })
-                  : <div>"No such data found"</div>
+                  : <div key="noData">"No such data found"</div>
                 }
               </div>
             )
           })
-          : <div>" U have done something wrong "</div>
+          : <div key="somethingWrong">" U have done something wrong "</div>
         }
       </div>
 
