@@ -65,49 +65,18 @@ export default function Card(props) {
   };
 
   return (      // JSX rendering
-    <div>
-      <div className="card mt-3" style={{ width: '20rem', maxHeight: '50rem' }}>
-        <img src={props.foodItem?.img} className="card-img-top" alt="..." style={{ height: '120px', objectFit: 'fill' }} />
-        <div className="card-body">
-
-          <h5 className="card-title">{props.foodName}</h5>
-
-          <div className="container w-100">
-
-            <select className="m-2 h-100 bg-success" value={qty} onChange={handleQtyChange}>
-
-              {Array.from(Array(6), (_, i) => (
-                <option key={i + 1} value={i + 1}>
-                  {i + 1}
-                </option>
-              ))}
-
-            </select>
-
-            <select className="m-2 h-100 bg-success rounded=True" value={size} onChange={handleSizeChange}>
-
-              {priceOptions.map((data) => (
-                <option key={data} value={data}>
-                  {data}
-                </option>
-              ))}
-
-            </select>
-
-            <div className="d-inline h-100 fs-6"> Rs.{finalPrice} /- </div>
-
-            <div>
-
-              <hr />
-
-              <button className="btn btn-success justify-center ms-2 " onClick={handleAddToCart}>
-                Add to Cart
-              </button>
-
-            </div>
-          </div>
-        </div>
+  <Link to={`/shop/${shopId}`} className="text-decoration-none text-dark">
+  <div>
+    <div className="card mt-3" style={{ width: '20rem', maxHeight: '50rem' }}>
+      <img src={shopImg} className="card-img-top" alt="Shop" style={{ height: '120px', objectFit: 'fill' }} />
+      <div className="card-body">
+        <h5 className="card-title font-weight-bold">{shopName}</h5>
+        <p className="card-text">{shopDescription}</p>
+        <hr />
+        {/* Add other components or details specific to the shop */}
       </div>
     </div>
+  </div>
+</Link>
   );
 }
