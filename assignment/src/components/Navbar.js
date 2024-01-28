@@ -1,5 +1,5 @@
-import React,{ useState } from 'react';
-import { Link, useNavigate} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Badge from 'react-bootstrap/Badge';
 import Modal from '../Model';
 import { useCart } from '../components/ContextReducer';
@@ -8,7 +8,7 @@ import Cart from '../screens/cart';
 
 
 export default function Navbar() {
-  
+
   const [cartView, setCartView] = useState(false);                                    // State to control visibility of cart model
   let data = useCart();                                                               // Custom hook named UseCart
   const navigate = useNavigate();                                                     // React Router for Navigation
@@ -24,11 +24,13 @@ export default function Navbar() {
 
         <div className="container-fluid">                                             { /* Bootstrap class for full-width container */}
 
-          <Link className="navbar-brand fs-1 fst-italic" to="/">                      { /* Link of GoodFood in font-size 1 and font of italic, and navigated to '/' page */}
+          <img src="https://img.freepik.com/free-vector/delivery-service-with-mask-concept_23-2148505104.jpg?w=740&t=st=1706353061~exp=1706353661~hmac=49b276b5e98074b203d820eeafbb4e2ac9002b7506621881acc9ac5ae6202c0c" alt="." className="navbar-logo" />          {/* Add your image here */}
+
+          <Link className="navbar-brand fs-2 fst-italic mx-3" to="/">                      { /* Link of GoodFood in font-size 1 and font of italic, and navigated to '/' page */}
             GoodFood
           </Link>
 
-          <button                                                                      /* This button is for toggling. It represents a Bootstrap button that toggles the collapse of a navbar on smaller screens*/ 
+          <button                                                                      /* This button is for toggling. It represents a Bootstrap button that toggles the collapse of a navbar on smaller screens*/
             className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
@@ -54,7 +56,7 @@ export default function Navbar() {
               </li>
 
               {localStorage.getItem('authToken') ? (                                    /* If the account is Logged In, write My orders and Logout option on navbar */
-              
+
                 <div className='d-flex'>
 
                   <Link className="nav-link active fs-5" aria-current="page" to="/myOrder">
@@ -69,8 +71,6 @@ export default function Navbar() {
 
               ) : ('')}
 
-            </ul>
-
               {!localStorage.getItem('authToken') ? (                                   /* If the account is not logged in, write options of Login, SignUp and MyCart there */
 
                 <div className="d-flex">
@@ -83,21 +83,18 @@ export default function Navbar() {
                     Sign Up
                   </Link>
 
-                <div>
-
-                    <div className="btn bg-white text-success mx-2" onClick = {() => {setCartView(true)}}>
-                      My Cart
-                      <Badge pill bg="danger"> {data.length} </Badge>
-                    </div>
-
-                    {cartView? <Modal onClose= {() => setCartView(false)}> </Modal>: null}
-
-                  </div>
-
                 </div>
 
-              ) : ('') }
+              ) : ('')}
               
+            </ul>
+
+            <div className="btn bg-white text-success mx-2" onClick={() => { setCartView(true) }}>
+              My Cart
+              <Badge pill bg="danger"> {data.length} </Badge>
+            </div>
+            {cartView ? <Modal onClose={() => setCartView(false)}> </Modal> : null}
+
           </div>
         </div>
       </nav>
