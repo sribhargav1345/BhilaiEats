@@ -20,7 +20,7 @@ export default function Navbar() {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-purple">                {/* Navbar with responsive class, and green in color of bg, text color dark */}
+      <nav className="navbar navbar-expand-lg navbar-dark bg-orange">                {/* Navbar with responsive class, and green in color of bg, text color dark */}
 
         <div className="container-fluid">                                             { /* Bootstrap class for full-width container */}
 
@@ -47,19 +47,11 @@ export default function Navbar() {
 
             <ul className="navbar-nav me-auto mb-2 ml-2">                               {/* navbar-nav => navbar navigation, me-auto: alignes items to the right, mb-2: margin of 2, specifically, gap between navbar elements is 2 */}
 
-              <li className="nav-item">
-
-                <Link className="nav-link active fs-5" aria-current="page" to="/">
-                  Home
-                </Link>
-
-              </li>
-
               {localStorage.getItem('authToken') ? (                                    /* If the account is Logged In, write My orders and Logout option on navbar */
 
-                <div className='d-flex'>
+                <div className="d-flex">
 
-                  <Link className="nav-link active fs-5" aria-current="page" to="/myOrder">
+                  <Link className="nav-link active fs-5 btn bg-white text-success mb-1 mr-5 me-auto" style={{marginRight:"30px"}} aria-current="page" to="/myOrder">
                     My Orders
                   </Link>
 
@@ -73,7 +65,7 @@ export default function Navbar() {
 
               {!localStorage.getItem('authToken') ? (                                   /* If the account is not logged in, write options of Login, SignUp and MyCart there */
 
-                <div className="d-flex">
+                <div className="d-flex ml-auto">
 
                   <Link className="btn bg-white text-success mx-1" to="/login">
                     Login
@@ -93,6 +85,7 @@ export default function Navbar() {
               My Cart
               <Badge pill bg="danger"> {data.length} </Badge>
             </div>
+
             {cartView ? <Modal onClose={() => setCartView(false)}> </Modal> : null}
 
           </div>
