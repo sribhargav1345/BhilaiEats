@@ -2,6 +2,10 @@
     background-color: purple;
   }
 
+.text-yellow{
+  color: yellow;
+}
+
 .navbar-logo {
   height: 50px;
   width: 50px;

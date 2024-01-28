@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Card from '../components/card';
+import Card_shop from '../components/card_shop'
 import Carousel from '../components/carousel';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
@@ -37,11 +38,11 @@ export default function Home() {
             .filter(item => item.name.toLowerCase().includes(search.toLocaleLowerCase()))
             .map(filterItem => (
               <div key={filterItem._id} className='col-12 col-md-6 col-lg-3'>
-                <Card
-                  foodName={filterItem.name}
-                  foodItem={filterItem}
+                <Card_shop
+                  shopName={filterItem.name}
+                  shop_id = {filterItem._id}
                   ImgSrc={filterItem.image}
-                  options={filterItem.options[0]}
+                  description={filterItem.description}
                 />
               </div>
             ))
