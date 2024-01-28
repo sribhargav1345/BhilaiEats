@@ -1,9 +1,22 @@
-.bg-purple {
-    background-color: purple;
+.bg-orange {
+    background-color: orange;
   }
+
+.bg-purple {
+  background-color: purple;
+}
 
 .text-yellow{
   color: yellow;
+}
+
+.btn.btn-orange{
+  background-color: orange;
+  color: black;
+}
+
+.textcarousel {
+  color: white;
 }
 
 .navbar-logo {
