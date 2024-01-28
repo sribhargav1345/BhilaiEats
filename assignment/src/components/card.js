@@ -3,13 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatchCart, useCart } from './ContextReducer';
 
 export default function Card(props) {
-<<<<<<< HEAD
 
-  const [qty, setQty] = useState(1);                          // State variables for quantity,size and final price
-=======
-  console.log('Props:', props); 
-  const [qty, setQty] = useState(1);
->>>>>>> 71c61e10046d8b239afe6cfdbbb279fd8d4e2760
+  const [qty, setQty] = useState(0);                          // State variables for quantity,size and final price
   const [size, setSize] = useState('');
   const [finalPrice, setFinalPrice] = useState(0);
 
@@ -35,19 +30,32 @@ export default function Card(props) {
     setSize(e.target.value);
   };
 
+  function increaseQty() {
+    setQty(qty + 1);
+  }
+
+  function decreaseQty() {
+    if(qty === 0){
+      return;
+    }
+    else {
+      setQty(qty - 1);
+    }
+  }
+
   const handleAddToCart = async () => {
-    if (!props.foods) {                                         // Checking if Fooditem is defined
+    if (!props.foodName) {                                         // Checking if Fooditem is defined
       console.error('Food item is not defined');
       return;
     }
 
-    if (!localStorage.getItem('token')) {                     // Check if user is authenticated (logged in)
+    if (localStorage.getItem('token')) {                     // Check if user is authenticated (logged in)
       navigate('/login');                                     // If not navigate to login page
       return;
     }
 
-    const foods = props.foods;                                // Extract foodItem from props for easier access
-    console.log(props.foods);
+    const foods = props.foodName;                                // Extract foodItem from props for easier access
+    console.log(props.foodName);
 
     let food = data.find((item) => item.id === foods._id);    // If food item aldready exists in cart based on ID
 
@@ -71,33 +79,24 @@ export default function Card(props) {
 
   return (      // JSX rendering
     <div>
-<<<<<<< HEAD
 
-      <div className="card mt-3" style={{ width: '20rem', maxHeight: '50rem' }}>
+      <div className="card mt-3" style={{ width: '20rem', maxHeight: '50rem' }}>                                                {/* Card with margin-3, width and height as mentioned */}
 
-        <img src={props.ImgSrc} className="card-img-top" alt="Not visible" style={{ height: '120px', objectFit: 'fill' }} />
+        <img src={props.ImgSrc} className="card-img-top" alt="Not visible" style={{ height: '120px', objectFit: 'fill' }} />    {/* Image attachment with specific height, and at top of card */}
 
-=======
-      <div className="card mt-3" style={{ width: '20rem', maxHeight: '50rem' }}>
-        <img src={props.foodItem?.img} className="card-img-top" alt="..." style={{ height: '120px', objectFit: 'fill' }} />
->>>>>>> 71c61e10046d8b239afe6cfdbbb279fd8d4e2760
         <div className="card-body">
 
-          <h5 className="card-title">{props.foodName}</h5>
+          <h5 className="card-title">{props.foodName}</h5>                                                                      {/* Name of the card */}
 
-          <div className="container w-100">
+          <div className="container w-100">                                                                                     {/* 100% of parent's width */}
 
-            <select className="m-2 h-100 bg-success" value={qty} onChange={handleQtyChange}>
+            <button className="m-2 h-50 bg-purple rounded" style={{ height:'5px', width:'20px' }} onClick={decreaseQty}>-</button> {/* Decrease quantity button */}
 
-              {Array.from(Array(6), (_, i) => (
-                <option key={i + 1} value={i + 1}>
-                  {i + 1}
-                </option>
-              ))}
+                <div className="d-inline h-100 fs-6">{qty}</div>                      {/* Display current quantity */}
 
-            </select>
+            <button className="m-2 h-50 bg-purple rounded = True" onClick={increaseQty}>+</button> {/* Increase quantity button */}
 
-            <select className="m-2 h-100 bg-success rounded=True" value={size} onChange={handleSizeChange}>
+            <select className="m-2 h-100 bg-purple rounded = True" value={size} onChange={handleSizeChange}>
 
               {priceOptions.map((data) => (
                 <option key={data} value={data}>

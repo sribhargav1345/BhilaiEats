@@ -13,8 +13,13 @@ const mongoDB = async () => {
     const foodCategoriesCollection = mongoose.connection.db.collection("food_categories");  // Fetch data from 'food_categories' collection
     const fetchedCategories = await foodCategoriesCollection.find({}).toArray();
 
+    const shops = mongoose.connection.db.collection("Canteen");                             // Fetch data from 'Canteens' collection 
+    const shopdata = await shops.find({}).toArray();
+
     global.foods = fetchedFoods;                                                            // Store fetched data in global variables or process further
     global.foodCategories = fetchedCategories;
+    global.shops = shopdata;
+
   }
     catch (error) {
       console.error('MongoDB connection error:', error);
