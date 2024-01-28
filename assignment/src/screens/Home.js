@@ -33,19 +33,28 @@ export default function Home() {
       <Navbar />
       <Carousel />
       <div className='container'>
+        <div className="row">
+          <div className="col-12">
+            <h2 className="font-weight-bold">Restaurants</h2>
+            <hr className="my-2" />
+          </div>
+        </div>
         {shops.length !== 0 ? (
-          shops
-            .filter(item => item.name.toLowerCase().includes(search.toLocaleLowerCase()))
-            .map(filterItem => (
-              <div key={filterItem._id} className='col-12 col-md-6 col-lg-3'>
-                <Card_shop
-                  shopName={filterItem.name}
-                  shop_id = {filterItem._id}
-                  ImgSrc={filterItem.image}
-                  description={filterItem.description}
-                />
-              </div>
-            ))
+          <div className="row">
+            {shops
+              .filter(item => item.name.toLowerCase().includes(search.toLocaleLowerCase()))
+              .map(filterItem => (
+                <div key={filterItem._id} className='col-12 col-md-6 col-lg-4'>
+                  <Card_shop
+                    shopName={filterItem.name}
+                    shop_id={filterItem._id}
+                    ImgSrc={filterItem.image}
+                    description={filterItem.description}
+                  />
+                </div>
+              ))
+            }
+          </div>
         ) : (
           <div>"No such data found"</div>
         )}
