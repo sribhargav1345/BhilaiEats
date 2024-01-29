@@ -28,6 +28,15 @@ app.use('/api', require("./Routes/CreateUser"));
 app.use('/api', require("./Routes/DisplayData"));
 app.use('/api', require("./Routes/OrderData"));
 app.use('/api', require("./Routes/DisplayCanteen"));
+app.use('/api', require("./Routes/TechCafe"));
+app.use('/api', require("./Routes/ATMart"));
+app.use('/api', require("./Routes/Bakery"));
+app.use('/api', require("./Routes/MilkShakes"));
+app.use('/api', require("./Routes/Dairy"));
+app.use('/api', require("./Routes/Govasta"));
+app.use('/api', require("./Routes/CafeCoffee"));
+app.use('/api', require("./Routes/NJX"));
+app.use('/api', require("./Routes/Galav"));
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
