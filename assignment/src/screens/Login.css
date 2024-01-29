@@ -58,3 +58,6 @@
     min-height: 100%; /* Ensures that the div stretches to at least the height of the viewport */
   }
   
+  body {
+    background-color: #b6adad; /* Change this to the color you desire */
+  }
