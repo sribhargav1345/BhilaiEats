@@ -90,13 +90,13 @@ export default function Card(props) {
 
           <div className="container w-100">                                                                                     {/* 100% of parent's width */}
 
-            <button className="m-2 h-50 bg-purple rounded" style={{ height:'5px', width:'20px' }} onClick={decreaseQty}>-</button> {/* Decrease quantity button */}
+            <button className="m-2 h-50 bg-success rounded" style={{ height:'5px', width:'20px' }} onClick={decreaseQty}>-</button> {/* Decrease quantity button */}
 
                 <div className="d-inline h-100 fs-6">{qty}</div>                      {/* Display current quantity */}
 
-            <button className="m-2 h-50 bg-purple rounded = True" onClick={increaseQty}>+</button> {/* Increase quantity button */}
+            <button className="m-2 h-50 bg-success rounded = True" onClick={increaseQty}>+</button> {/* Increase quantity button */}
 
-            <select className="m-2 h-100 bg-purple rounded = True" value={size} onChange={handleSizeChange}>
+            <select className="m-2 h-100 bg-success rounded = True" value={size} onChange={handleSizeChange}>
 
               {priceOptions.map((data) => (
                 <option key={data} value={data}>
