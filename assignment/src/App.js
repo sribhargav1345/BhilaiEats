@@ -17,6 +17,16 @@ import {
   Link,
 } from "react-router-dom";                                              // Routing front-end and back-end, components for routing in React
 import { CartProvider } from './components/ContextReducer.js';
+import ATMart from './screens/Shops/ATMart.js';
+import Bakery from './screens/Shops/Bakery.js';
+import CafeCoffee from './screens/Shops/CafeCoffee.js';
+import Dairy from './screens/Shops/Dairy.js';
+import Galav from './screens/Shops/Galav.js';
+import Govatsa from './screens/Shops/Govatsa.js';
+import MilkShakes from './screens/Shops/MilkShakes.js';
+import NJX from './screens/Shops/NJX.js';
+import TechCafe from './screens/Shops/TechCafe.js';
+
 
 // Main Component of App
 function App() {
@@ -30,6 +40,15 @@ function App() {
             <Route exact path="/login"  element = {<Login/>} />
             <Route exact path="/signup"  element = {<SignUp/>} />
             <Route exact path="/myOrders"  element = {<myOrders/>} />
+            <Route exact path="/shop/65b5f3329e3f22efa0aacbd2" element = {<ATMart/>} />
+            <Route exact path="/shop/65b5f4319e3f22efa0aacbd3" element = {<Bakery/>} />
+            <Route exact path="/shop/65b660d325d1fac6691e3ad0" element = {<CafeCoffee/>} />
+            <Route exact path="/shop/65b65f8b25d1fac6691e3ace" element = {<Dairy/>} />
+            <Route exact path="/shop/65b661e225d1fac6691e3ad2" element = {<Galav/>} />
+            <Route exact path="/shop/65b6600f25d1fac6691e3acf" element = {<Govatsa/>} />
+            <Route exact path="/shop/65b65de925d1fac6691e3acd" element = {<MilkShakes/>} />
+            <Route exact path="/shop/65b6616b25d1fac6691e3ad1" element = {<NJX/>} />
+            <Route exact path="/shop/65b5f2e19e3f22efa0aacbd1" element = {<TechCafe/>} />
           </Routes>
         </div>
       </Router>

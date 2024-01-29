@@ -1,12 +1,12 @@
 import React, { useEffect, useState ,useRef} from 'react'
-import Card from '../components/card'
-import Carousel from '../components/carousel'
-import Footer from '../components/Footer'
-import Navbar from '../components/Navbar'
+import Card from '../../components/card'
+import Carousel from '../../components/carousel'
+import Footer from '../../components/Footer'
+import Navbar from '../../components/Navbar'
 
 // In Home page, we will be displaying Card, Carousel, Footer, Navbar
 
-export default function Home() {
+export default function Dairy() {
 
   const [search,setSearch] = useState('');                                        // State variables for search input, food categories, and food items
   const [foodCat, setFoodCat] = useState([])      
@@ -14,7 +14,7 @@ export default function Home() {
 
   const loadData = async () => {                                                  // Sending a POST request to fetch data from server.
     try {
-      const response = await fetch("http://localhost:5000/api/shop/65b661e225d1fac6691e3ad2", {
+      const response = await fetch("http://localhost:5000/api/shop/65b65f8b25d1fac6691e3ace", {
         method: 'GET',                                                           // HTTP req, is being made using POST method. -> used to submit data to server, for creating or updating resources on server.
         headers: {
           'Content-Type': 'application/json'                                      // To specify content is of type json format.

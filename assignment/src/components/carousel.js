@@ -14,12 +14,12 @@ export default function Carousel() {
 
                 <div className="carousel-inner" id='carousel'>
 
-                    <div className="carousel-caption" style={{ zIndex: "4", top: "60%", left: "05%", transform: "translateY(-50%)" }}>
+                    <div className="carousel-caption" style={{ zIndex: "4", top: "45%", left: "05%", transform: "translateY(-50%)" }}>
                         <div className='textcarousel' style={{ textAlign: "left",fontStyle: "Italic", fontSize: "40px" }}>
                             <p>Food Delivery at IIT Bhilai</p>
                         </div>
                         <div className="d-flex justify-content-start align-items-center">
-                            <input className="form-control me-2 bg-white text-dark" style={{ width: "380px", height: "40px" }} type="search" placeholder="Type in..." aria-label="Search" value={search} onChange={(e) => { setSearch(e.target.value) }} />
+                            <input className="form-control me-2 bg-white text-dark" style={{ width: "450px", height: "40px" }} type="search" placeholder="Type in..." aria-label="Search" value={search} onChange={(e) => { setSearch(e.target.value) }} />
                             <button className="btn btn-orange" type="button" onClick={() => handleSearch()}>Search</button>
                         </div>
                     </div>

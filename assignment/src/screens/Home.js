@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import Card from '../components/card';
+import { Link } from "react-router-dom";
 import Card_shop from '../components/card_shop'
 import Carousel from '../components/carousel';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
+import './Home.css'
 
 export default function Home() {
   const [search, setSearch] = useState('');
@@ -29,7 +30,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div style={{ backgroundColor: 'None' }}>
+    <div className='coloring'>
       <Navbar />
       <Carousel />
       <div className='container' style={{ marginTop: '30px' }}>
@@ -45,12 +46,14 @@ export default function Home() {
               .filter(item => item.name.toLowerCase().includes(search.toLocaleLowerCase()))
               .map(filterItem => (
                 <div key={filterItem._id} className='col-12 col-md-6 col-lg-4 mt-3'>
-                  <Card_shop
-                    shopName={filterItem.name}
-                    shop_id={filterItem._id}
-                    ImgSrc={filterItem.image}
-                    description={filterItem.description}
-                  />
+                  <Link to={`/shop/${filterItem._id}`} className="link">
+                    <Card_shop
+                      shopName={filterItem.name}
+                      shop_id={filterItem._id}
+                      ImgSrc={filterItem.image}
+                      description={filterItem.description}
+                    />
+                  </Link>
                 </div>
               ))
             }
