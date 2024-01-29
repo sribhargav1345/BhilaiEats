@@ -1,12 +1,12 @@
 import React, { useEffect, useState ,useRef} from 'react'
-import Card from '../components/card'
-import Carousel from '../components/carousel'
-import Footer from '../components/Footer'
-import Navbar from '../components/Navbar'
+import Card from '../../components/card'
+import Carousel from '../../components/carousel'
+import Footer from '../../components/Footer'
+import Navbar from '../../components/Navbar'
 
 // In Home page, we will be displaying Card, Carousel, Footer, Navbar
 
-export default function Home() {
+export default function Bakery() {
 
   const [search,setSearch] = useState('');                                        // State variables for search input, food categories, and food items
   const [foodCat, setFoodCat] = useState([])      

@@ -28,15 +28,15 @@ app.use('/api', require("./Routes/CreateUser"));
 app.use('/api', require("./Routes/DisplayData"));
 app.use('/api', require("./Routes/OrderData"));
 app.use('/api', require("./Routes/DisplayCanteen"));
-app.use('/api', require("./Routes/TechCafe"));
-app.use('/api', require("./Routes/ATMart"));
-app.use('/api', require("./Routes/Bakery"));
-app.use('/api', require("./Routes/MilkShakes"));
-app.use('/api', require("./Routes/Dairy"));
-app.use('/api', require("./Routes/Govasta"));
-app.use('/api', require("./Routes/CafeCoffee"));
-app.use('/api', require("./Routes/NJX"));
-app.use('/api', require("./Routes/Galav"));
+app.use('/api', require("./Routes/ShopData/TechCafe"));
+app.use('/api', require("./Routes/ShopData/ATMart"));
+app.use('/api', require("./Routes/ShopData/Bakery"));
+app.use('/api', require("./Routes/ShopData/MilkShakes"));
+app.use('/api', require("./Routes/ShopData/Dairy"));
+app.use('/api', require("./Routes/ShopData/Govasta"));
+app.use('/api', require("./Routes/ShopData/CafeCoffee"));
+app.use('/api', require("./Routes/ShopData/NJX"));
+app.use('/api', require("./Routes/ShopData/Galav"));
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
