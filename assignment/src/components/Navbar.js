@@ -27,7 +27,7 @@ export default function Navbar() {
           <img src="https://img.freepik.com/free-vector/delivery-service-with-mask-concept_23-2148505104.jpg?w=740&t=st=1706353061~exp=1706353661~hmac=49b276b5e98074b203d820eeafbb4e2ac9002b7506621881acc9ac5ae6202c0c" alt="." className="navbar-logo" />          {/* Add your image here */}
 
           <Link className="navbar-brand fs-2 fst-italic mx-3" to="/">                      { /* Link of GoodFood in font-size 1 and font of italic, and navigated to '/' page */}
-            GoodFood
+            BhilaiEats
           </Link>
 
           <button                                                                      /* This button is for toggling. It represents a Bootstrap button that toggles the collapse of a navbar on smaller screens*/
@@ -67,7 +67,7 @@ export default function Navbar() {
 
                 <div className="d-flex ml-auto">
 
-                  <Link className="btn bg-white text-success mx-1" to="/login">
+                  <Link className="btn bg-white text-success mx-1 rounded" to="/login">
                     Login
                   </Link>
 
