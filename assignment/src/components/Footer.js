@@ -35,7 +35,7 @@ export default function Footer() {
         <hr className="bg-light" />
         <div className="row">
           <div className="col-md-12 text-center">
-            <p>&copy; 2024 GoodFood, Inc. All Rights Reserved.</p>
+            <p>&copy; 2024 BhilaiEats, Inc. All Rights Reserved.</p>
           </div>
         </div>
       </div>

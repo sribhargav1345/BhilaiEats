@@ -29,7 +29,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <div style={{ backgroundColor: 'None' }}>
       <Navbar />
       <Carousel />
       <div className='container' style={{ marginTop: '30px' }}>
