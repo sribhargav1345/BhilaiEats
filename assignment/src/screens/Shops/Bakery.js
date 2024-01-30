@@ -39,9 +39,20 @@ export default function Bakery() {
     <div >
 
       <div> <Navbar /> </div>                                                     {/* Navbar at the top */}
-      <div> <Carousel/> </div>                                                    {/* Carousel at the middle */}
 
-      <div className='container'>     
+      <div className='container'>
+        <div className='row mb-5'>
+          <div className='fs-3 mt-5'>About Shop</div>
+          <hr />
+          {/* Shop details section */}
+          <div className='col-md-4'>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJNMw-4NCYZfGMQl5SJhN2FZ35GWIsN8fj7rBG-yWVZw&s" alt="Shop" className="shop-image" />
+          </div>
+          <div className='col-md-8'>
+            <h3 className="shop-name font-weight-bold">AT Mart</h3>
+            <p className="shop-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+          </div>
+        </div>  
       {
         (foodCat.length !== 0) ?
           foodCat.map((data) => {
