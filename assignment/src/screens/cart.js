@@ -6,8 +6,10 @@ export default function Cart() {
   
   let data = useCart();
   let dispatch = useDispatchCart();
+  console.log(data);
 
   if (data.length === 0) {
+    console.log("nothing");
     return (
       <div>
         <div className='m-5 w-100 text-center fs-3'>The Cart is Empty!</div>
@@ -53,7 +55,7 @@ export default function Cart() {
   return (
     <div>
 
-      {console.log(data)}
+      {/* {console.log(data)} */}
       <div className='container m-auto mt-5 table-responsive  table-responsive-sm table-responsive-md' >
         <table className='table table-hover '>
           <thead className=' text-success fs-4'>
@@ -68,7 +70,7 @@ export default function Cart() {
           </thead>
           <tbody>
             {data.map((food, index) => (
-              <tr>
+              <tr key={index}>
                 <th scope='row' >{index + 1}</th>
                 <td >{food.name}</td>
                 <td>{food.qty}</td>

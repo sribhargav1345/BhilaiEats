@@ -53,7 +53,7 @@ export default function Milkshakes() {
               {foodItem.length !== 0 ? (
                 foodItem.filter((item) => item.CategoryName === category.CategoryName && item.name.toLowerCase().includes(search.toLocaleLowerCase())).map((filterItem) => (
                   <div key={filterItem._id} className='col-12 col-md-6 col-lg-3'>
-                    <Card foodName={filterItem.name} ImgSrc={filterItem.img} options={filterItem.options[0]} />
+                    <Card foodName={filterItem.name} ImgSrc={filterItem.img} options={filterItem.options[0]} foodItem={filterItem} />
                   </div>
                 ))
               ) : (
