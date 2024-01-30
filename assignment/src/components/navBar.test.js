@@ -1,44 +1,50 @@
-// test 2
-// navBar.js
 import React from 'react';
-const NavBar = () => (
-  <div className="navbar">
-    <a href="#">
-      about
-    </a>
-  </div>
-);
-export default NavBar;
+import { render, screen, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import Navbar from './Navbar';
 
-// // navBar.test.js
-// import React from 'react';
-// import { render, screen } from '@testing-library/react';
-// import NavBar from './navBar';
-// // include as many test cases as you want here
-// const links = [
-//   { text: 'Home', location: "/" },
-//   { text: 'Contact', location: "/contact" },
-//   { text: 'About', location: "/about" },
-//   { text: 'Search', location: "/search" },
-// ];
-// // I use test.each to iterate the test cases above
-// test.each(links)(
-//   "Check if Nav Bar have %s link.",
-//   (link) => {
-//     render(<NavBar />);
-//     //Ensure the text is in the dom, will throw error it can't find
-//     const linkDom = screen.getByText(link.text); 
-		
-//     //use jest assertion to verify the link property
-//     expect(linkDom).toHaveAttribute("href", link.location);
-//   }
-// );
-// test('Check if have logo and link to home page', () => {
-//     render(<NavBar />);
-//     // get by TestId define in the navBar
-//     const logoDom = screen.getByTestId(/company-logo/); 
-//     // check the link location
-//     expect(logoDom).toHaveAttribute("href", "/"); 
-//     //check the logo image
-//   expect(screen.getByAltText(/Company Logo/)).toBeInTheDocument(); 
-// });
+// Mocking  the useNavigate function
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: jest.fn(),
+}));
+
+// Mocking the useCart hook
+jest.mock('../components/ContextReducer', () => ({
+  ...jest.requireActual('../components/ContextReducer'),
+  useCart: jest.fn(() => []),
+}));
+
+test('Navbar renders correctly', () => {
+  render(<Navbar />);
+  
+  // Checking the "GoodFood" link is rendering or not
+  expect(screen.getByText('GoodFood')).toBeInTheDocument();
+
+  // Checking the "Home" link rendering 
+  expect(screen.getByText('Home')).toBeInTheDocument();
+});
+
+test('Logout button works correctly', () => {
+  render(<Navbar />);
+  
+  // Mocking the localStorage
+  localStorage.setItem('authToken', 'fakeAuthToken');
+
+  // Check if "My Orders" and "Logout" links are rendered when logged in
+  expect(screen.getByText('My Orders')).toBeInTheDocument();
+  expect(screen.getByText('Logout')).toBeInTheDocument();
+
+  // Mocking useNavigate function
+  const { useNavigate } = require('react-router-dom');
+  useNavigate.mockReturnValue(jest.fn());
+
+  // Mocking handleLogout function
+  const handleLogoutSpy = jest.spyOn(Navbar.defaultProps, 'handleLogout');
+
+  // Click on the "Logout" button
+  fireEvent.click(screen.getByText('Logout'));
+
+  // Check if handleLogout function is called
+  expect(handleLogoutSpy).toHaveBeenCalled();
+});
