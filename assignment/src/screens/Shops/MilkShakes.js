@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Card from '../../components/card';
 import Footer from '../../components/Footer';
 import Navbar from '../../components/Navbar';
+import './Shops.css';
 
 export default function Milkshakes() {
   const [search, setSearch] = useState('');
@@ -21,10 +22,6 @@ export default function Milkshakes() {
 
         setFoodItems(data[0]);
         setFoodMilkshakesCat(data[1]);
-
-  //       console.log(data[1]);
-  // console.log(data[0]);
-
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -33,10 +30,8 @@ export default function Milkshakes() {
     loadData();
   }, []);
 
-  //console.log(foodCat.length);
-
   return (
-    <div>
+    <div className="full-width-background"> {/* Add this wrapper div */}
       <Navbar />
       <div className='container'>
         <div className='row mb-5'>
