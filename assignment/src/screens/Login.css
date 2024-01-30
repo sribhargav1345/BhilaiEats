@@ -53,11 +53,3 @@
     padding: 0;
     background-color: rgb(178, 165, 165); /* Adjust the color code to the shade of grey you want */
   }
-  
-  .coloring {
-    min-height: 100%; /* Ensures that the div stretches to at least the height of the viewport */
-  }
-  
-  body {
-    background-color: #b6adad; /* Change this to the color you desire */
-  }
