@@ -1,4 +1,8 @@
 .login-container {
-  background-color: #f0f0f0; /* or any other shade of grey you prefer */
+  background-color: #dfd2d2; /* or any other shade of grey you prefer */
   height: 100vh; /* Make the container cover the entire viewport height */
+}
+
+.rounded-input {
+  border-radius: 10px;
 }
