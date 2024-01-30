@@ -1,33 +1,81 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar';
-import './Login.css'
+import Navbar2 from '../components/Navbar2';
+import './Login.css';
+import Milkshakes from './Home_Admin';
 
 export default function Login() {
-  const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const [credentials, setCredentials] = useState({ email: "", password: "", userType: "" });
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:5000/api/loginUser", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ email: credentials.email, password: credentials.password })
-    });
+    let apiUrl = "";
+    var flag = 0;
 
-    const json = await response.json();
+    if (credentials.userType === "user") {
+      apiUrl = "http://localhost:5000/api/loginUser";                 // API endpoint for user login
+      
+      
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: credentials.email, password: credentials.password })
+      });
+  
+      const json = await response.json();
+  
+      if (!json.success) {
+        alert("Enter Valid Credentials");
+      }
+  
+      if (json.success) {
+        localStorage.setItem("userEmail", credentials.email);
+        localStorage.setItem("authToken", json.authToken);
+  
+        navigate("/")
+      }
 
-    if (!json.success) {
-      alert("Enter Valid Credentials");
-    }
+    } else if (credentials.userType === "admin") {
+      apiUrl = "http://localhost:5000/api/loginAdmin";                // API endpoint for admin login
+      
 
-    if (json.success) {
-      localStorage.setItem("userEmail", credentials.email);
-      localStorage.setItem("authToken", json.authToken);
-      navigate("/");
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: credentials.email, password: credentials.password })
+      });
+  
+      const json = await response.json();
+  
+      if (!json.success) {
+        alert("Enter Valid Credentials");
+      }
+  
+      if (json.success) {
+  
+        const response = await fetch("http://localhost:5000/api/owners", {
+          method: "GET",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        });
+    
+        const data = await response.json();
+
+        for(const item in data){
+          if(item.email === credentials.email){
+            navigate(`/owner_${item._id}`);
+            break;
+          }
+        }
+      }
+
     }
   };
 
@@ -37,12 +85,12 @@ export default function Login() {
 
   return (
     <div className='login-container'>
-      <Navbar />
+      <Navbar2 />
       <div className="container">
         <div className="row justify-content-center mt-5">
           <div className="col-md-5">
             <div className="card">
-              <div className="card-body" style={{ height: "420px" }}>
+              <div className="card-body" style={{ height: "470px" }}>
                 <h2 className="text-center">Login</h2>
                 <hr className='mb-3' style={{ borderTop: '1px dotted black' }} />
                 <form onSubmit={handleSubmit}>
@@ -54,6 +102,13 @@ export default function Login() {
                   <div className="mb-3">
                     <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
                     <input type="password" className="form-control" name='password' value={credentials.password} onChange={onChange} id="exampleInputPassword1" />
+                  </div>
+                  <div className='mb-3'>
+                    <label htmlFor="userType" className="form-label">User Type</label>
+                    <select className="form-control custom-select" name="userType" value={credentials.userType} onChange={onChange}>
+                      <option value="user">User</option>
+                      <option value="admin">Admin</option>
+                    </select>
                   </div>
                   <button type="submit" className="btn btn-success w-100 mb-3">Submit</button>
                   <p className="text-center mb-0">New User? <Link to="../signup">Sign Up</Link></p>

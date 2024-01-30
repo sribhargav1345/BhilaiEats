@@ -1,3 +1,5 @@
+// Navbar for signup page
+
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Badge from 'react-bootstrap/Badge';
@@ -6,7 +8,7 @@ import { useCart } from '../components/ContextReducer';
 import './Navbarr.css';
 import Cart from '../screens/cart';
 
-export default function Navbar2() {
+export default function Navbar3() {
     const [cartView, setCartView] = useState(false);
     const data = useCart();
     const navigate = useNavigate();
@@ -37,8 +39,8 @@ export default function Navbar2() {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <div className="ms-auto"> {/* Here's the change */}
-                            <Link className="btn bg-white text-success mx-2" style={{ borderRadius: "10px" }} to="/signup">
-                                Sign Up
+                            <Link className="btn bg-white text-success mx-2" style={{ borderRadius: "10px" }} to="/login">
+                                Login
                             </Link>
                         </div>
                         {cartView ? <Modal onClose={() => setCartView(false)}> </Modal> : null}

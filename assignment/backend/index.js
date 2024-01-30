@@ -25,6 +25,7 @@ app.get('/', (req, res) => {
 mongoDB();
 
 app.use('/api', require("./Routes/CreateUser"));
+app.use('/api', require("./Routes/CreateAdmin"));
 app.use('/api', require("./Routes/DisplayData"));
 app.use('/api', require("./Routes/OrderData"));
 app.use('/api', require("./Routes/DisplayCanteen"));
@@ -37,6 +38,9 @@ app.use('/api', require("./Routes/ShopData/Govasta"));
 app.use('/api', require("./Routes/ShopData/CafeCoffee"));
 app.use('/api', require("./Routes/ShopData/NJX"));
 app.use('/api', require("./Routes/ShopData/Galav"));
+
+app.use('/api', require("./Routes/Owners"));
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
