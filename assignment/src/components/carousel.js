@@ -16,7 +16,7 @@ export default function Carousel({ onSearchChange }) {
 
         <div className="carousel-inner" id='carousel'>
 
-          <div className="carousel-caption" style={{ zIndex: "4", top: "45%", left: "05%", transform: "translateY(-50%)" }}>
+          <div className="carousel-caption" style={{ zIndex: "4", top: "55%", left: "05%", transform: "translateY(-50%)" }}>
             <div className='textcarousel' style={{ textAlign: "left", fontStyle: "Italic", fontSize: "40px" }}>
               <p>Food Delivery at IIT Bhilai</p>
             </div>
