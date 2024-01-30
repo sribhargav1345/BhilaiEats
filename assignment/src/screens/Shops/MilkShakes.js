@@ -38,7 +38,7 @@ export default function Milkshakes() {
           <div className='fs-3 mt-5'>About Shop</div>
           <hr />
           <div className='col-md-4'>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJNMw-4NCYZfGMQl5SJhN2FZ35GWIsN8fj7rBG-yWVZw&s" alt="Shop" className="shop-image" />
+            <img src="https://media.istockphoto.com/id/818584076/photo/various-fruits-and-vegetables-juices.jpg?s=612x612&w=0&k=20&c=TJU3c1AznFv3vwNcu9DpEgT7Q1A6uWF5P50j8X9qSKM=" alt="Shop" className="shop-image" />
           </div>
           <div className='col-md-8'>
             <h3 className="shop-name font-weight-bold">Milkshakes</h3>
