@@ -2,81 +2,63 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar2 from '../components/Navbar2';
 import './Login.css';
-import Milkshakes from './Home_Admin';
 
 export default function Login() {
-  const [credentials, setCredentials] = useState({ email: "", password: "", userType: "" });
+  const [credentials, setCredentials] = useState({ email: "", password: "", userType: "user" }); // Default userType to "user"
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     let apiUrl = "";
-    var flag = 0;
-
-    if (credentials.userType === "user") {
-      apiUrl = "http://localhost:5000/api/loginUser";                 // API endpoint for user login
-      
-      
-      const response = await fetch(apiUrl, {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email: credentials.email, password: credentials.password })
-      });
-  
-      const json = await response.json();
-  
-      if (!json.success) {
-        alert("Enter Valid Credentials");
-      }
-  
-      if (json.success) {
-        localStorage.setItem("userEmail", credentials.email);
-        localStorage.setItem("authToken", json.authToken);
-  
-        navigate("/")
-      }
-
-    } else if (credentials.userType === "admin") {
-      apiUrl = "http://localhost:5000/api/loginAdmin";                // API endpoint for admin login
-      
-
-      const response = await fetch(apiUrl, {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email: credentials.email, password: credentials.password })
-      });
-  
-      const json = await response.json();
-  
-      if (!json.success) {
-        alert("Enter Valid Credentials");
-      }
-  
-      if (json.success) {
-  
-        const response = await fetch("http://localhost:5000/api/owners", {
-          method: "GET",
-          headers: {
-            'Content-Type': 'application/json'
-          },
-        });
     
-        const data = await response.json();
+    if (credentials.userType === "user") {
+      apiUrl = "http://localhost:5000/api/loginUser";
+    } else if (credentials.userType === "admin") {
+      apiUrl = "http://localhost:5000/api/loginAdmin";
+      console.log("I'm an admin");
+    }
 
-        for(const item in data){
-          if(item.email === credentials.email){
-            navigate(`/owner_${item._id}`);
-            break;
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email: credentials.email, password: credentials.password })
+    });
+
+    const json = await response.json();
+
+    if (!json.success) {
+      alert("Enter Valid Credentials");
+      return; // Exit early if login is unsuccessful
+    }
+
+    // Login successful
+    localStorage.setItem("userEmail", credentials.email);
+    localStorage.setItem("authToken", json.authToken);
+
+    if (credentials.userType === "admin") {
+      console.log("I came here");
+      const ownersResponse = await fetch("http://localhost:5000/api/owners");
+      const ownersData = await ownersResponse.json();
+      
+      console.log("Owners:", ownersData[0].email);
+      console.log("Cred: ",credentials.email);
+
+      for (const ownerArray of ownersData) {
+        for (const owner of ownerArray) {
+          if (owner.email === credentials.email) {
+            console.log("Owner found:", owner);
+            navigate(`/owner_${owner._id}`);
+            return;
           }
         }
       }
-
     }
+
+    // Default navigation for regular users or if admin owner not found
+    navigate("/");
   };
 
   const onChange = (event) => {
