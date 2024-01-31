@@ -23,7 +23,7 @@ const mongoDB = async () => {
     const milkshakesCat = await food_milkshakesCat.find({}).toArray();
 
 
-    const owner_all = mongoose.connection.db.collection("restaurant_admin");                             // Fetch data from 'Canteens' collection 
+    const owner_all = mongoose.connection.db.collection("admins");                             // Fetch data from 'Canteens' collection 
     const owners = await owner_all.find({}).toArray();
 
     global.foods = fetchedFoods;                                                            // Store fetched data in global variables or process further
