@@ -31,3 +31,7 @@
 .text-colors {
   color: rgb(230, 225, 225);
 }
+
+.custom-auto-margin {
+  margin-left: auto;
+}
