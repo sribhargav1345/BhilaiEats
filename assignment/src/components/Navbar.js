@@ -18,7 +18,7 @@ export default function Navbar() {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-orange">
+      <nav className="navbar navbar-expand-lrtg navbar-dark bg-orange">
         <div className="container-fluid">
           <img src="https://img.freepik.com/free-vector/delivery-service-with-mask-concept_23-2148505104.jpg?w=740&t=st=1706353061~exp=1706353661~hmac=49b276b5e98074b203d820eeafbb4e2ac9002b7506621881acc9ac5ae6202c0c" alt="." className="navbar-logo" />
           <Link className="navbar-brand fs-2 fst-italic mx-3" to="/">
@@ -63,7 +63,7 @@ export default function Navbar() {
                 My Cart
                 <Badge pill bg="danger"> {data.length} </Badge>
               </div>
-              {cartView ? <Modal onClose={() => setCartView(false)}> </Modal> : null}
+              {cartView ? <Modal onClose={() => setCartView(false)}><Cart /></Modal> : null}
             </div>
           </div>
         </div>
