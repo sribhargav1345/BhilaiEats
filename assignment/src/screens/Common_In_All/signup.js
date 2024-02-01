@@ -60,6 +60,31 @@ export default function SignUp() {
                 alert("Restaurant admin created successfully!");
             }
         }
+        else if(credentials.userType === "super-admin"){
+            apiUrl = "http://localhost:5000/api/CreateSuperAdmin";
+
+            const response = await fetch(apiUrl, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 
+                    name: credentials.name, 
+                    email: credentials.email, 
+                    password: credentials.password, 
+                    shopname: credentials.shopname,
+                    contact: credentials.contactNumber
+                })
+            });
+
+            const json = await response.json();
+
+            if (!json.success) {
+                alert("Failed to create restaurant Superadmin. Please check your input and try again.");
+            } else {
+                alert("Super-admin created successfully!");
+            }
+        }
     };
 
     const onChange = (event) => {
@@ -67,7 +92,7 @@ export default function SignUp() {
         setCredentials({ ...credentials, [name]: value });
 
         // Show additional fields if user selects "Restaurant Admin"
-        if (name === "userType" && value === "restaurant-admin") {
+        if (name === "userType" && value !== "user") {
             setShowAdditionalFields(true);
         } else {
             setShowAdditionalFields(false);
@@ -101,9 +126,9 @@ export default function SignUp() {
                                     <div className="mb-3">
                                         <label htmlFor="userType" className="form-label">User Type</label>
                                         <select className="form-control custom-select" name="userType" value={credentials.userType} onChange={onChange}>
-                                            <option value="">Select</option>
                                             <option value="user">User</option>
                                             <option value="restaurant-admin">Restaurant Admin</option>
+                                            <option value="super-admin"> Super Admin </option>
                                         </select>
                                     </div>
                                     {showAdditionalFields && (

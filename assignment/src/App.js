@@ -35,6 +35,9 @@ import Owner_Milkshake from './screens/Owner_data/Milkshake/Milkshake.js';
 // Importing owner_add Item details
 import Add_item_Milkshake from './screens/Owner_data/Milkshake/Add_item.js'
 
+// Importing SuperAdmin details
+import Home_SuperAdmin from  "./screens/Super_Admin/Home_SuperAdmin.js";
+
 
 // Main Component of App
 function App() {
@@ -68,6 +71,9 @@ function App() {
 
             {/* Routes of Add_items of shop_owners */}
             <Route exact path="/owner_65b9c50e1ec25cbe9bd921a0/add_item" element = {<Add_item_Milkshake/>} />
+
+            {/* Routes of pages of Super Admins */}
+            <Route exact path="/superadmin"  element = {<Home_SuperAdmin/>} />
 
           </Routes>
         </div>

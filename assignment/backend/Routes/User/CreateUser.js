@@ -30,6 +30,13 @@ router.post("/CreateUser", [
     let secPass = await bcrypt.hash(req.body.password, salt);                                       // Hash the password
 
     try {
+
+        const existingUser = await User.findOne({ email: req.body.email });
+        if (existingUser) {
+            console.log("Email already Registered");
+            return res.status(400).json({ success: false, error: "Email Already Registered" });
+        }
+
         await User.create({
             name: req.body.name,
             password: secPass,                              // Use Hashed Password instead of normal password

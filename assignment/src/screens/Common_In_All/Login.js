@@ -13,10 +13,21 @@ export default function Login() {
     let apiUrl = "";
     
     if (credentials.userType === "user") {
+
       apiUrl = "http://localhost:5000/api/loginUser";
-    } else if (credentials.userType === "admin") {
-      apiUrl = "http://localhost:5000/api/loginAdmin";
-      console.log("I'm an admin");
+
+    } 
+    else if (credentials.userType === "admin") {
+
+      if(credentials.email === "sribhargavof03@gmail.com" || credentials.email === "mitulvardhan@iitbhilai.ac.in"){
+        apiUrl = "http://localhost:5000/api/loginSuperAdmin";
+        console.log("I'm a SuperAdmin");
+      }
+      else{
+        apiUrl = "http://localhost:5000/api/loginAdmin";
+        console.log("I'm an admin");
+      }
+
     }
 
     const response = await fetch(apiUrl, {
@@ -38,13 +49,10 @@ export default function Login() {
     localStorage.setItem("userEmail", credentials.email);
     localStorage.setItem("authToken", json.authToken);
 
-    if (credentials.userType === "admin") {
-      console.log("I came here");
+    if (apiUrl === "http://localhost:5000/api/loginAdmin") {
+      
       const ownersResponse = await fetch("http://localhost:5000/api/owners");
       const ownersData = await ownersResponse.json();
-      
-      console.log("Owners:", ownersData[0].email);
-      console.log("Cred: ",credentials.email);
 
       for (const ownerArray of ownersData) {
         for (const owner of ownerArray) {
@@ -56,9 +64,12 @@ export default function Login() {
         }
       }
     }
+    else if(apiUrl === "http://localhost:5000/api/loginSuperAdmin"){
+      navigate('/superadmin');
+      return;
+    }
 
-    // Default navigation for regular users or if admin owner not found
-    navigate("/");
+    navigate("/user");
   };
 
   const onChange = (event) => {

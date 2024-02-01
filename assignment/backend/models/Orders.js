@@ -9,7 +9,7 @@ const OrderSchema = new Schema({
         unique: true
     },
     order_data: {
-        type: Array,            // More data will be stored in Array.
+        type: Array,          
         required: true,
     },
 
