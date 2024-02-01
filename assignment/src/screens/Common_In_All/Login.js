@@ -11,19 +11,19 @@ export default function Login() {
     e.preventDefault();
 
     let apiUrl = "";
-    
+
     if (credentials.userType === "user") {
 
       apiUrl = "http://localhost:5000/api/loginUser";
 
-    } 
+    }
     else if (credentials.userType === "admin") {
 
-      if(credentials.email === "sribhargavof03@gmail.com" || credentials.email === "mitulvardhan@iitbhilai.ac.in"){
+      if (credentials.email === "sribhargavof03@gmail.com" || credentials.email === "mitulvardhan@iitbhilai.ac.in") {
         apiUrl = "http://localhost:5000/api/loginSuperAdmin";
         console.log("I'm a SuperAdmin");
       }
-      else{
+      else {
         apiUrl = "http://localhost:5000/api/loginAdmin";
         console.log("I'm an admin");
       }
@@ -50,7 +50,7 @@ export default function Login() {
     localStorage.setItem("authToken", json.authToken);
 
     if (apiUrl === "http://localhost:5000/api/loginAdmin") {
-      
+
       const ownersResponse = await fetch("http://localhost:5000/api/owners");
       const ownersData = await ownersResponse.json();
 
@@ -64,7 +64,7 @@ export default function Login() {
         }
       }
     }
-    else if(apiUrl === "http://localhost:5000/api/loginSuperAdmin"){
+    else if (apiUrl === "http://localhost:5000/api/loginSuperAdmin") {
       navigate('/superadmin');
       return;
     }
@@ -82,8 +82,11 @@ export default function Login() {
       <div className="container">
         <div className="row justify-content-center mt-5">
           <div className="col-md-5">
-            <div className="card">
-              <div className="card-body" style={{ height: "470px" }}>
+            <div className="card d-flex flex-row" style={{width: "700px"}}>
+              <div className="login-image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_sbB4NgADRLxiBczU_GK6eIUGqgj_VGwQYg&usqp=CAU" alt="Login" style={{height:"490px", width:"320px"}}/>
+              </div>
+              <div className="card-body" style={{ height: "490px"}}>
                 <h2 className="text-center">Login</h2>
                 <hr className='mb-3' style={{ borderTop: '1px dotted black' }} />
                 <form onSubmit={handleSubmit}>
