@@ -1,8 +1,8 @@
 
 import './App.css';
-import Home from './screens/Home';
-import Login from './screens/Login';
-import SignUp from './screens/signup.js'
+import Home from './screens/User/Home';
+import Login from './screens/Common_In_All/Login';
+import SignUp from './screens/Common_In_All/signup.js';
 
 // Import bootstrap files.
 import '../node_modules/bootstrap-dark-5/dist/css/bootstrap-dark.min.css';
@@ -16,21 +16,24 @@ import {
   Route,
   Link,
 } from "react-router-dom";                                              // Routing front-end and back-end, components for routing in React
-import { CartProvider } from './components/ContextReducer.js';
+import { CartProvider } from './components/User/ContextReducer.js';
 
 // Importing shop details
-import ATMart from './screens/Shops/ATMart.js';
-import Bakery from './screens/Shops/Bakery.js';
-import CafeCoffee from './screens/Shops/CafeCoffee.js';
-import Dairy from './screens/Shops/Dairy.js';
-import Galav from './screens/Shops/Galav.js';
-import Govatsa from './screens/Shops/Govatsa.js';
-import MilkShakes from './screens/Shops/MilkShakes.js';
-import NJX from './screens/Shops/NJX.js';
-import TechCafe from './screens/Shops/TechCafe.js';
+import ATMart from './screens/Super_Admin/Shops/ATMart.js';
+import Bakery from './screens/Super_Admin/Shops/Bakery.js';
+import CafeCoffee from './screens/Super_Admin/Shops/CafeCoffee.js';
+import Dairy from './screens/Super_Admin/Shops/Dairy.js';
+import Galav from './screens/Super_Admin/Shops/Galav.js';
+import Govatsa from './screens/Super_Admin/Shops/Govatsa.js';
+import MilkShakes from './screens/Super_Admin/Shops/MilkShakes.js';
+import NJX from './screens/Super_Admin/Shops/NJX.js';
+import TechCafe from './screens/Super_Admin/Shops/TechCafe.js';
 
 // Importing owner details
-import Owner_Milkshake from './screens/Owner_data/Milkshake.js';
+import Owner_Milkshake from './screens/Owner_data/Milkshake/Milkshake.js';
+
+// Importing owner_add Item details
+import Add_item_Milkshake from './screens/Owner_data/Milkshake/Add_item.js'
 
 
 // Main Component of App
@@ -41,7 +44,9 @@ function App() {
       <Router>
         <div>
           <Routes>
-            <Route exact path="/"  element = {<Home/>} />               {/* Paths specification (API Endpoint) -> /, /login, /signup */}
+
+            {/* These are the routes for Homepage, Login, signup and myorders page */}
+            <Route exact path="/user"  element = {<Home/>} />               {/* Paths specification (API Endpoint) -> /, /login, /signup */}
             <Route exact path="/login"  element = {<Login/>} />
             <Route exact path="/signup"  element = {<SignUp/>} />
             <Route exact path="/myOrders"  element = {<myOrders/>} />
@@ -59,6 +64,10 @@ function App() {
 
             {/* Routes of shop owners */}
             <Route exact path="/owner_65b9c50e1ec25cbe9bd921a0" element = {<Owner_Milkshake/>} />
+
+
+            {/* Routes of Add_items of shop_owners */}
+            <Route exact path="/owner_65b9c50e1ec25cbe9bd921a0/add_item" element = {<Add_item_Milkshake/>} />
 
           </Routes>
         </div>

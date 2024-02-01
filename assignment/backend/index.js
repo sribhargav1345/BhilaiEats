@@ -24,23 +24,28 @@ app.get('/', (req, res) => {
 
 mongoDB();
 
-app.use('/api', require("./Routes/CreateUser"));
-app.use('/api', require("./Routes/CreateAdmin"));
-app.use('/api', require("./Routes/DisplayData"));
-app.use('/api', require("./Routes/OrderData"));
-app.use('/api', require("./Routes/DisplayCanteen"));
-app.use('/api', require("./Routes/ShopData/TechCafe"));
-app.use('/api', require("./Routes/ShopData/ATMart"));
-app.use('/api', require("./Routes/ShopData/Bakery"));
-app.use('/api', require("./Routes/ShopData/MilkShakes"));
-app.use('/api', require("./Routes/ShopData/Dairy"));
-app.use('/api', require("./Routes/ShopData/Govasta"));
-app.use('/api', require("./Routes/ShopData/CafeCoffee"));
-app.use('/api', require("./Routes/ShopData/NJX"));
-app.use('/api', require("./Routes/ShopData/Galav"));
+// Shop_Owner Part
+app.use('/api', require("./Routes/Shop_Owner/CreateAdmin"));
+app.use('/api', require("./Routes/Shop_Owner/DisplayData"));
 
-app.use('/api', require("./Routes/Owners"));
+// User part
+app.use('/api', require("./Routes/User/CreateUser"));
+app.use('/api', require("./Routes/User/DisplayData"));
+app.use('/api', require("./Routes/User/OrderData"));
+app.use('/api', require("./Routes/User/DisplayCanteen"));
 
+// Super_Admin part
+app.use('/api', require("./Routes/Super_Admin/ShopData/TechCafe"));
+app.use('/api', require("./Routes/Super_Admin/ShopData/ATMart"));
+app.use('/api', require("./Routes/Super_Admin/ShopData/Bakery"));
+app.use('/api', require("./Routes/Super_Admin/ShopData/MilkShakes"));
+app.use('/api', require("./Routes/Super_Admin/ShopData/Dairy"));
+app.use('/api', require("./Routes/Super_Admin/ShopData/Govasta"));
+app.use('/api', require("./Routes/Super_Admin/ShopData/CafeCoffee"));
+app.use('/api', require("./Routes/Super_Admin/ShopData/NJX"));
+app.use('/api', require("./Routes/Super_Admin/ShopData/Galav"));
+
+app.use('/api', require("./Routes/Super_Admin/Owners"));
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
