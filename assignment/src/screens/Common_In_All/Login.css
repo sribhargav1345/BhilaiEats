@@ -1,8 +1,57 @@
 .login-container {
-  background-color: #dfd2d2; /* or any other shade of grey you prefer */
-  height: 100vh; /* Make the container cover the entire viewport height */
+  background-color: #dfd2d2; 
+  height: 100vh; 
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: none; 
+  border-radius: 20px; 
+}
+
+.card-body {
+  padding: 40px;
+}
+
+.form-control,
+.custom-select {
+  border-radius: 5px;
+  margin-bottom: 15px; 
+}
+
+.btn {
+  border-radius: 5px;
+  margin-top: 10px; 
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.login-image img {
+  border-top-left-radius: 10px; 
+  border-bottom-left-radius: 10px; 
+  object-fit: cover; 
+  height: 100%;
+  width: 100%;
 }
 
 .rounded-input {
   border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .card-container {
+    flex-direction: column;
+    margin-right: 0; 
+  }
+  .login-image img {
+    border-radius: 10px 10px 0 0; 
+  }
 }
