@@ -25,6 +25,13 @@ router.post("/CreateAdmin", [
     console.log("Received request:", req.body);
 
     try {
+
+        const existingAdmin = await Admin.findOne({ email: req.body.email });
+        if (existingAdmin) {
+            console.log("Email already Registered");
+            return res.status(400).json({ success: false, error: "Email Already Registered" });
+        }
+
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(req.body.password, salt);
 

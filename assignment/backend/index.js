@@ -46,6 +46,8 @@ app.use('/api', require("./Routes/Super_Admin/ShopData/NJX"));
 app.use('/api', require("./Routes/Super_Admin/ShopData/Galav"));
 
 app.use('/api', require("./Routes/Super_Admin/Owners"));
+app.use('/api', require("./Routes/Super_Admin/CreateSuperAdmin"));
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

@@ -3,7 +3,6 @@ const router = express.Router();
 
 router.get('/shopData', async (req, res) => {
     try {
-        //console.log(global.shops);
         res.send([global.shops]);
     } catch (error) {
         console.error(error.message);
