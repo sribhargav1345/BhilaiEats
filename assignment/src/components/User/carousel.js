@@ -20,7 +20,7 @@ export default function Carousel({ onSearchChange }) {
             <div className='textcarousel' style={{ textAlign: "left", fontStyle: "Italic", fontSize: "40px" }}>
               <p>Food Delivery at IIT Bhilai</p>
             </div>
-            <div className="d-flex justify-content-start align-items-center">
+            <div className="d-flex justify-content-start align-items-center flex-row">
               <input
                 className="form-control me-2 bg-white text-dark"
                 style={{ width: "450px", height: "40px" }}
