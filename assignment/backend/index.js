@@ -32,6 +32,10 @@ mongoDB();
 app.use('/api', require("./Routes/Shop_Owner/CreateAdmin"));
 app.use('/api', require("./Routes/Shop_Owner/DisplayData"));
 
+app.use('/api', require("./Routes/Shop_Owner/Milkshakes/Create_Food"));
+app.use('/api', require("./Routes/Shop_Owner/Milkshakes/View_Food"));
+
+
 // User part
 app.use('/api', require("./Routes/User/CreateUser"));
 app.use('/api', require("./Routes/User/DisplayData"));

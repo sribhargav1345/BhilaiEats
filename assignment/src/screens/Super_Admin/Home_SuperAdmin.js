@@ -6,10 +6,12 @@ import Footer from '../../components/User/Footer';
 import Navbar from '../../components/User/Navbar';
 import './Home.css';
 import './Shops/Shops.css';
+import AddItemForm from './Add_shop';
 
 export default function Home_SuperAdmin() {
   const [search, setSearch] = useState('');
   const [shops, setShops] = useState([]);
+  const [showAddItemForm, setShowAddItemForm] = useState(false);
 
   const loadData = async () => {
 
@@ -34,6 +36,14 @@ export default function Home_SuperAdmin() {
 
   const handleSearchChange = (searchValue) => {
     setSearch(searchValue);
+  };
+
+  const handleAddItemClick = () => {
+    setShowAddItemForm(true); // Show the AddItemForm when '+' button is clicked
+  };
+
+  const handleCloseAddItemForm = () => {
+    setShowAddItemForm(false); // Close the AddItemForm
   };
 
   return (
@@ -76,12 +86,11 @@ export default function Home_SuperAdmin() {
           <div>"No such data found"</div>
         )}
       </div>
-      <Link to="/owner_65b9c50e1ec25cbe9bd921a0/add_item"> 
+      <div className="add-item-form-container">
         <div className="add-button" title="Add Restaurant">
           +
         </div>
-      </Link>
-      
+      </div>
       <Footer />
     </div>
   );

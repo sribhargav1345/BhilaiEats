@@ -21,3 +21,9 @@
     background-color: #417bb9;
   }
   
+
+  .increased-size {
+    width: 100%; /* or specify a width in pixels */
+    height: auto; /* maintain aspect ratio */
+    /* add any other styles you need */
+  }

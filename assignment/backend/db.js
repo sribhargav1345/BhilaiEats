@@ -16,10 +16,10 @@ const mongoDB = async () => {
     const shops = mongoose.connection.db.collection("Canteen");                             // Fetch data from 'Canteens' collection 
     const shopdata = await shops.find({}).toArray();
 
-    const food_milkshakes = mongoose.connection.db.collection("food_Milkshakes");                             // Fetch data from 'Canteens' collection 
+    const food_milkshakes = mongoose.connection.db.collection("add_items");                             // Fetch data from 'Canteens' collection 
     const milkshakes = await food_milkshakes.find({}).toArray();
 
-    const food_milkshakesCat = mongoose.connection.db.collection("food_MilkshakesCat");                             // Fetch data from 'Canteens' collection 
+    const food_milkshakesCat = mongoose.connection.db.collection("add_itemcats");                             // Fetch data from 'Canteens' collection 
     const milkshakesCat = await food_milkshakesCat.find({}).toArray();
 
 
