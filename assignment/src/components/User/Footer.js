@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export default function Footer() {
   return (
     <footer className="bg-dark text-light py-5" style={{marginTop:"90px"}}>
-      <div className="container">
+      <div className="container" style={{ maxHeight: "250px" }}>
         <div className="row">
           <div className="col-md-4">
             <h5>Customer Support</h5>

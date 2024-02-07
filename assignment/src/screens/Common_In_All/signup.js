@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar3 from '../../components/Common_In_All/Navbar_signup';
-import './Login.css';
+import './signup.css';
 
 export default function SignUp() {
     const [credentials, setCredentials] = useState({ name: "", email: "", password: "", userType: "", contactNumber: "", shopname: "" });

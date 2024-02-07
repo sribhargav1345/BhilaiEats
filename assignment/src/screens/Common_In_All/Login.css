@@ -7,7 +7,14 @@
 
 /* Body Styles */
 body {
-  background-color: #dfd2d2;
+  background-color: #dfd2d2; /* Apply background color to body */
+  height: 100%; /* Ensure body covers entire viewport height */
+  margin: 0; /* Remove default body margin */
+}
+
+/* Container Styles */
+.container {
+  min-height: 100vh; /* Set minimum height to cover entire viewport height */
 }
 
 /* Card Styles */
@@ -18,7 +25,8 @@ body {
 }
 
 .card-body {
-  padding: 40px;
+  padding: 20px 40px; /* Adjust padding as desired */
+  height: 510px; /* Increase height as desired */
 }
 
 /* Form Control Styles */
@@ -56,6 +64,10 @@ body {
 /* Rounded Input Styles */
 .rounded-input {
   border-radius: 10px;
+}
+
+.coloring {
+  background-color: #dfd2d2;
 }
 
 /* Media Query for Small Devices */
