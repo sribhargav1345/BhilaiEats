@@ -1,6 +1,7 @@
 
 import './App.css';
 import Home from './screens/User/Home';
+import UserProfile from './screens/User/UserProfile.js';
 import Login from './screens/Common_In_All/Login';
 import SignUp from './screens/Common_In_All/signup.js';
 
@@ -49,11 +50,19 @@ function App() {
           <Routes>
 
             {/* These are the routes for Homepage, Login, signup and myorders page */}
-            <Route exact path="/user"  element = {<Home/>} />               {/* Paths specification (API Endpoint) -> /, /login, /signup */}
-            <Route exact path="/login"  element = {<Login/>} />
-            <Route exact path="/signup"  element = {<SignUp/>} />
+            <Route exact path="/" element = {<Home/>} />            
+            <Route exact path="/login"  element = {<Login/>} />                 {/* Completed */}
+            <Route exact path="/signup"  element = {<SignUp/>} />               {/* Completed */}
             <Route exact path="/myOrders"  element = {<myOrders/>} />
+            <Route exact path="/userProfile"  element = {<UserProfile/>} />
 
+            {/* Routes for different types of users */}
+            <Route exact path="/user"  element = {<Home/>} />
+            <Route exact path="/owner"  element = {<Home/>} />
+            <Route exact path="/superadmin"  element = {<Home_SuperAdmin/>} />
+
+
+          {/* The down parts will be removed after sometime */}
             {/* Routes of each shops */}
             <Route exact path="/shop/65b5f3329e3f22efa0aacbd2" element = {<ATMart/>} />
             <Route exact path="/shop/65b5f4319e3f22efa0aacbd3" element = {<Bakery/>} />
@@ -72,8 +81,6 @@ function App() {
             {/* Routes of Add_items of shop_owners */}
             <Route exact path="/owner_65b9c50e1ec25cbe9bd921a0/add_item" element = {<Add_item_Milkshake/>} />
 
-            {/* Routes of pages of Super Admins */}
-            <Route exact path="/superadmin"  element = {<Home_SuperAdmin/>} />
 
           </Routes>
         </div>

@@ -35,3 +35,14 @@
 .custom-auto-margin {
   margin-left: auto;
 }
+
+.card {
+  margin: 10px; /* Decrease margin to reduce space around the card */
+  width: 18rem; /* Decrease width to make the card smaller */
+  max-height: 350px; /* Decrease max-height to reduce the overall height of the card */
+  border-radius: 10px; /* Adjust border-radius if needed */
+}
+
+.card-body {
+  padding: 0; /* Adjust padding inside the card body */
+}

@@ -4,6 +4,8 @@ import Badge from 'react-bootstrap/Badge';
 import Modal from '../../Model';
 import { useCart } from './ContextReducer';
 import './Navbarr.css';
+import userIcon from '../../Assests/images/user.png';
+
 import Cart from '../../screens/User/cart';
 
 export default function Navbar() {
@@ -43,6 +45,11 @@ export default function Navbar() {
                     <div className="btn bg-white text-danger mb-1" onClick={handleLogout}>
                       Logout
                     </div>
+                  </li>
+                  <li className='nav-item'>
+                    <a className="mx-2" href="/userProfile"> {/* Use <a> tag instead of <Link> */}
+                      <img src={userIcon} alt="User" style={{ width: '30px', height: '30px', borderRadius: '50%' }} />
+                    </a>
                   </li>
                 </div>
               ) : null}
