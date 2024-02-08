@@ -6,25 +6,22 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const jwtSecret = "GunturKaramBokka";
 
-const verifyToken = (req, res, next) => {
-
-    console.log(req.headers.authorization);
+const verifyToken = (req) => {
     const authToken = req.headers.authorization;
-
     if (!authToken) {
-        return res.status(401).json({ success: false, error: 'Authorization token is missing' });
+        return { success: false, error: 'Authorization token is missing' };
     }
 
     try {
-        const token = authToken.split(' ')[1];
-        const decoded = jwt.verify(token, jwtSecret);
-        req.user = decoded.user;
-        next();
+        const decoded = jwt.verify(authToken, jwtSecret);
+        const id = decoded.user.id;
+        return { success: true, id };
     } catch (error) {
         console.error("Token verification failed:", error);
-        return res.status(401).json({ success: false, error: 'Invalid authorization token' });
+        return { success: false, error: 'Invalid authorization token' };
     }
 };
+
 
 router.post("/createUser", [
     body('email', 'Email Format is not correct').isEmail(),
@@ -60,6 +57,7 @@ router.post("/createUser", [
 });
 
 router.post("/loginUser", async (req, res) => {
+
     const { email, password } = req.body;
 
     try {
@@ -83,9 +81,15 @@ router.post("/loginUser", async (req, res) => {
     }
 });
 
-router.get('/getUserProfile', verifyToken, async (req, res) => {
+router.get('/getUserProfile', async (req, res) => {
+    const tokenVerificationResult = verifyToken(req);
+    if (!tokenVerificationResult.success) {
+        return res.status(401).json({ success: false, error: 'Invalid authorization token' });
+    }
+
     try {
-        const userProfile = await User.findOne({ email: req.user.email }).select('-password');
+        console.log(req.headers);
+        const userProfile = await User.findOne({ email: req.headers.email }).select('-password');
         if (!userProfile) {
             return res.status(404).json({ success: false, error: 'User profile not found' });
         }
@@ -95,5 +99,6 @@ router.get('/getUserProfile', verifyToken, async (req, res) => {
         return res.status(500).json({ success: false, error: 'Server error' });
     }
 });
+
 
 module.exports = router;

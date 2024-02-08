@@ -33,14 +33,9 @@ export default function Navbar() {
           </div>
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav ml-auto">
+            <ul className="navbar-nav ms-auto">
               {localStorage.getItem('authToken') ? (
-                <div className="d-flex">
-                  <li className="nav-item">
-                    <Link className="nav-link active fs-5 btn bg-white text-success mb-1" style={{ marginRight: "30px" }} aria-current="page" to="/myOrder">
-                      My Orders
-                    </Link>
-                  </li>
+                <div className="d-flex align-items-center">
                   <li className="nav-item">
                     <div className="btn bg-white text-danger mb-1" onClick={handleLogout}>
                       Logout
@@ -54,7 +49,7 @@ export default function Navbar() {
                 </div>
               ) : null}
             </ul>
-            <div className="d-flex align-items-center ms-auto">
+            <div className="d-flex align-items-center">
               {!localStorage.getItem('authToken') ? (
                 <div className="ml-auto">
                   <Link className="btn bg-white text-success mx-2" style={{ borderRadius: "10px" }} to="/signup">

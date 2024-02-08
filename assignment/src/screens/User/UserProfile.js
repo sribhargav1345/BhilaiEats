@@ -13,13 +13,22 @@ const UserProfile = () => {
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        // Make a GET request to fetch user profile details from backend
-        const response = await fetch('/api/getUserProfile');
+        const authToken = localStorage.getItem('authToken');
+        const email = localStorage.getItem('userEmail');
+        const response = await fetch('http://localhost:5000/api/getUserProfile', {
+          method: "GET",
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `${authToken}`,
+            'Email': `${email}`
+          }
+        });
         if (!response.ok) {
           throw new Error('Failed to fetch user profile');
         }
         const data = await response.json();
         setUserProfile(data.userProfile);
+
       } catch (error) {
         console.error('Error fetching user profile:', error);
       }
@@ -39,7 +48,7 @@ const UserProfile = () => {
             {/* Render user details dynamically */}
             {userProfile && (
               <>
-                <h2 className="user-name">{userProfile.name}</h2>
+                <h2 className="user-name">Name: {userProfile.name}</h2>
                 <p className="user-email">Email: {userProfile.email}</p>
                 <p className="user-phone">Phone: {userProfile.phone}</p>
               </>
