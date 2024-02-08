@@ -1,16 +1,16 @@
 .bg-orange {
-    background-color: rgb(209, 138, 5);
-  }
+  background-color: rgb(209, 138, 5);
+}
 
 .bg-purple {
   background-color: purple;
 }
 
-.text-yellow{
+.text-yellow {
   color: yellow;
 }
 
-.btn.btn-orange{
+.btn.btn-orange {
   background-color: orange;
   color: black;
 }
@@ -37,12 +37,46 @@
 }
 
 .card {
-  margin: 10px; /* Decrease margin to reduce space around the card */
-  width: 18rem; /* Decrease width to make the card smaller */
-  max-height: 350px; /* Decrease max-height to reduce the overall height of the card */
-  border-radius: 10px; /* Adjust border-radius if needed */
+  margin: 10px;
+  width: 18rem;
+  max-height: 350px;
+  border-radius: 10px;
 }
 
 .card-body {
-  padding: 0; /* Adjust padding inside the card body */
+  padding: 0;
+}
+
+.navbar-nav {
+  align-items: center;
+}
+
+.nav-link {
+  padding: 0.5rem 1rem;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler-icon {
+  background-image: url('data:image/svg+xml;charset=UTF-8,<svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><path stroke="rgba(0, 0, 0, 0.5)" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"/></svg>');
+}
+
+@media (max-width: 991.98px) {
+  .navbar-nav {
+    margin-left: auto;
+  }
+
+  .nav-item {
+    margin-right: 1rem;
+  }
+
+  .navbar-brand {
+    margin-right: auto;
+  }
+
+  .navbar-toggler {
+    margin-left: auto;
+  }
 }
