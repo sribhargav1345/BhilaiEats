@@ -1,82 +1,99 @@
-// This page is for Authentication of User Login and Signup system.
-
 const express = require('express');
-const router = express.Router()
-const User = require('../../models/User')                                                              // Importing the User model
+const router = express.Router();
+const User = require('../../models/User');
+const { body, validationResult } = require('express-validator');
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+const jwtSecret = "GunturKaramBokka";
 
-const { body, validationResult } = require('express-validator');                                    // Importing express-validator for input validation
+const verifyToken = (req, res, next) => {
 
-const jwt = require("jsonwebtoken");                                                                // Importing jsonwebtoken for token generation
-const bcrypt = require("bcryptjs");                                                                 // Importing bcryptjs for password hashing
+    console.log(req.headers.authorization);
+    const authToken = req.headers.authorization;
 
-const jwtSecret = "GunturKaramBokka";                                                               // Secret key for JWT token generation
-
-
-router.post("/CreateUser", [
-
-    body('email', 'Email Format is not correct').isEmail(),                                         // Validate email format
-    body('name').isLength({ min: 4 }),                                                              // Validate minimum length of name
-    body('password', 'Incorrect Password').isLength({ min: 5})]                                    // Validate minimum length of password
-
-, async (req, res) => {
-
-    const errors = validationResult(req);                                                           // Check for validation errors
-
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });                                    // Return validation errors if any
+    if (!authToken) {
+        return res.status(401).json({ success: false, error: 'Authorization token is missing' });
     }
 
-    const salt = await bcrypt.genSalt(10);                                                          // Generate salt for password hashing
-    let secPass = await bcrypt.hash(req.body.password, salt);                                       // Hash the password
+    try {
+        const token = authToken.split(' ')[1];
+        const decoded = jwt.verify(token, jwtSecret);
+        req.user = decoded.user;
+        next();
+    } catch (error) {
+        console.error("Token verification failed:", error);
+        return res.status(401).json({ success: false, error: 'Invalid authorization token' });
+    }
+};
+
+router.post("/createUser", [
+    body('email', 'Email Format is not correct').isEmail(),
+    body('name').isLength({ min: 4 }),
+    body('password', 'Password must be at least 5 characters').isLength({ min: 5 })
+], async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
 
     try {
-
         const existingUser = await User.findOne({ email: req.body.email });
         if (existingUser) {
             console.log("Email already Registered");
             return res.status(400).json({ success: false, error: "Email Already Registered" });
         }
 
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
         await User.create({
             name: req.body.name,
-            password: secPass,                              // Use Hashed Password instead of normal password
+            password: hashedPassword,
             email: req.body.email,
         });
 
-        res.json({ success: true });                        // Send success response
+        res.json({ success: true });
     } catch (error) {
         console.log(error);
-        res.json({ success: false });                       // Send failure response
+        res.status(500).json({ success: false, error: 'Server error' });
     }
 });
-
 
 router.post("/loginUser", async (req, res) => {
-
-    let email = req.body.email;                                                                     // Get email from request body
+    const { email, password } = req.body;
 
     try {
-        let userData = await User.findOne({ email });                                               // Find user data by email
-
+        const userData = await User.findOne({ email });
         if (!userData) {
-            return res.status(400).json({ errors: "Incorrect email or password" });                 // Return error if user not found
+            return res.status(400).json({ error: "Incorrect email or password" });
         }
 
-        const passwordCompare = await bcrypt.compare(req.body.password, userData.password);          // Compare passwords
-
+        const passwordCompare = await bcrypt.compare(password, userData.password);
         if (!passwordCompare) {
-            return res.status(400).json({ errors: "Incorrect email or password" });                 // Return error if passwords don't match
+            return res.status(400).json({ error: "Incorrect email or password" });
         }
 
-        const data = { user: {id: userData.id} };
+        const tokenPayload = { user: { id: userData.id, email: userData.email } };
+        const authToken = jwt.sign(tokenPayload, jwtSecret);
 
-        const authToken = jwt.sign(data, jwtSecret);                                                // Generate JWT token
-        return res.json({ success: true, authToken: authToken });                                   // Send success response with token
-
+        return res.json({ success: true, authToken });
     } catch (error) {
         console.log(error);
-        res.json({ success: false });                                                               // Send failure response
+        res.status(500).json({ success: false, error: 'Server error' });
     }
 });
 
-module.exports = router;    
+router.get('/getUserProfile', verifyToken, async (req, res) => {
+    try {
+        const userProfile = await User.findOne({ email: req.user.email }).select('-password');
+        if (!userProfile) {
+            return res.status(404).json({ success: false, error: 'User profile not found' });
+        }
+        return res.json({ success: true, userProfile });
+    } catch (error) {
+        console.error("Server error:", error);
+        return res.status(500).json({ success: false, error: 'Server error' });
+    }
+});
+
+module.exports = router;

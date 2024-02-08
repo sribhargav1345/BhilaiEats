@@ -22,6 +22,9 @@ const mongoDB = async () => {
     const food_milkshakesCat = mongoose.connection.db.collection("add_itemcats");                             // Fetch data from 'Canteens' collection 
     const milkshakesCat = await food_milkshakesCat.find({}).toArray();
 
+    const web_users = mongoose.connection.db.collection("users");
+    const users = await web_users.find({}).toArray();
+
 
     const owner_all = mongoose.connection.db.collection("admins");                             // Fetch data from 'Canteens' collection 
     const owners = await owner_all.find({}).toArray();
@@ -32,6 +35,7 @@ const mongoDB = async () => {
     global.milkshakes = milkshakes;
     global.milkshakesCat = milkshakesCat;
     global.owners = owners;
+    global.users = users;
 
   }
     catch (error) {

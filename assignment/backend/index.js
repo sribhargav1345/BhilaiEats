@@ -40,6 +40,7 @@ app.use('/api', require("./Routes/Shop_Owner/Milkshakes/View_Food"));
 app.use('/api', require("./Routes/User/CreateUser"));
 app.use('/api', require("./Routes/User/DisplayData"));
 app.use('/api', require("./Routes/User/OrderData"));
+app.use('/api', require("./Routes/User/GetUserProfile"));
 app.use('/api', require("./Routes/User/DisplayCanteen"));
 
 // Super_Admin part
