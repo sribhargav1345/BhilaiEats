@@ -15,6 +15,7 @@ const UserProfile = () => {
       try {
         const authToken = localStorage.getItem('authToken');
         const email = localStorage.getItem('userEmail');
+
         const response = await fetch('http://localhost:5000/api/getUserProfile', {
           method: "GET",
           headers: {
@@ -23,6 +24,7 @@ const UserProfile = () => {
             'Email': `${email}`
           }
         });
+        
         if (!response.ok) {
           throw new Error('Failed to fetch user profile');
         }

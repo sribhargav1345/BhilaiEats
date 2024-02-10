@@ -39,11 +39,7 @@ export default function Home_SuperAdmin() {
   };
 
   const handleAddItemClick = () => {
-    setShowAddItemForm(true); // Show the AddItemForm when '+' button is clicked
-  };
-
-  const handleCloseAddItemForm = () => {
-    setShowAddItemForm(false); // Close the AddItemForm
+    window.location.href = '/superadmin/Add_shops';
   };
 
   return (
@@ -87,7 +83,8 @@ export default function Home_SuperAdmin() {
         )}
       </div>
       <div className="add-item-form-container">
-        <div className="add-button" title="Add Restaurant">
+        {/* Clicking on the '+' button will redirect to the Add_item page */}
+        <div className="add-button" title="Add Restaurant" onClick={handleAddItemClick}>
           +
         </div>
       </div>

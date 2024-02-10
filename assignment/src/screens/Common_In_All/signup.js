@@ -11,6 +11,8 @@ export default function SignUp() {
         e.preventDefault();
 
         let apiUrl = "";
+        console.log(credentials.userType);
+
         if (credentials.userType === "user") {
             apiUrl = "http://localhost:5000/api/CreateUser";
 
@@ -23,8 +25,7 @@ export default function SignUp() {
                     name: credentials.name, 
                     email: credentials.email, 
                     password: credentials.password, 
-                    userType: credentials.userType,
-                })
+                }),
             });
 
             const json = await response.json();
@@ -95,6 +96,7 @@ export default function SignUp() {
         if (name === "userType" && value !== "user") {
             setShowAdditionalFields(true);
         } else {
+            console.log("Ikkadiki came");
             setShowAdditionalFields(false);
         }
     };

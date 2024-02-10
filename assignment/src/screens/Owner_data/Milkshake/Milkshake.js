@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import Card_owners from '../../../components/Shop_Owner/Card_owners';
 import Footer from '../../../components/User/Footer';
-import Navbar from '../../../components/User/Navbar';
+import Navbar from '../../../components/Shop_Owner/Navbar_owner';
 import '../../Super_Admin/Shops/Shops.css';
 
 export default function Owner_Milkshakes() {
@@ -34,6 +34,8 @@ export default function Owner_Milkshakes() {
     loadData();
   }, []);
 
+  //console.log("length is",food_milkshakesCat.length);
+
   return (
     <div className="full-width-background">
       <Navbar />
@@ -51,15 +53,15 @@ export default function Owner_Milkshakes() {
             <p className="shop-description">Quench your thirst with our refreshing milkshakes and fruit juices, crafted from the freshest ingredients for a burst of flavor in every sip</p>
           </div>
         </div>
-        {food_milkshakesCat.length !== 0 ? (
+        {food_milkshakesCat && food_milkshakesCat.length !== 0 ? (
           food_milkshakesCat.map((category) => (
             <div key={category._id} className='row mb-3'>
-              <div className="fs-3 m-3">{category.CategoryName}</div>
+              <div className="fs-3 m-3">{category.categoryname}</div>
               <hr />
               {foodItem.length !== 0 ? (
-                foodItem.filter((item) => item.CategoryName === category.CategoryName && item.name.toLowerCase().includes(search.toLocaleLowerCase())).map((filterItem) => (
+                foodItem.filter((item) => item.categoryname === category.categoryname && item.name.toLowerCase().includes(search.toLocaleLowerCase())).map((filterItem) => (
                   <div key={filterItem._id} className='col-12 col-md-6 col-lg-3'>
-                    <Card_owners foodName={filterItem.name} ImgSrc={filterItem.image} options={filterItem.options[0]} foodItem={filterItem} />
+                    <Card_owners foodName={filterItem.name} ImgSrc={filterItem.image} options={filterItem.options}  />
                   </div>
                 ))
               ) : (
