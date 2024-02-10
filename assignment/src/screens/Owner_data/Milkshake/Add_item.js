@@ -45,9 +45,10 @@ export default function SignUp() {
 
     const handleOptionChange = (index, size, price) => {
         const updatedOptions = [...formData.options];
-        updatedOptions[size] = {price };
+        updatedOptions[index] = { size, price };
         setFormData({ ...formData, options: updatedOptions });
     };
+    
     
 
     const addOption = () => {

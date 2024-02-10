@@ -23,18 +23,22 @@ const verifyToken = (req) => {
 };
 
 
-router.post("/createUser", [
+router.post("/CreateUser", [
     body('email', 'Email Format is not correct').isEmail(),
     body('name').isLength({ min: 4 }),
     body('password', 'Password must be at least 5 characters').isLength({ min: 5 })
+
 ], async (req, res) => {
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
 
     try {
+        //console.log(req.body);
         const existingUser = await User.findOne({ email: req.body.email });
+        
         if (existingUser) {
             console.log("Email already Registered");
             return res.status(400).json({ success: false, error: "Email Already Registered" });
@@ -82,13 +86,14 @@ router.post("/loginUser", async (req, res) => {
 });
 
 router.get('/getUserProfile', async (req, res) => {
+
     const tokenVerificationResult = verifyToken(req);
     if (!tokenVerificationResult.success) {
         return res.status(401).json({ success: false, error: 'Invalid authorization token' });
     }
 
     try {
-        console.log(req.headers);
+        //console.log(req.headers);
         const userProfile = await User.findOne({ email: req.headers.email }).select('-password');
         if (!userProfile) {
             return res.status(404).json({ success: false, error: 'User profile not found' });
@@ -98,6 +103,7 @@ router.get('/getUserProfile', async (req, res) => {
         console.error("Server error:", error);
         return res.status(500).json({ success: false, error: 'Server error' });
     }
+
 });
 
 

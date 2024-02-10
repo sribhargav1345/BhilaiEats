@@ -39,7 +39,7 @@ export default function Navbar3() {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <div className="ms-auto"> {/* Here's the change */}
                             <Link className="btn bg-white text-success mx-2" style={{ borderRadius: "10px" }} to="/login">
-                                Orders
+                                Order Requests
                             </Link>
                         </div>
                         {cartView ? <Modal onClose={() => setCartView(false)}> </Modal> : null}
