@@ -46,12 +46,14 @@ export default function Login() {
     // Login successful
     localStorage.setItem("userEmail", credentials.email);
     localStorage.setItem("authToken", json.authToken);
+    localStorage.setItem("shopname", json.shopname);
 
     console.log(json.authToken);
 
     if (apiUrl === "http://localhost:5000/api/loginAdmin") {
       const ownersResponse = await fetch("http://localhost:5000/api/owners");
       const ownersData = await ownersResponse.json();
+
       for (const ownerArray of ownersData) {
         for (const owner of ownerArray) {
           if (owner.email === credentials.email) {

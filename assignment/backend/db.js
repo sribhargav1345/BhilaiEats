@@ -17,7 +17,7 @@ const mongoDB = async () => {
     const shopdata = await shops.find({}).toArray();
 
     const food_milkshakes = mongoose.connection.db.collection("add_items");                             // Fetch data from 'Canteens' collection 
-    const milkshakes = await food_milkshakes.find({}).toArray();
+    let milkshakes = await food_milkshakes.find({}).toArray();
 
     const food_milkshakesCat = mongoose.connection.db.collection("add_itemcats");                             // Fetch data from 'Canteens' collection 
     const milkshakesCat = await food_milkshakesCat.find({}).toArray();

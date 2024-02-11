@@ -48,8 +48,6 @@ export default function Card(props) {
   }
 
   const handleAddToCart = async () => {
-    // console.log("Adding to cart...");
-    // console.log("Current State:", data);
     const foods = props.foodName;
     console.log(foods);
     console.log(foods);
@@ -78,28 +76,33 @@ export default function Card(props) {
       await dispatch({ type: 'ADD', id: props._id, name: props.name, price: finalPrice, qty: qty, size: size });
     }
     await dispatch({ type: "ADD", id: props.foodName._id, name: props.foodItem.name, price: props.finalPrice, qty: qty, size: size});
-    await console.log(data)
+    await console.log(data);
   };
 
-  const finalPrice = qty * parseInt(options[size] || 0);
+  let finalPrice = 0;
+  if (options.length > 0) {
+    finalPrice = qty * parseInt(options.find(option => option.size === size)?.price || options[0].price);
+  }
 
   return (
     <div>
-      <div className="card mt-3 rounded" style={{ width: '20rem', maxHeight: '370px',borderRadius: '50px' }}>
+      <div className="card mt-3 rounded" style={{ width: '22rem', maxHeight: '370px',borderRadius: '50px' }}>
         <img src={props.ImgSrc} className="card-img-top" alt="Not visible" style={{ height: '180px', objectFit: 'fill'  }} />
         <div className="card-body">
           <h5 className="card-title">{props.foodName}</h5>
           <div className="container w-100">
             <button className="m-2 h-50 bg-success rounded" style={{ height: '5px', width: '20px' }} onClick={decreaseQty}>-</button>
-            <div className="d-inline h-100 fs-6">{qty}</div>
+              <div className="d-inline h-100 fs-6">{qty}</div>
             <button className="m-2 h-50 bg-success rounded = True" onClick={increaseQty}>+</button>
-            <select ref={priceRef} className="m-2 h-100 bg-success rounded = True" value={size} onChange={handleSizeChange}>
-              {priceOptions.map((data) => (
-                <option key={data} value={data}>
-                  {data}
+
+            <select ref={priceRef} className="m-2 h-100 bg-success rounded" value={size} onChange={handleSizeChange}>
+              {options.map((option, index) => (
+                <option key={index} value={option.size}>
+                  {option.size}
                 </option>
               ))}
             </select>
+
             <div className="d-inline h-100 fs-6"> Rs.{finalPrice} /- </div>
             <div>
               <hr />

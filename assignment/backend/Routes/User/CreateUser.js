@@ -26,8 +26,8 @@ const verifyToken = (req) => {
 router.post("/CreateUser", [
     body('email', 'Email Format is not correct').isEmail(),
     body('name').isLength({ min: 4 }),
-    body('password', 'Password must be at least 5 characters').isLength({ min: 5 })
-
+    body('password', 'Password must be at least 5 characters').isLength({ min: 5 }),
+    body('contact',' Contact number length should be of 10').isLength({ max: 10, min: 10})
 ], async (req, res) => {
 
     const errors = validationResult(req);
@@ -38,10 +38,15 @@ router.post("/CreateUser", [
     try {
         //console.log(req.body);
         const existingUser = await User.findOne({ email: req.body.email });
+        const existingnumber = await User.findOne({ contact: req.body.contact });
         
         if (existingUser) {
             console.log("Email already Registered");
             return res.status(400).json({ success: false, error: "Email Already Registered" });
+        }
+        if (existingnumber) {
+            console.log("Phone Number aldready used");
+            return res.status(400).json({ success: false, error: "Phone Number aldready Registered" });
         }
 
         const salt = await bcrypt.genSalt(10);
@@ -51,6 +56,7 @@ router.post("/CreateUser", [
             name: req.body.name,
             password: hashedPassword,
             email: req.body.email,
+            contact: req.body.contact,
         });
 
         res.json({ success: true });
@@ -93,7 +99,6 @@ router.get('/getUserProfile', async (req, res) => {
     }
 
     try {
-        //console.log(req.headers);
         const userProfile = await User.findOne({ email: req.headers.email }).select('-password');
         if (!userProfile) {
             return res.status(404).json({ success: false, error: 'User profile not found' });

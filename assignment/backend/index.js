@@ -57,6 +57,7 @@ app.use('/api', require("./Routes/Super_Admin/ShopData/Galav"));
 
 app.use('/api', require("./Routes/Super_Admin/Owners"));
 app.use('/api', require("./Routes/Super_Admin/CreateSuperAdmin"));
+app.use('/api', require("./Routes/Super_Admin/CreateShops"));
 
 
 app.listen(port, () => {

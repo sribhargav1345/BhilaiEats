@@ -34,25 +34,10 @@ export default function Owner_Milkshakes() {
     loadData();
   }, []);
 
-  //console.log("length is",food_milkshakesCat.length);
-
   return (
     <div className="full-width-background">
       <Navbar />
       <div className='container'>
-        <div className='row mb-5'>
-          <div className='fs-3 mt-5'>About Shop</div>
-          <hr />
-          <div className='col-md-4'>
-  <img src="https://media.istockphoto.com/id/818584076/photo/various-fruits-and-vegetables-juices.jpg?s=612x612&w=0&k=20&c=TJU3c1AznFv3vwNcu9DpEgT7Q1A6uWF5P50j8X9qSKM=" alt="Shop" className="shop-image increased-size" />
-</div>
-
-
-          <div className='col-md-6'>
-            <h3 className="shop-name font-weight-bold">IIT Bhilai Milkshakes</h3>
-            <p className="shop-description">Quench your thirst with our refreshing milkshakes and fruit juices, crafted from the freshest ingredients for a burst of flavor in every sip</p>
-          </div>
-        </div>
         {food_milkshakesCat && food_milkshakesCat.length !== 0 ? (
           food_milkshakesCat.map((category) => (
             <div key={category._id} className='row mb-3'>
@@ -61,12 +46,12 @@ export default function Owner_Milkshakes() {
               {foodItem.length !== 0 ? (
                 foodItem.filter((item) => item.categoryname === category.categoryname && item.name.toLowerCase().includes(search.toLocaleLowerCase())).map((filterItem) => (
                   <div key={filterItem._id} className='col-12 col-md-6 col-lg-3'>
-                    <Card_owners foodName={filterItem.name} ImgSrc={filterItem.image} options={filterItem.options}  />
+                    <Card_owners foodName={filterItem.name} ImgSrc={filterItem.image} options={filterItem.options} />
                   </div>
                 ))
               ) : (
                 <div className='text-black'>No such data found</div>
-              )}
+                )}
             </div>
           ))
         ) : (
@@ -82,3 +67,24 @@ export default function Owner_Milkshakes() {
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+{/* <div className='row mb-5'>
+  <div className='fs-3 mt-5'>About Shop</div>
+  <hr />
+  <div className='col-md-4'>
+    <img src="https://media.istockphoto.com/id/818584076/photo/various-fruits-and-vegetables-juices.jpg?s=612x612&w=0&k=20&c=TJU3c1AznFv3vwNcu9DpEgT7Q1A6uWF5P50j8X9qSKM=" alt="Shop" className="shop-image increased-size" />
+  </div>
+
+  <div className='col-md-6'>
+    <h3 className="shop-name font-weight-bold">IIT Bhilai Milkshakes</h3>
+    <p className="shop-description">Quench your thirst with our refreshing milkshakes and fruit juices, crafted from the freshest ingredients for a burst of flavor in every sip</p>
+  </div>
+</div> */}
