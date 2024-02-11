@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
 import Card from '../../../components/User/card';
 import Footer from '../../../components/User/Footer';
 import Navbar from '../../../components/User/Navbar';
@@ -12,7 +13,7 @@ export default function Milkshakes() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/Milkshakesdata", {
+        const response = await fetch("http://localhost:5000/api/foodData_Milkshakes", {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
@@ -22,10 +23,15 @@ export default function Milkshakes() {
 
         setFoodItems(data[0]);
         setFoodMilkshakesCat(data[1]);
+
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
+
+    console.log(foodItem);
+
+    // const { foodItemId } = useParams();
 
     loadData();
   }, []);
@@ -45,15 +51,15 @@ export default function Milkshakes() {
             <p className="shop-description">Quench your thirst with our refreshing milkshakes and fruit juices, crafted from the freshest ingredients for a burst of flavor in every sip</p>
           </div>
         </div>
-        {food_milkshakesCat.length !== 0 ? (
+        {food_milkshakesCat && food_milkshakesCat.length !== 0 ? (
           food_milkshakesCat.map((category) => (
             <div key={category._id} className='row mb-3'>
-              <div className="fs-3 m-3">{category.CategoryName}</div>
+              <div className="fs-3 m-3">{category.categoryname}</div>
               <hr />
               {foodItem.length !== 0 ? (
-                foodItem.filter((item) => item.CategoryName === category.CategoryName && item.name.toLowerCase().includes(search.toLocaleLowerCase())).map((filterItem) => (
+                foodItem.filter((item) => item.categoryname === category.categoryname && item.name.toLowerCase().includes(search.toLocaleLowerCase())).map((filterItem) => (
                   <div key={filterItem._id} className='col-12 col-md-6 col-lg-3'>
-                    <Card foodName={filterItem.name} ImgSrc={filterItem.img} options={filterItem.options[0]} foodItem={filterItem} />
+                    <Card foodName={filterItem.name} ImgSrc={filterItem.image} options={filterItem.options} />
                   </div>
                 ))
               ) : (

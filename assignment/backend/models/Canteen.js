@@ -1,14 +1,10 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-// This contains the Schema of the database of User.
+// This contains the Schema of the database of Shops_Adding
 
-const Add_milkshakeSchema = new Schema({
+const CanteenSchema = new Schema({
     shopname:{
-        type: String,
-        required: true
-    },
-    categoryname:{
         type: String,
         required: true
     },
@@ -16,14 +12,22 @@ const Add_milkshakeSchema = new Schema({
         type: String,
         required: true
     },
+    email:{
+        type: String,
+        required: true
+    },
+    contact:{
+        type: String,
+        required: true
+    },
     image:{
         type: String,
         required: true
     },
-    options:{
-        type: Array,
+    description:{
+        type: String,
         required: true
     }
-});
+}, { collection: 'Canteen' });
 
-module.exports = mongoose.model('Add_item',Add_milkshakeSchema)
+module.exports = mongoose.model('Canteen',CanteenSchema)

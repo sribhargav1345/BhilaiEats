@@ -12,6 +12,10 @@ export default function SignUp() {
     });
 
     const handleSubmit = async (e) => {
+
+        var shopname = localStorage.getItem('shopname');
+        console.log("shopname is", shopname);
+
         e.preventDefault();
 
         const response = await fetch("http://localhost:5000/api/CreateFood_Milkshakes", {
@@ -20,6 +24,7 @@ export default function SignUp() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
+                shopname: shopname,
                 categoryname: formData.categoryname,
                 name: formData.name,
                 image: formData.image,

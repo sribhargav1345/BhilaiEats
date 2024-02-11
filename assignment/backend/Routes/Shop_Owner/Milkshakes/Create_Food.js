@@ -6,9 +6,7 @@ const { body, validationResult } = require('express-validator');
 const food_Milkshakes = require('../../../models/Milkshakes/Add_item');
 const food_MilkshakesCat = require('../../../models/Milkshakes/Add_itemCat');
 
-router.post("/CreateFood_Milkshakes", [
-
-    body('categoryname').isEmail(),                                       
+router.post("/CreateFood_Milkshakes", [                                    
     body('name').isLength({ min: 3 }),                                                 
     body('image').isLength({ min: 5 }),                              
     body('options').isArray({ min: 1 })]
@@ -28,6 +26,7 @@ router.post("/CreateFood_Milkshakes", [
         }
 
         const newfood_Milkshakes = new food_Milkshakes({
+            shopname: req.body.shopname,
             categoryname: req.body.categoryname,
             name: req.body.name,
             image: req.body.image,
@@ -39,6 +38,7 @@ router.post("/CreateFood_Milkshakes", [
         if(!exisitingfood_MilkshakesCat) {
 
             const newfood_MilkshakesCat = new food_MilkshakesCat({
+                shopname: req.body.shopname,
                 categoryname: req.body.categoryname,
             });
 
