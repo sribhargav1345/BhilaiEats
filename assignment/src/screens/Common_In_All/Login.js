@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-
 import { Link, useNavigate } from 'react-router-dom';
-import Navbar2 from '../../components/Common_In_All/Navbar_login';
+import Navbar from '../../components/Common_In_All/Navbar_login';
 
 import './Login.css';
 
 export default function Login() {
-  const [credentials, setCredentials] = useState({ email: "", password: "", userType: "user" }); // Default userType to "user"
+  const [credentials, setCredentials] = useState({ email: "", password: "", userType: "user" });
   const navigate = useNavigate();
 
-  const [user, setUser ] = useState(null);
+  const [user, setUser] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,15 +39,14 @@ export default function Login() {
 
     if (!json.success) {
       alert("Enter Valid Credentials");
-      return; // Exit early if login is unsuccessful
+      return; 
     }
 
-    // Login successful
     localStorage.setItem("userEmail", credentials.email);
     localStorage.setItem("authToken", json.authToken);
     localStorage.setItem("shopname", json.shopname);
 
-    console.log(json.authToken);
+    //console.log(json.authToken);
 
     if (apiUrl === "http://localhost:5000/api/loginAdmin") {
       const ownersResponse = await fetch("http://localhost:5000/api/owners");
@@ -78,15 +76,15 @@ export default function Login() {
   return (
     <div className='coloring'>
       <div className='login-container'>
-        <Navbar2 />
+        <Navbar/>
         <div className="container">
-          <div className="row justify-content-center mt-5">
+          <div className="row justify-content-center mt-5" style={{height: "510px"}}>
             <div className="col-md-5">
-              <div className="card d-flex flex-row" style={{ width: "700px" }}>
+              <div className="card d-flex flex-row" style={{ width: "700px"}}>
                 <div className="login-image">
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_sbB4NgADRLxiBczU_GK6eIUGqgj_VGwQYg&usqp=CAU" alt="Login" style={{ height: "510px", width: "320px" }} />
+                  <img src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGZvb2QlMjBib3dsfGVufDB8fDB8fHww" alt="Login" style={{ height: "510px", width: "320px" }} />
                 </div>
-                <div className="card-body" style={{height: "510px"}}>
+                <div className="card-body" style={{height: "510px", backgroundColor:"white"}}>
                   <h2 className="text-center">Login</h2>
                   <hr className='mb-3' style={{ borderTop: '1px dotted black' }} />
                   <form onSubmit={handleSubmit}>
