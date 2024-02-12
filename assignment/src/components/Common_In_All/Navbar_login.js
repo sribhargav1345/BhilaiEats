@@ -5,7 +5,7 @@ import Modal from '../../Model';
 import { useCart } from '../User/ContextReducer';
 import '../User/Navbarr.css';
 
-export default function Navbar2() {
+export default function Navbar() {
     const [cartView, setCartView] = useState(false);
     const data = useCart();
     const navigate = useNavigate();

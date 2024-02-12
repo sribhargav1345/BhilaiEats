@@ -33,7 +33,6 @@ export default function Carousel({ onSearchChange }) {
               <button
                 className="btn btn-orange"
                 type="button"
-                onClick={() => onSearchChange('')}
               >
                 Search
               </button>

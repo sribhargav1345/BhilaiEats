@@ -4,6 +4,10 @@ const { Schema } = mongoose;
 // This contains the Schema of the database of User.
 
 const Add_milkshakeSchema = new Schema({
+    shopname:{
+        type: String,
+        required: true
+    },
     categoryname:{
         type: String,
         required: true

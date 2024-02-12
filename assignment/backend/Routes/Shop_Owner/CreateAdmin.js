@@ -1,68 +1,63 @@
 const express = require('express');
-const router = express.Router()
-const User = require('../../models/User')                                                              // Importing the User model
+const router = express.Router()                                                            
 const Admin = require('../../models/Admin');
 
-const { body, validationResult } = require('express-validator');                                    // Importing express-validator for input validation
+const { body, validationResult } = require('express-validator');
 
 const jwt = require("jsonwebtoken");                                                                // Importing jsonwebtoken for token generation
 const bcrypt = require("bcryptjs");                                                                 // Importing bcryptjs for password hashing
 
 const jwtSecret = "HiNanna";                                                                        // Secret key for JWT token generation
 
-
+// Just for superadmin adding purpose
 router.post("/CreateAdmin", [
+    body('email', 'Email Format is not correct').isEmail(),
+    body('name').isLength({ min: 4 }),
+    body('password', 'Password must be at least 5 characters').isLength({ min: 5 }),
+    body('contact',' Contact number length should be of 10').isLength({ max: 10, min: 10})
 
-    body('email', 'Email Format is not correct').isEmail(),                                         // Validate email format
-    body('name').isLength({ min: 4 }),                                                              // Validate minimum length of name
-    body('password', 'Incorrect Password').isLength({ min: 5 }),                                    // Validate minimum length of password
-    body('shopname').isLength({min: 4}),
-    body('contact').isLength({ min: 10, max: 10 })]
+], async (req, res) => {
 
-
-, async (req, res) => {
-
-    console.log("Received request:", req.body);
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
 
     try {
-
-        const existingAdmin = await Admin.findOne({ email: req.body.email });
-        if (existingAdmin) {
-            console.log("Email already Registered");
+        const existingShop = await Admin.findOne({ shopname: req.body.shopname });
+        
+        if (existingShop) {
+            console.log("Shopname is already Registered");
             return res.status(400).json({ success: false, error: "Email Already Registered" });
         }
 
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
-        const newAdmin = new Admin({
+        await Admin.create({
             name: req.body.name,
-            email: req.body.email,
             password: hashedPassword,
+            email: req.body.email,
+            contact: req.body.contact,
             shopname: req.body.shopname,
-            contact: req.body.contact
         });
 
-        await newAdmin.save(); // Save the new admin to the database
-
-        console.log("Admin created successfully");
-        return res.json({ success: true }); // Send success response
+        res.json({ success: true });
     } catch (error) {
-        console.error("Error creating admin:", error); // Log any errors
-        return res.status(500).json({ success: false, error: "Internal Server Error" }); // Send failure response
+        console.log(error);
+        res.status(500).json({ success: false, error: 'Server error' });
     }
 });
-
 
 router.post("/loginAdmin", async (req, res) => {
 
     let email = req.body.email;                                                                     // Get email from request body
 
     try {
-        let adminData = await Admin.findOne({ email });                                               // Find user data by email
+        let adminData = await Admin.findOne({ email });                                               // Find Admin data by email
 
         if (!adminData) {
-            return res.status(400).json({ errors: "Incorrect email or password" });                 // Return error if user not found
+            return res.status(400).json({ errors: "Incorrect email or password" });                 // Return error if Admin not found
         }
 
         const passwordCompare = await bcrypt.compare(req.body.password, adminData.password);          // Compare passwords
@@ -73,8 +68,10 @@ router.post("/loginAdmin", async (req, res) => {
 
         const data = { admin: {id: adminData.id} };
 
+        const shopname = adminData.shopname;
+
         const authToken = jwt.sign(data, jwtSecret);                                                // Generate JWT token
-        return res.json({ success: true, authToken: authToken });                                   // Send success response with token
+        return res.json({ success: true, authToken: authToken, shopname: shopname });                                   // Send success response with token
 
     } catch (error) {
         console.log(error);

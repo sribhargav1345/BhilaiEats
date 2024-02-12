@@ -48,8 +48,7 @@ export default function Home_SuperAdmin() {
       <Navbar />
       <Carousel onSearchChange={handleSearchChange} />
 
-      <div className="container" style={{ marginTop: '30px' }}>
-
+      <div className='container'>
         <div className="row">
           <div className="col-12">
             <h2 className="font-weight-bold mt-6 mb-6">Restaurants</h2>
@@ -60,21 +59,15 @@ export default function Home_SuperAdmin() {
         {shops.length !== 0 ? (
           <div className="row">
             {shops
-              .filter((item) => item.name.toLowerCase().includes(search.toLowerCase()))
+              .filter((item) => item.shopname.toLowerCase().includes(search.toLowerCase()))
               .map((filterItem) => (
                 <div key={filterItem._id} className="col-12 col-md-6 col-lg-4 mt-3">
-
-                  <Link to={`/shop/${filterItem._id}`} className="link">
-
-                    <Card_shop
-                      shopName={filterItem.name}
-                      shop_id={filterItem._id}
-                      ImgSrc={filterItem.image}
-                      description={filterItem.description}
-                    />
-
-                  </Link>
-
+                  <Card_shop
+                    shopName={filterItem.shopname}
+                    shop_id={filterItem._id}
+                    ImgSrc={filterItem.image}
+                    description={filterItem.description}
+                  />
                 </div>
               ))}
           </div>
@@ -82,13 +75,13 @@ export default function Home_SuperAdmin() {
           <div>"No such data found"</div>
         )}
       </div>
-      <div className="add-item-form-container">
-        {/* Clicking on the '+' button will redirect to the Add_item page */}
-        <div className="add-button" title="Add Restaurant" onClick={handleAddItemClick}>
+      <Link to="/superadmin/add_shops">
+        <div className="add-button" title="Add an Item">
           +
         </div>
-      </div>
+      </Link>
       <Footer />
+
     </div>
   );
 }
