@@ -3,8 +3,8 @@ const router = express.Router();
 
 const { body, validationResult } = require('express-validator');      
 
-const food_Milkshakes = require('../../../models/Milkshakes/Add_item');
-const food_MilkshakesCat = require('../../../models/Milkshakes/Add_itemCat');
+const food_Milkshakes = require('../../../models/Add_item');
+const food_MilkshakesCat = require('../../../models/Add_itemCat');
 
 router.post("/CreateFood_Milkshakes", [                                    
     body('name').isLength({ min: 3 }),                                                 

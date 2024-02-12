@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Navbar3 from '../../../components/Common_In_All/Navbar_signup';
-import '../../Common_In_All/Login.css';
+import Navbar3 from '../../components/Common_In_All/Navbar_signup';
+import '../Common_In_All/Login.css';
 
 export default function SignUp() {
     const [formData, setFormData] = useState({

@@ -32,11 +32,9 @@ import TechCafe from './screens/Super_Admin/Shops/TechCafe.js';
 import DynamicOwner from './screens/Owner_data/DynamicOwner.js';
 
 import Add_Shops from './screens/Super_Admin/Add_shop.js'
-// Importing owner details
-import Owner_Milkshake from './screens/Owner_data/Milkshake/Milkshake.js';
 
 // Importing owner_add Item details
-import Add_item_Milkshake from './screens/Owner_data/Milkshake/Add_item.js'
+import Add_item_Milkshake from './screens/Owner_data/Add_item.js'
 
 // Importing SuperAdmin details
 import Home_SuperAdmin from  "./screens/Super_Admin/Home_SuperAdmin.js";
@@ -62,35 +60,16 @@ function App() {
             <Route exact path="/user"  element = {<Home/>} />
             <Route exact path="/owner"  element = {<Home/>} />
             <Route exact path="/superadmin"  element = {<Home_SuperAdmin/>} />
+
+            {/* <Route exact path='/owner/:owner_id' element={<Owner_Milkshake />} /> */}
             <Route exact path='/owner/:owner_id' element={<DynamicOwner />} />
 
-
-          {/* The down parts will be removed after sometime */}
-            {/* Routes of each shops */}
-            {/* <Route exact path="/shop/65b5f3329e3f22efa0aacbd2" element = {<ATMart/>} />
-            <Route exact path="/shop/65b5f4319e3f22efa0aacbd3" element = {<Bakery/>} />
-            <Route exact path="/shop/65b660d325d1fac6691e3ad0" element = {<CafeCoffee/>} />
-            <Route exact path="/shop/65b65f8b25d1fac6691e3ace" element = {<Dairy/>} />
-            <Route exact path="/shop/65b661e225d1fac6691e3ad2" element = {<Galav/>} />
-            <Route exact path="/shop/65b6600f25d1fac6691e3acf" element = {<Govatsa/>} />
-            <Route exact path="/shop/65b65de925d1fac6691e3acd" element = {<MilkShakes/>} />
-            <Route exact path="/shop/65b6616b25d1fac6691e3ad1" element = {<NJX/>} />
-            <Route exact path="/shop/65b5f2e19e3f22efa0aacbd1" element = {<TechCafe/>} /> */}
-
-            {/* <Route exact path="/shop/:_id" element={<DynamicShopComponent />} /> */}
-
-{/* Owner related pages */}
-
             {/* Routes of shop owners */}
-            <Route exact path="/owner_65b9c50e1ec25cbe9bd921a0" element = {<Owner_Milkshake/>} />
+            {/* <Route exact path="/owner_65b9c50e1ec25cbe9bd921a0" element = {<Owner_Milkshake/>} /> */}
             <Route exact path="/superadmin/add_shops" element = {<Add_Shops/>} />
 
-
-
             {/* Routes of Add_items of shop_owners */}
-            <Route exact path="/owner_65b9c50e1ec25cbe9bd921a0/add_item" element = {<Add_item_Milkshake/>} />
-
-
+            <Route exact path="/owner/:owner_id/add_item" element = {<Add_item_Milkshake/>} />
           </Routes>
         </div>
       </Router>
@@ -100,3 +79,18 @@ function App() {
 }
 
 export default App;
+
+{/* The down parts will be removed after sometime */}
+  {/* Routes of each shops */}
+  {/* <Route exact path="/shop/65b5f3329e3f22efa0aacbd2" element = {<ATMart/>} />
+  <Route exact path="/shop/65b5f4319e3f22efa0aacbd3" element = {<Bakery/>} />
+  <Route exact path="/shop/65b660d325d1fac6691e3ad0" element = {<CafeCoffee/>} />
+  <Route exact path="/shop/65b65f8b25d1fac6691e3ace" element = {<Dairy/>} />
+  <Route exact path="/shop/65b661e225d1fac6691e3ad2" element = {<Galav/>} />
+  <Route exact path="/shop/65b6600f25d1fac6691e3acf" element = {<Govatsa/>} />
+  <Route exact path="/shop/65b65de925d1fac6691e3acd" element = {<MilkShakes/>} />
+  <Route exact path="/shop/65b6616b25d1fac6691e3ad1" element = {<NJX/>} />
+  <Route exact path="/shop/65b5f2e19e3f22efa0aacbd1" element = {<TechCafe/>} /> */}
+
+  {/* <Route exact path="/shop/:_id" element={<DynamicShopComponent />} /> */}
+  {/* Owner related pages */}

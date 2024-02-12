@@ -31,10 +31,13 @@ mongoDB();
 
 // Shop_Owner Part
 app.use('/api', require("./Routes/Shop_Owner/CreateAdmin"));
-app.use('/api', require("./Routes/Shop_Owner/DisplayData"));
+app.use('/api', require("./Routes/Shop_Owner/DisplayFoodData"));
 
 app.use('/api', require("./Routes/Shop_Owner/Milkshakes/Create_Food"));
 app.use('/api', require("./Routes/Shop_Owner/Milkshakes/View_Food"));
+app.use('/api', require("./Routes/Shop_Owner/CreateAdmin"));
+
+app.use('/api', require("./Routes/Shop_Owner/DisplayFoodsActoShop"));              // Working on it and main part
 
 
 // User part
@@ -58,6 +61,7 @@ app.use('/api', require("./Routes/Super_Admin/ShopData/Galav"));
 app.use('/api', require("./Routes/Super_Admin/Owners"));
 app.use('/api', require("./Routes/Super_Admin/CreateSuperAdmin"));
 app.use('/api', require("./Routes/Super_Admin/CreateShops"));
+
 
 
 app.listen(port, () => {
