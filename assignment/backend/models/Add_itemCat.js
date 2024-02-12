@@ -10,6 +10,6 @@ const Add_milkshakeCatSchema = new Schema({
         type: String,
         required: true
     }
-});
+}, { collection: 'add_itemcats' });
 
 module.exports = mongoose.model('Add_itemCat',Add_milkshakeCatSchema)

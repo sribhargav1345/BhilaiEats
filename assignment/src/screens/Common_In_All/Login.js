@@ -56,7 +56,7 @@ export default function Login() {
         for (const owner of ownerArray) {
           if (owner.email === credentials.email) {
             console.log("Owner found:", owner);
-            navigate(`/owner_${owner._id}`);
+            navigate(`/owner/${owner._id}`);
             return;
           }
         }
