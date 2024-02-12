@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Navbar3 from '../../../components/Common_In_All/Navbar_signup';
-import '../../Common_In_All/Login.css';
+import Navbar3 from '../../components/Common_In_All/Navbar_signup';
+import '../Common_In_All/Login.css';
 
 export default function SignUp() {
     const [formData, setFormData] = useState({
@@ -12,6 +12,10 @@ export default function SignUp() {
     });
 
     const handleSubmit = async (e) => {
+
+        var shopname = localStorage.getItem('shopname');
+        console.log("shopname is", shopname);
+
         e.preventDefault();
 
         const response = await fetch("http://localhost:5000/api/CreateFood_Milkshakes", {
@@ -20,6 +24,7 @@ export default function SignUp() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
+                shopname: shopname,
                 categoryname: formData.categoryname,
                 name: formData.name,
                 image: formData.image,

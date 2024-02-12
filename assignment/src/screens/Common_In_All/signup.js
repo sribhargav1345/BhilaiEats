@@ -1,114 +1,54 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Navbar3 from '../../components/Common_In_All/Navbar_signup';
+import Navbar from '../../components/Common_In_All/Navbar_signup';
 import './signup.css';
 
 export default function SignUp() {
-    const [credentials, setCredentials] = useState({ name: "", email: "", password: "", userType: "", contactNumber: "", shopname: "" });
-    const [showAdditionalFields, setShowAdditionalFields] = useState(false);
+    const [credentials, setCredentials] = useState({ name: "", email: "", password: "", contactNumber: "" });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        let apiUrl = "";
-        console.log(credentials.userType);
+        let apiUrl = "http://localhost:5000/api/CreateUser";
 
-        if (credentials.userType === "user") {
-            apiUrl = "http://localhost:5000/api/CreateUser";
+        const response = await fetch(apiUrl, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: credentials.name,
+                email: credentials.email,
+                password: credentials.password,
+                contact: credentials.contactNumber,
+            }),
+        });
 
-            const response = await fetch(apiUrl, {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ 
-                    name: credentials.name, 
-                    email: credentials.email, 
-                    password: credentials.password, 
-                }),
-            });
+        const json = await response.json();
 
-            const json = await response.json();
-
-            if (!json.success) {
-                alert("Failed to create user. Please check your input and try again.");
-            } else {
-                alert("User created successfully!");
-            }
-
-        } else if (credentials.userType === "restaurant-admin") {
-            apiUrl = "http://localhost:5000/api/CreateAdmin";
-
-            const response = await fetch(apiUrl, {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ 
-                    name: credentials.name, 
-                    email: credentials.email, 
-                    password: credentials.password, 
-                    shopname: credentials.shopname,
-                    contact: credentials.contactNumber
-                })
-            });
-
-            const json = await response.json();
-
-            if (!json.success) {
-                alert("Failed to create restaurant admin. Please check your input and try again.");
-            } else {
-                alert("Restaurant admin created successfully!");
-            }
-        }
-        else if(credentials.userType === "super-admin"){
-            apiUrl = "http://localhost:5000/api/CreateSuperAdmin";
-
-            const response = await fetch(apiUrl, {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ 
-                    name: credentials.name, 
-                    email: credentials.email, 
-                    password: credentials.password, 
-                    shopname: credentials.shopname,
-                    contact: credentials.contactNumber
-                })
-            });
-
-            const json = await response.json();
-
-            if (!json.success) {
-                alert("Failed to create restaurant Superadmin. Please check your input and try again.");
-            } else {
-                alert("Super-admin created successfully!");
-            }
+        if (!json.success) {
+            alert("Failed to create user. Please check your input and try again.");
+        } else {
+            alert("User created successfully!");
         }
     };
 
     const onChange = (event) => {
         const { name, value } = event.target;
         setCredentials({ ...credentials, [name]: value });
-
-        // Show additional fields if user selects "Restaurant Admin"
-        if (name === "userType" && value !== "user") {
-            setShowAdditionalFields(true);
-        } else {
-            console.log("Ikkadiki came");
-            setShowAdditionalFields(false);
-        }
     };
 
     return (
-        <div className='login-container'>
-            <Navbar3 />
-            <div className='container'>
-                <div className="row justify-content-center mt-5">
-                    <div className="col-md-6">
-                        <div className="card" style={{ width: "500px" }}>
-                            <div className="card-body">
+        <div className='login-container' style={{backgroundColor:"#dfd2d2"}}>
+            <Navbar />
+            <div className="container">
+                <div className="row justify-content-center mt-5" style={{ height: "700px" }}>
+                    <div className="col-md-5">
+                        <div className="card d-flex flex-row" style={{ width: "700px" }}>
+                            <div className="login-image">
+                                <img src="https://images.unsplash.com/photo-1586511934875-5c5411eebf79?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Zm9vZCUyMGJvd2x8ZW58MHx8MHx8fDA%3D" alt="Signup" style={{ height: "600px", width: "320px" }} />
+                            </div>
+                            <div className="card-body" style={{ height: "600px", backgroundColor: "white" }}>
                                 <h2 className="text-center mb-4">Sign Up</h2>
                                 <hr />
                                 <form onSubmit={handleSubmit}>
@@ -126,25 +66,9 @@ export default function SignUp() {
                                         <input type="password" className="form-control" name='password' value={credentials.password} onChange={onChange} id="exampleInputPassword1" />
                                     </div>
                                     <div className="mb-3">
-                                        <label htmlFor="userType" className="form-label">User Type</label>
-                                        <select className="form-control custom-select" name="userType" value={credentials.userType} onChange={onChange}>
-                                            <option value="user">User</option>
-                                            <option value="restaurant-admin">Restaurant Admin</option>
-                                            <option value="super-admin"> Super Admin </option>
-                                        </select>
+                                        <label htmlFor="contactNumber" className="form-label">Contact Number</label>
+                                        <input type="text" className="form-control" name='contactNumber' value={credentials.contactNumber} onChange={onChange} />
                                     </div>
-                                    {showAdditionalFields && (
-                                        <>
-                                            <div className="mb-3">
-                                                <label htmlFor="contactNumber" className="form-label">Contact Number</label>
-                                                <input type="text" className="form-control" name='contactNumber' value={credentials.contactNumber} onChange={onChange} />
-                                            </div>
-                                            <div className="mb-3">
-                                                <label htmlFor="shopname" className="form-label">Shop Name</label>
-                                                <input type="text" className="form-control" name='shopname' value={credentials.shopname} onChange={onChange} />
-                                            </div>
-                                        </>
-                                    )}
                                     <button type="submit" className="btn btn-success w-100 mb-3">Submit</button>
                                     <p className="text-center mb-0">Already have an account? <Link to="../login">Login</Link></p>
                                 </form>

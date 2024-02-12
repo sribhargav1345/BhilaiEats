@@ -43,14 +43,14 @@ export default function Home() {
             <hr className="my-2" />
           </div>
         </div>
-        {shops.length !== 0 ? (
+        {shops && shops.length !== 0 ? (
           <div className="row">
             {shops
-              .filter((item) => item.name.toLowerCase().includes(search.toLowerCase()))
+              .filter((item) => item.shopname.toLowerCase().includes(search.toLowerCase()))
               .map((filterItem) => (
                 <div key={filterItem._id} className="col-12 col-md-6 col-lg-4 mt-3">
                   <Card_shop
-                    shopName={filterItem.name}
+                    shopName={filterItem.shopname}
                     shop_id={filterItem._id}
                     ImgSrc={filterItem.image}
                     description={filterItem.description}
@@ -59,7 +59,7 @@ export default function Home() {
               ))}
           </div>
         ) : (
-          <div>"No such data found"</div>
+          <div>"Backend is not connected, with frontend"</div>
         )}
       </div>
       <Footer />

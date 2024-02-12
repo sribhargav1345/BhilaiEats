@@ -41,12 +41,17 @@ export default function Navbar() {
                       Logout
                     </div>
                   </li>
+                  <div className="btn bg-white text-success mx-2" onClick={() => { setCartView(true) }}>
+                    My Cart
+                    <Badge pill bg="danger"> {data.length} </Badge>
+                  </div>
                   <li className='nav-item'>
-                    <a className="mx-2" href="/userProfile"> {/* Use <a> tag instead of <Link> */}
+                    <a className="mx-2" href="/userProfile" title='Profile'> {/* Use <a> tag instead of <Link> */}
                       <img src={userIcon} alt="User" style={{ width: '30px', height: '30px', borderRadius: '50%' }} />
                     </a>
                   </li>
                 </div>
+
               ) : null}
             </ul>
             <div className="d-flex align-items-center">
@@ -60,10 +65,6 @@ export default function Navbar() {
                   </Link>
                 </div>
               ) : null}
-              <div className="btn bg-white text-success mx-2" onClick={() => { setCartView(true) }}>
-                My Cart
-                <Badge pill bg="danger"> {data.length} </Badge>
-              </div>
               {cartView ? <Modal onClose={() => setCartView(false)}><Cart /></Modal> : null}
             </div>
           </div>
