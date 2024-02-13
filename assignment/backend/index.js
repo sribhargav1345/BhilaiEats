@@ -31,10 +31,8 @@ mongoDB();
 
 // Shop_Owner Part
 app.use('/api', require("./Routes/Shop_Owner/CreateAdmin"));
-app.use('/api', require("./Routes/Shop_Owner/DisplayFoodData"));
 
-app.use('/api', require("./Routes/Shop_Owner/Milkshakes/Create_Food"));
-app.use('/api', require("./Routes/Shop_Owner/Milkshakes/View_Food"));
+app.use('/api', require("./Routes/Shop_Owner/Create_Food"));
 app.use('/api', require("./Routes/Shop_Owner/CreateAdmin"));
 
 app.use('/api', require("./Routes/Shop_Owner/DisplayFoodsActoShop"));             
@@ -44,19 +42,9 @@ app.use('/api', require("./Routes/User/DisplayDataAcToShops"));
 // User part
 app.use('/api', require("./Routes/User/CreateUser"));
 app.use('/api', require("./Routes/User/OrderData"));
-app.use('/api', require("./Routes/User/GetUserProfile"));
 app.use('/api', require("./Routes/User/DisplayCanteen"));
 
 // Super_Admin part
-app.use('/api', require("./Routes/Super_Admin/ShopData/TechCafe"));
-app.use('/api', require("./Routes/Super_Admin/ShopData/ATMart"));
-app.use('/api', require("./Routes/Super_Admin/ShopData/Bakery"));
-app.use('/api', require("./Routes/Super_Admin/ShopData/MilkShakes"));
-app.use('/api', require("./Routes/Super_Admin/ShopData/Dairy"));
-app.use('/api', require("./Routes/Super_Admin/ShopData/Govasta"));
-app.use('/api', require("./Routes/Super_Admin/ShopData/CafeCoffee"));
-app.use('/api', require("./Routes/Super_Admin/ShopData/NJX"));
-app.use('/api', require("./Routes/Super_Admin/ShopData/Galav"));
 
 app.use('/api', require("./Routes/Super_Admin/Owners"));
 app.use('/api', require("./Routes/Super_Admin/CreateSuperAdmin"));
@@ -68,5 +56,3 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
 
-
-// How to connect mongodb with express? -> Isn't it interesting
