@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Navbar3 from '../../components/Common_In_All/Navbar_signup';
 import '../Common_In_All/Login.css';
 
-export default function SignUp() {
+export default function Add_item() {
     const [formData, setFormData] = useState({
         categoryname: "",
         name: "",
@@ -108,7 +108,6 @@ export default function SignUp() {
 
 
                                     <button type="submit" className="btn btn-success w-100 mb-3">Submit</button>
-                                    <p className="text-center mb-0">Already have an account? <Link to="../login">Login</Link></p>
                                 </form>
                             </div>
                         </div>
