@@ -19,7 +19,7 @@ export default function Navbar() {
   };
 
   return (
-    <div>
+    <div data-testid='Navbar-test'>
       <nav className="navbar navbar-expand-lg navbar-dark bg-orange">
         <div className="container-fluid">
           <div className="d-flex align-items-center">

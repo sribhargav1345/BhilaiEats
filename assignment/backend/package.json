@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "rat":"node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "author": "Bhargav",
   "license": "ISC",
@@ -19,6 +20,7 @@
     "nodemon": "^3.0.2"
   },
   "devDependencies": {
-    "jest": "^29.7.0"
+    "jest": "^29.7.0",
+    "supertest": "^6.3.4"
   }
 }
