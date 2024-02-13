@@ -20,25 +20,16 @@ import {
 import { CartProvider } from './components/User/ContextReducer.js';
 
 // Importing shop details
-import ATMart from './screens/Super_Admin/Shops/ATMart.js';
-import Bakery from './screens/Super_Admin/Shops/Bakery.js';
-import CafeCoffee from './screens/Super_Admin/Shops/CafeCoffee.js';
-import Dairy from './screens/Super_Admin/Shops/Dairy.js';
-import Galav from './screens/Super_Admin/Shops/Galav.js';
-import Govatsa from './screens/Super_Admin/Shops/Govatsa.js';
-import MilkShakes from './screens/Super_Admin/Shops/MilkShakes.js';
-import NJX from './screens/Super_Admin/Shops/NJX.js';
-import TechCafe from './screens/Super_Admin/Shops/TechCafe.js';
+import DynamicUserShops from './screens/User/DynamicUserShops.js'
 import DynamicOwner from './screens/Owner_data/DynamicOwner.js';
 
-import Add_Shops from './screens/Super_Admin/Add_shop.js'
+import Add_Shops from './screens/Super_Admin/Add_shop.js';
 
 // Importing owner_add Item details
-import Add_item_Milkshake from './screens/Owner_data/Add_item.js'
+import Add_item from './screens/Owner_data/Add_item.js';
 
 // Importing SuperAdmin details
 import Home_SuperAdmin from  "./screens/Super_Admin/Home_SuperAdmin.js";
-
 
 // Main Component of App
 function App() {
@@ -62,14 +53,12 @@ function App() {
             <Route exact path="/superadmin"  element = {<Home_SuperAdmin/>} />
 
             {/* <Route exact path='/owner/:owner_id' element={<Owner_Milkshake />} /> */}
+            <Route exact path='/shop/:shop_id' element={<DynamicUserShops/>} />
             <Route exact path='/owner/:owner_id' element={<DynamicOwner />} />
 
-            {/* Routes of shop owners */}
-            {/* <Route exact path="/owner_65b9c50e1ec25cbe9bd921a0" element = {<Owner_Milkshake/>} /> */}
             <Route exact path="/superadmin/add_shops" element = {<Add_Shops/>} />
 
-            {/* Routes of Add_items of shop_owners */}
-            <Route exact path="/owner/:owner_id/add_item" element = {<Add_item_Milkshake/>} />
+            <Route exact path="/owner/:owner_id/add_item" element = {<Add_item/>} />
           </Routes>
         </div>
       </Router>
