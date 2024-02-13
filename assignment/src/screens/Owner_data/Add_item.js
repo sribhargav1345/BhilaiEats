@@ -11,6 +11,8 @@ export default function Add_item() {
         options: [{ size: "", price: "" }]
     });
 
+    const cardHeight = 1200 + formData.options.length * 50;
+
     const handleSubmit = async (e) => {
 
         var shopname = localStorage.getItem('shopname');
@@ -18,7 +20,7 @@ export default function Add_item() {
 
         e.preventDefault();
 
-        const response = await fetch("http://localhost:5000/api/CreateFood_Milkshakes", {
+        const response = await fetch("http://localhost:5000/api/CreateFood", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -74,8 +76,8 @@ export default function Add_item() {
             <Navbar3 />
             <div className='container'>
                 <div className="row justify-content-center mt-5">
-                    <div className="col-md-6">
-                        <div className="card" style={{ width: "500px" }}>
+                    <div className="col-md-6" style={{ backgroundColor:"black"}}>
+                        <div className="card" style={{ width: "500px" , height: `${cardHeight}px`, backgroundColor: "black"}}>
                             <div className="card-body">
                                 <h2 className="text-center mb-4">Add an Item</h2>
                                 <hr />

@@ -15,7 +15,9 @@ export default function Navbar() {
 
   const handleLogout = () => {
     localStorage.removeItem('authToken');
-    navigate('/user');
+    localStorage.removeItem('userEmail');
+    localStorage.removeItem('shopname');
+    navigate("/user");
   };
 
   return (
@@ -51,7 +53,6 @@ export default function Navbar() {
                     </a>
                   </li>
                 </div>
-
               ) : null}
             </ul>
             <div className="d-flex align-items-center">
