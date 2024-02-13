@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
+    <div>
     <footer className="bg-dark text-light py-5" style={{marginTop:"90px"}}>
-      <div className="container" style={{ maxHeight: "250px" }}>
-        <div className="row">
+      <div className="container" style={{ maxHeight: "150px"}}>
+        <div className="row" >
           <div className="col-md-4">
             <h5>Customer Support</h5>
             <ul className="list-unstyled text-colors">
@@ -18,8 +19,8 @@ export default function Footer() {
           <div className="col-md-4">
             <h5>Quick Links</h5>
             <ul className="list-unstyled">
-              <li><Link to="/menu" className=" text-colors text-decoration-none">Menu</Link></li>
-              <li><Link to="/about" className="text-colors text-decoration-none">About</Link></li>
+              <li><Link to="/" className=" text-colors text-decoration-none">Menu</Link></li>
+              <li><Link to="/" className="text-colors text-decoration-none">About</Link></li>
               <li><Link to="/contact" className="text-colors text-decoration-none">Contact</Link></li>
             </ul>
           </div>
@@ -41,5 +42,6 @@ export default function Footer() {
         </div>
       </div>
     </footer>
+    </div>
   );
 }

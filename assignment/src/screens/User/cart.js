@@ -16,19 +16,12 @@ export default function Cart() {
       </div>
     )
   }
-  // const handleRemove = (index)=>{
-  //   console.log(index)
-  //   dispatch({type:"REMOVE",index:index})
-  // }
 
   const handleCheckOut = async () => {                                        // Related to MyOrders part
 
     let userEmail = localStorage.getItem("userEmail");
 
     let response = await fetch("http://localhost:5000/api/auth/orderData", {
-
-      // credentials: 'include',
-      // Origin:"http://localhost:3000/login",
 
       method: 'POST',
       headers: {
@@ -62,6 +55,7 @@ export default function Cart() {
             <tr>
               <th scope='col' >#</th>
               <th scope='col' >Name</th>
+              <th scope='col' >ShopName</th>
               <th scope='col' >Quantity</th>
               <th scope='col' >Option</th>
               <th scope='col' >Amount</th>
@@ -73,6 +67,7 @@ export default function Cart() {
               <tr key={index}>
                 <th scope='row'>{index + 1}</th>
                 <td>{food.name}</td>
+                <td>{food.shopname}</td>
                 <td>{food.qty}</td>
                 <td>{food.size}</td>
                 <td>{food.price}</td>

@@ -10,25 +10,48 @@ function DynamicOwner() {
   const [search, setSearch] = useState("");
   const [foodItems, setFoodItems] = useState([]);
   const [foodItemcat, setFoodItemcat] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const fetchFoodItems = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(`http://localhost:5000/api/owner/${owner_id}`);
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch food items');
+      }
+
+      const data = await response.json();
+
+      setFoodItems(data[0]);
+      setFoodItemcat(data[1]);
+    } catch (error) {
+      console.error('Error fetching owner data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchFoodItems = async () => {
-      try {
-        const response = await fetch(`http://localhost:5000/api/owner/${owner_id}`);
-
-        const data = await response.json();
-
-        setFoodItems(data[0]);
-        setFoodItemcat(data[1]);
-
-      } catch (error) {
-        console.error('Error fetching owner data:', error);
-      }
-    };
-
     fetchFoodItems();
-
   }, [owner_id]);
+
+  const handleRemoveItem = async (cardId) => {
+    try {
+      console.log(cardId);
+      const response = await fetch(`http://localhost:5000/api/cards/${cardId}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        fetchFoodItems();
+      } else {
+        console.log("Failed to remove Card");
+      }
+    } catch (error) {
+      console.error('Error removing card:', error);
+    }
+  }
 
   return (
     <div className="full-width-background">
@@ -39,10 +62,10 @@ function DynamicOwner() {
             <div key={category._id} className='row mb-3'>
               <div className="fs-3 m-3">{category.categoryname}</div>
               <hr />
-              {foodItems.length !== 0 ? (
+              {foodItems && foodItems.length !== 0 ? (
                 foodItems.filter((item) => item.categoryname === category.categoryname && item.name.toLowerCase().includes(search.toLocaleLowerCase())).map((filterItem) => (
                   <div key={filterItem._id} className='col-12 col-md-6 col-lg-3'>
-                    <Card_owners foodName={filterItem.name} ImgSrc={filterItem.image} options={filterItem.options} />
+                    <Card_owners cardId = {filterItem._id} foodName={filterItem.name} ImgSrc={filterItem.image} options={filterItem.options} handleRemoveItem={handleRemoveItem}/>
                   </div>
                 ))
               ) : (

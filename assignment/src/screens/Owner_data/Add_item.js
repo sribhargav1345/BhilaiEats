@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Navbar3 from '../../components/Common_In_All/Navbar_signup';
-import '../Common_In_All/Login.css';
+import Navbar3 from '../../components/Shop_Owner/Navbar_owner';
 
 export default function Add_item() {
     const [formData, setFormData] = useState({
@@ -11,7 +10,7 @@ export default function Add_item() {
         options: [{ size: "", price: "" }]
     });
 
-    const cardHeight = 1200 + formData.options.length * 50;
+    const cardHeight = 700 + formData.options.length * 50;
 
     const handleSubmit = async (e) => {
 
@@ -72,13 +71,13 @@ export default function Add_item() {
     };
 
     return (
-        <div className='login-container'>
+        <div className='login-container' style={{backgroundColor:"#dfd2d2"}}>
             <Navbar3 />
             <div className='container'>
                 <div className="row justify-content-center mt-5">
-                    <div className="col-md-6" style={{ backgroundColor:"black"}}>
-                        <div className="card" style={{ width: "500px" , height: `${cardHeight}px`, backgroundColor: "black"}}>
-                            <div className="card-body">
+                    <div className="col-md-6">
+                        <div className="card" style={{ width: "500px", height: "700px"}}>
+                            <div className="card-body" style={{width: "500px", height: "900px", backgroundColor:"white"}}>
                                 <h2 className="text-center mb-4">Add an Item</h2>
                                 <hr />
                                 <form onSubmit={handleSubmit}>

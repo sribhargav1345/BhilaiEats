@@ -4,6 +4,7 @@ import Home from './screens/User/Home';
 import UserProfile from './screens/User/UserProfile.js';
 import Login from './screens/Common_In_All/Login';
 import SignUp from './screens/Common_In_All/signup.js';
+import Contact from './screens/Common_In_All/contact.js';
 
 // Import bootstrap files.
 import '../node_modules/bootstrap-dark-5/dist/css/bootstrap-dark.min.css';
@@ -46,6 +47,7 @@ function App() {
             <Route exact path="/signup"  element = {<SignUp/>} />               {/* Completed */}
             <Route exact path="/myOrders"  element = {<myOrders/>} />
             <Route exact path="/userProfile"  element = {<UserProfile/>} />
+            <Route exact path="/contact"  element = {<Contact/>} />
 
             {/* Routes for different types of users */}
             <Route exact path="/user"  element = {<Home/>} />
