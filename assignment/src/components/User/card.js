@@ -69,13 +69,13 @@ export default function Card(props) {
         await dispatch({ type: 'UPDATE', id: props._id, price: finalPrice, qty: qty });
         return;
       } else {
-        await dispatch({ type: 'ADD', id: props._id, name: props.name, price: finalPrice, qty: qty, size: size });
+        await dispatch({ type: 'ADD', id: props._id, name: props.foodName, price: finalPrice, qty: qty, size: size });
         return;
       }
     } else {
-      await dispatch({ type: 'ADD', id: props._id, name: props.name, price: finalPrice, qty: qty, size: size });
+      await dispatch({ type: 'ADD', id: props._id, name: props.foodName, price: finalPrice, qty: qty, size: size });
     }
-    await dispatch({ type: "ADD", id: props.foodName._id, name: props.foodItem.name, price: props.finalPrice, qty: qty, size: size});
+    await dispatch({ type: "ADD", id: props._id, name: props.foodName, price: props.finalPrice, qty: qty, size: size});
     await console.log(data);
   };
 
