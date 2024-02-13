@@ -1,3 +1,5 @@
+// This page is for signup and login of Admin.
+
 const express = require('express');
 const router = express.Router()                                                            
 const Admin = require('../../models/Admin');
@@ -9,7 +11,6 @@ const bcrypt = require("bcryptjs");                                             
 
 const jwtSecret = "HiNanna";                                                                        // Secret key for JWT token generation
 
-// Just for superadmin adding purpose
 router.post("/CreateAdmin", [
     body('email', 'Email Format is not correct').isEmail(),
     body('name').isLength({ min: 4 }),
