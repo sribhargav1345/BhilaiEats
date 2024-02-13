@@ -16,40 +16,33 @@ export default function Cart() {
       </div>
     )
   }
-  // const handleRemove = (index)=>{
-  //   console.log(index)
-  //   dispatch({type:"REMOVE",index:index})
-  // }
 
-  const handleCheckOut = async () => {                                        // Related to MyOrders part
-
-    let userEmail = localStorage.getItem("userEmail");
-
-    let response = await fetch("http://localhost:5000/api/auth/orderData", {
-
-      // credentials: 'include',
-      // Origin:"http://localhost:3000/login",
-
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-
-      body: JSON.stringify({
-        order_data: data,
-        email: userEmail,
-        order_date: new Date().toDateString()
-      })
-
-    });
-
-    console.log("JSON RESPONSE:::::", response.status)
-
-    if (response.status === 200) {
-      dispatch({ type: "DROP" })
+  const handleCheckOut = async () => {
+    try {
+      let userEmail = localStorage.getItem("userEmail");
+  
+      let response = await fetch("http://localhost:5000/api/auth/orderData", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          order_data: data, // Assuming 'data' is defined somewhere in your code
+          email: userEmail,
+          order_date: new Date().toDateString()
+        })
+      });
+  
+      if (response.ok) {
+        dispatch({ type: "DROP" });
+      } else {
+        console.error(`Failed to checkout. Status: ${response.status}`);
+      }
+    } catch (error) {
+      console.error("An error occurred during checkout:", error.message);
     }
-    
-  }
+  };
+  
 
   let totalPrice = data.reduce((total, food) => total+food.price, 0)
   return (

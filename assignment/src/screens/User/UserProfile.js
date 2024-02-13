@@ -4,6 +4,7 @@ import './UserProfile.css';
 
 const UserProfile = () => {
   const [userProfile, setUserProfile] = useState(null);
+  const [cartItems, setCartItems] = useState([]);
   const [showOrders, setShowOrders] = useState(false);
 
   const toggleOrders = () => {
@@ -24,12 +25,14 @@ const UserProfile = () => {
             'Email': `${email}`
           }
         });
-        
+
         if (!response.ok) {
           throw new Error('Failed to fetch user profile');
         }
+
         const data = await response.json();
         setUserProfile(data.userProfile);
+        setCartItems(data.cartItems || []); // Set cart items in state
 
       } catch (error) {
         console.error('Error fetching user profile:', error);
@@ -70,6 +73,18 @@ const UserProfile = () => {
                       <li key={index}>{order}</li>
                     ))}
                   </ul>
+                )}
+
+                {/* Display cart items under My Orders */}
+                {cartItems.length > 0 && (
+                  <div>
+                    <h3>Items in Cart</h3>
+                    <ul>
+                      {cartItems.map((item, index) => (
+                        <li key={index}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
                 )}
               </div>
             )}
