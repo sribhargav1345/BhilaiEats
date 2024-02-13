@@ -36,12 +36,12 @@ app.use('/api', require("./Routes/Shop_Owner/Milkshakes/Create_Food"));
 app.use('/api', require("./Routes/Shop_Owner/Milkshakes/View_Food"));
 app.use('/api', require("./Routes/Shop_Owner/CreateAdmin"));
 
-app.use('/api', require("./Routes/Shop_Owner/DisplayFoodsActoShop"));              // Working on it and main part
+app.use('/api', require("./Routes/Shop_Owner/DisplayFoodsActoShop"));             
+app.use('/api', require("./Routes/User/DisplayDataAcToShops"));              
 
 
 // User part
 app.use('/api', require("./Routes/User/CreateUser"));
-app.use('/api', require("./Routes/User/DisplayData"));
 app.use('/api', require("./Routes/User/OrderData"));
 app.use('/api', require("./Routes/User/GetUserProfile"));
 app.use('/api', require("./Routes/User/DisplayCanteen"));

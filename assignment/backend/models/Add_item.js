@@ -24,6 +24,6 @@ const Add_milkshakeSchema = new Schema({
         type: Array,
         required: true
     }
-});
+}, { collection: 'add_items' });
 
 module.exports = mongoose.model('Add_item',Add_milkshakeSchema)
