@@ -20,14 +20,23 @@ export default function Cart() {
   const handleCheckOut = async () => {
     try {
       let userEmail = localStorage.getItem("userEmail");
+      let orderedItems = [];
+
+      data.forEach((food) => {
+        const { name, qty, size, price } = food;
+        orderedItems.push({ name, qty, size, price });
+      });
+      console.log("begin");
+      console.log(orderedItems);
+      console.log("end");
   
-      let response = await fetch("http://localhost:5000/api/auth/orderData", {
+      let response = await fetch("http://localhost:5000/api/orderData", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          order_data: data, // Assuming 'data' is defined somewhere in your code
+          order_data: orderedItems, // Assuming 'data' is defined somewhere in your code
           email: userEmail,
           order_date: new Date().toDateString()
         })
