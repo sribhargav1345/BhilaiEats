@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Card_shop from '../../components/Super_Admin/card_shop';
 import Carousel from '../../components/User/carousel';
 import Footer from '../../components/User/Footer';
-import Navbar from '../../components/User/Navbar';
+import Navbar from '../../components/Super_Admin/Navbar_superadmin';
 import './Home.css';
 import './Shops/Shops.css';
 import AddItemForm from './Add_shop';
@@ -14,7 +14,6 @@ export default function Home_SuperAdmin() {
   const [showAddItemForm, setShowAddItemForm] = useState(false);
 
   const loadData = async () => {
-
     try {
       const response = await fetch('http://localhost:5000/api/shopData', {
         method: 'GET',
@@ -27,7 +26,6 @@ export default function Home_SuperAdmin() {
     } catch (error) {
       console.error('Error fetching data:', error);
     }
-
   };
 
   useEffect(() => {
@@ -44,21 +42,18 @@ export default function Home_SuperAdmin() {
 
   return (
     <div className="coloring">
-
       <Navbar />
       <Carousel onSearchChange={handleSearchChange} />
-
-      <div className='container'>
+      <div className='container' style={{ marginTop: '30px' }}>
         <div className="row">
           <div className="col-12">
             <h2 className="font-weight-bold mt-6 mb-6">Restaurants</h2>
             <hr className="my-2" />
           </div>
         </div>
-
-        {shops.length !== 0 ? (
-          <div className="row">
-            {shops
+        <div className="row">
+          {shops && shops.length !== 0 ? (
+            shops
               .filter((item) => item.shopname.toLowerCase().includes(search.toLowerCase()))
               .map((filterItem) => (
                 <div key={filterItem._id} className="col-12 col-md-6 col-lg-4 mt-3">
@@ -69,11 +64,11 @@ export default function Home_SuperAdmin() {
                     description={filterItem.description}
                   />
                 </div>
-              ))}
-          </div>
-        ) : (
-          <div>"No such data found"</div>
-        )}
+              ))
+          ) : (
+            <div>Backend is not connected with Frontend</div>
+          )}
+        </div>
       </div>
       <Link to="/superadmin/add_shops">
         <div className="add-button" title="Add an Item">
@@ -81,7 +76,6 @@ export default function Home_SuperAdmin() {
         </div>
       </Link>
       <Footer />
-
     </div>
   );
 }

@@ -1,3 +1,5 @@
+// This is for creating a new Shop by the superadmin
+
 const express = require('express');
 const router = express.Router();
 

@@ -43,7 +43,7 @@ export default function DynamicUserShops() {
                             <hr />
                             {foodItems.length !== 0 ? (
                                 foodItems.filter((item) => item.categoryname === category.categoryname && item.name.toLowerCase().includes(search.toLocaleLowerCase())).map((filterItem) => (
-                                    <div key={filterItem._id} className='col-12 col-md-6 col-lg-3'>
+                                    <div key={filterItem._id} className='col'>
                                         <Card foodName={filterItem.name} ImgSrc={filterItem.image} options={filterItem.options} />
                                     </div>
                                 ))

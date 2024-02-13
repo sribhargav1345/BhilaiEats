@@ -1,3 +1,5 @@
+// This page is for signup and login of user & getting userprofile
+
 const express = require('express');
 const router = express.Router();
 const User = require('../../models/User');

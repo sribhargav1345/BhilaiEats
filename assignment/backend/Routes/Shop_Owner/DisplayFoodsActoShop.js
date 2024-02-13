@@ -1,3 +1,5 @@
+// This is to display the foods according to their shops.
+
 const express = require('express');
 const router = express.Router();
 const Admin = require('../../models/Admin'); 

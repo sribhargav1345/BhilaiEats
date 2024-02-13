@@ -13,30 +13,20 @@ export default function Canteen() {
     });
 
     const handleSubmit = async (e) => {
-
         e.preventDefault();
-
         const response = await fetch("http://localhost:5000/api/shopData", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                shopname: formData.shopname,
-                owner_name: formData.owner_name,
-                owner_email: formData.owner_email,
-                owner_contact: formData.owner_contact,
-                image: formData.image,
-                description: formData.description
-            })
+            body: JSON.stringify(formData)
         });
-
         const json = await response.json();
 
         if (!json.success) {
-            alert("Failed to addItem");
+            alert("Failed to add item");
         } else {
-            alert("Item Added successfully!");
+            alert("Item added successfully!");
         }
 
         console.log("Form Data:", formData);
@@ -48,39 +38,45 @@ export default function Canteen() {
     };
 
     return (
-        <div className='login-container'>
+        <div className='login-container' style={{ backgroundColor: "#dfd2d2" }}>
             <Navbar />
             <div className='container'>
                 <div className="row justify-content-center mt-5">
                     <div className="col-md-6">
-                        <div className="card" style={{ width: "500px" }}>
-                            <div className="card-body">
-                                <h2 className="text-center mb-4">Add Restaurants</h2>
+                        <div className="card" style={{ width: "790px", maxHeight: "620px" }}>
+                            <div className="card-body" style={{ width: "790px", height: "500px" }}>
+                                <h2 className="text-center mb-1">Add Restaurants</h2>
                                 <hr />
                                 <form onSubmit={handleSubmit}>
-                                    <div className="mb-3">
-                                        <label htmlFor="categoryname" className="form-label">Shop Name</label>
-                                        <input type="text" className="form-control" name='shopname' value={formData.shopname} onChange={onChange} />
+                                    <div className="row mb-3 mt-2">
+                                        <div className="col-md-6">
+                                            <label htmlFor="categoryname" className="form-label">Shop Name</label>
+                                            <input type="text" className="form-control" name='shopname' value={formData.shopname} onChange={onChange} />
+                                        </div>
+                                        <div className="col-md-6">
+                                            <label htmlFor="name" className="form-label"> Name of the Owner </label>
+                                            <input type="text" className="form-control" name='owner_name' value={formData.owner_name} onChange={onChange} />
+                                        </div>
                                     </div>
-                                    <div className="mb-3">
-                                        <label htmlFor="name" className="form-label"> Name of the Owner </label>
-                                        <input type="text" className="form-control" name='owner_name' value={formData.owner_name} onChange={onChange} />
+                                    <div className="row mb-3">
+                                        <div className="col-md-6">
+                                            <label htmlFor="image" className="form-label">Email Address </label>
+                                            <input type="text" className="form-control" name='owner_email' value={formData.owner_email} onChange={onChange} />
+                                        </div>
+                                        <div className="col-md-6">
+                                            <label htmlFor="image" className="form-label">Phone Number </label>
+                                            <input type="text" className="form-control" name='owner_contact' value={formData.owner_contact} onChange={onChange} />
+                                        </div>
                                     </div>
-                                    <div className="mb-3">
-                                        <label htmlFor="image" className="form-label">Email Address </label>
-                                        <input type="text" className="form-control" name='owner_email' value={formData.owner_email} onChange={onChange} />
-                                    </div>
-                                    <div className="mb-3">
-                                        <label htmlFor="image" className="form-label">Phone Number </label>
-                                        <input type="text" className="form-control" name='owner_contact' value={formData.owner_contact} onChange={onChange} />
-                                    </div>
-                                    <div className="mb-3">
-                                        <label htmlFor="image" className="form-label"> Image URL </label>
-                                        <input type="text" className="form-control" name='image' value={formData.image} onChange={onChange} />
-                                    </div>
-                                    <div className="mb-3">
-                                        <label htmlFor="image" className="form-label"> Description </label>
-                                        <textarea className="form-control" name='description' value={formData.description} onChange={onChange} />
+                                    <div className="row mb-3">
+                                        <div className="col-md-6">
+                                            <label htmlFor="image" className="form-label"> Image URL </label>
+                                            <input type="text" className="form-control" name='image' value={formData.image} onChange={onChange} />
+                                        </div>
+                                        <div className="col-md-6">
+                                            <label htmlFor="image" className="form-label"> Description </label>
+                                            <textarea className="form-control" name='description' value={formData.description} onChange={onChange} />
+                                        </div>
                                     </div>
                                     <button type="submit" className="btn btn-success w-100 mb-3">Submit</button>
                                 </form>

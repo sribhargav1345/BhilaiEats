@@ -1,3 +1,5 @@
+// Getting user side shops, when he click on 1 shop, from backend it should get that shop only.
+
 const express = require('express');
 const router = express.Router();
 const Canteen = require('../../models/Canteen');
@@ -17,12 +19,12 @@ router.get('/shop/:shop_id', async (req, res) => {
             return res.status(404).json({ error: 'Owner not found' });
         }
 
-        console.log(shop.shopname);
+        //console.log(shop.shopname);
 
         const foodItems = await FoodItem.find({ shopname: shop.shopname }); 
         const foodItemCat = await FoodItemCat.find({ shopname: shop.shopname });  
 
-        console.log(foodItems);
+        //console.log(foodItems);
 
         res.send([foodItems, foodItemCat]);
         
