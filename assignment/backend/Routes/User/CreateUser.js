@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../../models/User');
 const Orders = require('../../models/Orders');
+
 const { body, validationResult } = require('express-validator');
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
@@ -106,8 +107,12 @@ router.get('/getUserProfile', async (req, res) => {
         if (!userProfile) {
             return res.status(404).json({ success: false, error: 'User profile not found' });
         }
+
         const orders = await Orders.find({ email: req.headers.email });
+
+        //console.log(orders);
         return res.json({ success: true, userProfile, orders });
+
     } catch (error) {
         console.error("Server error:", error);
         return res.status(500).json({ success: false, error: 'Server error' });
