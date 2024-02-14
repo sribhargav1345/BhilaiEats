@@ -51,7 +51,6 @@ function App() {
 
             {/* Routes for different types of users */}
             <Route exact path="/user"  element = {<Home/>} />
-            <Route exact path="/owner"  element = {<Home/>} />
             <Route exact path="/superadmin"  element = {<Home_SuperAdmin/>} />
 
             {/* <Route exact path='/owner/:owner_id' element={<Owner_Milkshake />} /> */}

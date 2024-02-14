@@ -75,7 +75,7 @@ export default function Login() {
 
   return (
     <div className='coloring'>
-      <div className='login-container'>
+      <div className='login-container' style={{zIndex:-99}}>
         <Navbar/>
         <div className="container">
           <div className="row justify-content-center mt-5" style={{height: "510px"}}>
