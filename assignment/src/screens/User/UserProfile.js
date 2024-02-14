@@ -31,10 +31,11 @@ const UserProfile = () => {
         }
 
         const data = await response.json();
-        console.log('User Profile Data:', data);
+        //console.log('User Profile Data:', data);
         setUserProfile(data.userProfile);
 
-        // Assuming server sends order items directly from the Orders collection
+        console.log(data);
+
         setAllOrderItems(data.orders[0].order_data);
 
       } catch (error) {
@@ -67,15 +68,15 @@ const UserProfile = () => {
         <div className="user-options">
           <div className="dropdown">
             <button className="dropdown-btn" onClick={toggleOrders}>My Orders</button>
-            {console.log(showOrders)}
+            {/* {console.log(showOrders)} */}
             {showOrders && (
               <div className="dropdown-content">
                 {/* Display all order items below My Orders */}
-                {console.log(allOrderItems.length)}
+                {/* {console.log(allOrderItems.length)} */}
                 {allOrderItems.length > 0 ? (
                   <div>
                     <h3>All Order Items</h3>
-                    {console.log("bcsjabCN")}
+                    {/* {console.log("bcsjabCN")} */}
                     <ul>
                       {allOrderItems.map((order, orderIndex) => (
                         <li key={orderIndex}>
