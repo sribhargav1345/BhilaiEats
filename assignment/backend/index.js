@@ -34,6 +34,7 @@ mongoDB();
 app.use('/api', require("./Routes/Shop_Owner/CreateAdmin"));
 
 app.use('/api', require("./Routes/Shop_Owner/Create_Food"));
+app.use('/api', require("./Routes/Shop_Owner/Delete_Food"));
 app.use('/api', require("./Routes/Shop_Owner/CreateAdmin"));
 
 app.use('/api', require("./Routes/Shop_Owner/DisplayFoodsActoShop"));             
