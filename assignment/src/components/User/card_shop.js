@@ -26,7 +26,7 @@ export default function Card_shop(props) {
       onMouseLeave={handleMouseLeave}
       style={{ textDecoration: 'none', color: 'inherit' }}
     >
-      <div
+      <div data-testid='card-test'
         className="card mt-3 coloring"
         style={{
           width: '20rem',
