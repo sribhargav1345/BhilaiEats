@@ -93,3 +93,42 @@
 .dropdown-content ul li:hover {
   color: #007bff;
 }
+
+.user-options {
+  margin-top: 20px;
+}
+
+.dropdown-btn {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+}
+
+.dropdown-btn.active {
+  background-color: #2980b9;
+}
+
+.dropdown-content h3 {
+  color: #333;
+}
+
+.dropdown-content ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.dropdown-content li {
+  margin-bottom: 10px;
+}
+
+.dropdown-content, .dropdown-btn {
+  transition: background-color 0.3s;
+}

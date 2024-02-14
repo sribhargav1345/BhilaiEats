@@ -26,9 +26,6 @@ export default function Cart() {
         const { name, qty, size, price } = food;
         orderedItems.push({ name, qty, size, price });
       });
-      console.log("begin");
-      console.log(orderedItems);
-      console.log("end");
 
 
       let response = await fetch("http://localhost:5000/api/orderData", {

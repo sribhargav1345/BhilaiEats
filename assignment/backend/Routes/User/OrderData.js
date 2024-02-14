@@ -26,7 +26,7 @@ router.post('/orderData', async (req, res) => {
 
         res.json({ success: true });
     } catch (error) {
-        console.error("Server Error during orderData:", error.message);
+       // console.error("Server Error during orderData:", error.message);
         res.status(500).json({ success: false, error: error.message });
     }
 });

@@ -110,7 +110,7 @@ router.get('/getUserProfile', async (req, res) => {
 
         const orders = await Orders.find({ email: req.headers.email });
 
-        console.log(orders);
+        //console.log(orders);
         return res.json({ success: true, userProfile, orders });
 
     } catch (error) {

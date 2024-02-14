@@ -7,10 +7,6 @@ const UserProfile = () => {
   const [showOrders, setShowOrders] = useState(true);
   const [allOrderItems, setAllOrderItems] = useState([]);
 
-  const toggleOrders = () => {
-    setShowOrders(!showOrders);
-  };
-
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
@@ -31,8 +27,8 @@ const UserProfile = () => {
         }
 
         const data = await response.json();
-        setUserProfile(data.userProfile);        
-        setAllOrderItems(data.orders[0].order_data);
+        setUserProfile(data.userProfile);
+        setAllOrderItems(data.orders);
 
       } catch (error) {
         console.error('Failed to fetch user profile:', error);
@@ -42,7 +38,7 @@ const UserProfile = () => {
     fetchUserProfile();
   }, []);
 
-  
+
   console.log(allOrderItems);
 
   return (
@@ -65,27 +61,43 @@ const UserProfile = () => {
         <hr className="divider" />
         <div className="user-options">
           <div className="dropdown">
-            <button className="dropdown-btn" onClick={toggleOrders}>My Orders</button>
+            <button className="dropdown-btn">My Orders</button>
             {showOrders && (
               <div>
-                {allOrderItems.length>0 ? (
+                {allOrderItems.length > 0 ? (
                   <div>
-                    <h3>All Order Items</h3>
-                    {console.log("bcsjabCN")}
-                    <ul>
-                      {allOrderItems.map((order, orderIndex) => (
-                        <li key={orderIndex}>
-                          <h4>Order {orderIndex + 1}</h4>
-                          <ul>
-                            {order.map((item, itemIndex) => (
-                              <li key={itemIndex}>
-                                {item.name}, Quantity: {item.qty}, Size: {item.size}, Price: {item.price}
-                              </li>
-                            ))}
-                          </ul>
-                        </li>
-                      ))}
-                    </ul>
+                    {allOrderItems.map((order, orderIndex) => (
+                      <div key={orderIndex}>
+                        <h3>Order {orderIndex + 1}</h3>
+                        {console.log('order:', order)}
+                        {Array.isArray(order.order_data) && order.order_data.length > 0 ? (
+                          <table className="table">
+                            <thead>
+                              <tr>
+                                <th>Name</th>
+                                <th>Quantity</th>
+                                <th>Size</th>
+                                <th>Price</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {order.order_data.map((orderItem, orderItemIndex) => (
+                                orderItem.map((item, itemIndex) => (
+                                  <tr key={itemIndex}>
+                                    <td>{item.name}</td>
+                                    <td>{item.qty}</td>
+                                    <td>{item.size}</td>
+                                    <td>{item.price}</td>
+                                  </tr>
+                                ))
+                              ))}
+                            </tbody>
+                          </table>
+                        ) : (
+                          <p>No items found for this order.</p>
+                        )}
+                      </div>
+                    ))}
                   </div>
                 ) : (
                   <p>No order items found.</p>
