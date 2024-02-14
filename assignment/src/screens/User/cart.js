@@ -1,9 +1,7 @@
-import React from 'react'
-import Delete from '@material-ui/icons/Delete'
+import React from 'react';
 import { useCart, useDispatchCart } from '../../components/User/ContextReducer';
 
 export default function Cart() {
-
   let data = useCart();
   let dispatch = useDispatchCart();
   console.log(data);
@@ -29,18 +27,15 @@ export default function Cart() {
 
 
       let response = await fetch("http://localhost:5000/api/orderData", {
-
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-
         body: JSON.stringify({
           order_data: orderedItems,
           email: userEmail,
           order_date: new Date().toDateString()
         })
-
       });
 
       console.log("JSON RESPONSE:::::", response.status)
@@ -52,7 +47,6 @@ export default function Cart() {
       console.error('Error:', error);
     }
   }
-
 
   let totalPrice = data.reduce((total, food) => total + food.price, 0);
 
@@ -80,7 +74,8 @@ export default function Cart() {
                 <td>{food.qty}</td>
                 <td>{food.size}</td>
                 <td>{food.price}</td>
-                <td ><button type="button" className="btn p-0"><Delete onClick={() => { dispatch({ type: "REMOVE", index: index }) }} /></button> </td></tr>
+                <td ><button type="button" className="btn p-0" onClick={() => { dispatch({ type: "REMOVE", index: index }) }}>Remove</button> </td>
+              </tr>
             ))}
           </tbody>
         </table>
@@ -89,10 +84,6 @@ export default function Cart() {
           <button className='btn bg-success mt-5' onClick={handleCheckOut}> CheckOut</button>
         </div>
       </div>
-
-
-
     </div>
   )
 }
-
