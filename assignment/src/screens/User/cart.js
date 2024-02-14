@@ -20,8 +20,18 @@ export default function Cart() {
   const handleCheckOut = async () => {
     try {
       let userEmail = localStorage.getItem("userEmail");
+      let orderedItems = [];
 
-      let response = await fetch("http://localhost:5000/api/auth/orderData", {
+      data.forEach((food) => {
+        const { name, qty, size, price } = food;
+        orderedItems.push({ name, qty, size, price });
+      });
+      console.log("begin");
+      console.log(orderedItems);
+      console.log("end");
+
+
+      let response = await fetch("http://localhost:5000/api/orderData", {
 
         method: 'POST',
         headers: {
@@ -29,7 +39,7 @@ export default function Cart() {
         },
 
         body: JSON.stringify({
-          order_data: data,
+          order_data: orderedItems,
           email: userEmail,
           order_date: new Date().toDateString()
         })

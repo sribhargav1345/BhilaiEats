@@ -31,20 +31,19 @@ const UserProfile = () => {
         }
 
         const data = await response.json();
-        //console.log('User Profile Data:', data);
-        setUserProfile(data.userProfile);
-
-        console.log(data);
-
+        setUserProfile(data.userProfile);        
         setAllOrderItems(data.orders[0].order_data);
 
       } catch (error) {
-        console.error('Error fetching user profile:', error);
+        console.error('Failed to fetch user profile:', error);
       }
     };
 
     fetchUserProfile();
   }, []);
+
+  
+  console.log(allOrderItems);
 
   return (
     <div className="page-background">
@@ -54,7 +53,6 @@ const UserProfile = () => {
             <img src={userIcon} alt="User" />
           </div>
           <div className="user-details">
-            {/* Render user details dynamically */}
             {userProfile && (
               <>
                 <h2 className="user-name">Name: {userProfile.name}</h2>
@@ -68,15 +66,12 @@ const UserProfile = () => {
         <div className="user-options">
           <div className="dropdown">
             <button className="dropdown-btn" onClick={toggleOrders}>My Orders</button>
-            {/* {console.log(showOrders)} */}
             {showOrders && (
-              <div className="dropdown-content">
-                {/* Display all order items below My Orders */}
-                {/* {console.log(allOrderItems.length)} */}
-                {allOrderItems.length > 0 ? (
+              <div>
+                {allOrderItems.length>0 ? (
                   <div>
                     <h3>All Order Items</h3>
-                    {/* {console.log("bcsjabCN")} */}
+                    {console.log("bcsjabCN")}
                     <ul>
                       {allOrderItems.map((order, orderIndex) => (
                         <li key={orderIndex}>

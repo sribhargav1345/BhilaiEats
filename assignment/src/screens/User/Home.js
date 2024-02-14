@@ -39,8 +39,9 @@ export default function Home() {
       <div className="container" style={{ marginTop: '30px' }}>
         <div className="row">
           <div className="col-12">
-            <h2 className="font-weight-bold mt-6 mb-6">Restaurants</h2>
-            <hr className="my-2" />
+            <h2 className="font-weight-bold mt-6 mb-6 dark-font-color">Restaurants</h2>
+            <hr className="my-2 dark-font-color" />
+
           </div>
         </div>
         {shops && shops.length !== 0 ? (
