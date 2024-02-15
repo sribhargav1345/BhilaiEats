@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Common_In_All/Navbar_signup';
 import './signup.css';
 
 export default function SignUp() {
     const [credentials, setCredentials] = useState({ name: "", email: "", password: "", contactNumber: "" });
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -30,6 +32,28 @@ export default function SignUp() {
             alert("Failed to create user. Please check your input and try again.");
         } else {
             alert("User created successfully!");
+            
+            let apiUrl = "https://bhilaieats-1.onrender.com/api/loginUser";
+            const response = await fetch(apiUrl, {
+                method: "POST",
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email: credentials.email, password: credentials.password })
+              });
+          
+              const json = await response.json();
+          
+              if (!json.success) {
+                alert("Enter Valid Credentials");
+                return; 
+              }
+          
+              localStorage.setItem("userEmail", credentials.email);
+              localStorage.setItem("authToken", json.authToken);
+              localStorage.setItem("shopname", json.shopname);
+          
+              navigate("/user");
         }
     };
 
