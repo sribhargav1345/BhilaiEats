@@ -14,7 +14,7 @@
 
 //   const loadData = async () => {                                                  // Sending a POST request to fetch data from server.
 //     try {
-//       const response = await fetch("http://localhost:5000/api/foodData", {
+//       const response = await fetch("https://bhilaieats-1.onrender.com/api/foodData", {
 //         method: 'GET',                                                           // HTTP req, is being made using POST method. -> used to submit data to server, for creating or updating resources on server.
 //         headers: {
 //           'Content-Type': 'application/json'                                      // To specify content is of type json format.

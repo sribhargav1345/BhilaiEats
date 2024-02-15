@@ -13,7 +13,7 @@ const UserProfile = () => {
         const authToken = localStorage.getItem('authToken');
         const email = localStorage.getItem('userEmail');
 
-        const response = await fetch('http://localhost:5000/api/getUserProfile', {
+        const response = await fetch('https://bhilaieats-1.onrender.com/api/getUserProfile', {
           method: "GET",
           headers: {
             'Content-Type': 'application/json',

@@ -15,7 +15,7 @@ export default function Home_SuperAdmin() {
 
   const loadData = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/shopData', {
+      const response = await fetch('https://bhilaieats-1.onrender.com/api/shopData', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

@@ -14,7 +14,7 @@ export default function DynamicUserShops() {
     useEffect(() => {
         const fetchFoodItems = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/shop/${shop_id}`);
+                const response = await fetch(`https://bhilaieats-1.onrender.com/api/shop/${shop_id}`);
 
                 const data = await response.json();
 
@@ -83,7 +83,7 @@ export default function DynamicUserShops() {
 //     useEffect(() => {
 //         const loadData = async () => {
 //             try {
-//                 const response = await fetch("http://localhost:5000/api/owner/", {
+//                 const response = await fetch("https://bhilaieats-1.onrender.com/api/owner/", {
 //                     method: 'GET',
 //                     headers: {
 //                         'Content-Type': 'application/json'

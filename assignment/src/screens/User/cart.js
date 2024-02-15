@@ -26,7 +26,7 @@ export default function Cart() {
       });
 
 
-      let response = await fetch("http://localhost:5000/api/orderData", {
+      let response = await fetch("https://bhilaieats-1.onrender.com/api/orderData", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -15,7 +15,7 @@ function DynamicOwner() {
   const fetchFoodItems = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`http://localhost:5000/api/owner/${owner_id}`);
+      const response = await fetch(`https://bhilaieats-1.onrender.com/api/owner/${owner_id}`);
 
       if (!response.ok) {
         throw new Error('Failed to fetch food items');
@@ -39,7 +39,7 @@ function DynamicOwner() {
   const handleRemoveItem = async (cardId) => {
     try {
       console.log(cardId);
-      const response = await fetch(`http://localhost:5000/api/cards/${cardId}`, {
+      const response = await fetch(`https://bhilaieats-1.onrender.com/api/cards/${cardId}`, {
         method: 'DELETE',
       });
 

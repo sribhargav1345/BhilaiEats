@@ -19,7 +19,7 @@ export default function Add_item() {
 
         e.preventDefault();
 
-        const response = await fetch("http://localhost:5000/api/CreateFood", {
+        const response = await fetch("https://bhilaieats-1.onrender.com/api/CreateFood", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'

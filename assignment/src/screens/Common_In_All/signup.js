@@ -9,7 +9,7 @@ export default function SignUp() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        let apiUrl = "http://localhost:5000/api/CreateUser";
+        let apiUrl = "https://bhilaieats-1.onrender.com/api/CreateUser";
 
         const response = await fetch(apiUrl, {
             method: "POST",

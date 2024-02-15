@@ -14,13 +14,13 @@ export default function Login() {
     let apiUrl = "";
 
     if (credentials.userType === "user") {
-      apiUrl = "http://localhost:5000/api/loginUser";
+      apiUrl = "https://bhilaieats-1.onrender.com/api/loginUser";
     } else if (credentials.userType === "admin") {
       if (credentials.email === "sribhargavof03@gmail.com" || credentials.email === "mitulvardhan@iitbhilai.ac.in") {
-        apiUrl = "http://localhost:5000/api/loginSuperAdmin";
+        apiUrl = "https://bhilaieats-1.onrender.com/api/loginSuperAdmin";
         console.log("I'm a SuperAdmin");
       } else {
-        apiUrl = "http://localhost:5000/api/loginAdmin";
+        apiUrl = "https://bhilaieats-1.onrender.com/api/loginAdmin";
         console.log("I'm an admin");
       }
     }
@@ -46,8 +46,8 @@ export default function Login() {
 
     //console.log(json.authToken);
 
-    if (apiUrl === "http://localhost:5000/api/loginAdmin") {
-      const ownersResponse = await fetch("http://localhost:5000/api/owners");
+    if (apiUrl === "https://bhilaieats-1.onrender.com/api/loginAdmin") {
+      const ownersResponse = await fetch("https://bhilaieats-1.onrender.com/api/owners");
       const ownersData = await ownersResponse.json();
 
       for (const ownerArray of ownersData) {
@@ -59,7 +59,7 @@ export default function Login() {
           }
         }
       }
-    } else if (apiUrl === "http://localhost:5000/api/loginSuperAdmin") {
+    } else if (apiUrl === "https://bhilaieats-1.onrender.com/api/loginSuperAdmin") {
       navigate('/superadmin');
       return;
     }

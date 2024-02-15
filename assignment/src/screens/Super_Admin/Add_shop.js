@@ -14,7 +14,7 @@ export default function Canteen() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch("http://localhost:5000/api/shopData", {
+        const response = await fetch("https://bhilaieats-1.onrender.com/api/shopData", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
