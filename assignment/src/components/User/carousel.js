@@ -25,7 +25,7 @@ export default function Carousel({ onSearchChange }) {
                 className="form-control me-2 bg-white text-dark"
                 style={{ width: "450px", height: "40px" }}
                 type="search"
-                placeholder="Type in..."
+                placeholder="Search Restaurants..."
                 aria-label="Search"
                 value={search}
                 onChange={handleSearch}
