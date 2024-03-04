@@ -10,9 +10,9 @@
   color: yellow;
 }
 
-.btn.btn-orange {
-  background-color: orange;
-  color: black;
+.search-container {
+  display: flex;
+  align-items: center;
 }
 
 .textcarousel {

@@ -6,6 +6,8 @@ import { useCart } from './ContextReducer';
 import './Navbarr.css';
 import userIcon from '../../Assests/images/user.png';
 
+import Logo from './Logo.png';
+
 import Cart from '../../screens/User/cart';
 
 export default function Navbar() {
@@ -25,7 +27,7 @@ export default function Navbar() {
       <nav className="navbar navbar-expand-lg navbar-dark bg-orange">
         <div className="container-fluid">
           <div className="d-flex align-items-center">
-            <img src="https://img.freepik.com/free-vector/delivery-service-with-mask-concept_23-2148505104.jpg?w=740&t=st=1706353061~exp=1706353661~hmac=49b276b5e98074b203d820eeafbb4e2ac9002b7506621881acc9ac5ae6202c0c" alt="." className="navbar-logo" />
+            <img src={Logo} alt="." className="navbar-logo" />
             <Link className="navbar-brand fs-2 fst-italic mx-3" to="/">
               BhilaiEats
             </Link>

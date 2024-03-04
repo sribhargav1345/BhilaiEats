@@ -39,14 +39,19 @@ function DynamicOwner() {
   const handleRemoveItem = async (cardId) => {
     try {
       console.log(cardId);
-      const response = await fetch(`https://bhilaieats-1.onrender.com/api/cards/${cardId}`, {
-        method: 'DELETE',
-      });
+      const confirmed = window.confirm("Are you sure you want to remove this item?");
 
-      if (response.ok) {
-        fetchFoodItems();
-      } else {
-        console.log("Failed to remove Card");
+      if (confirmed) {
+        const response = await fetch(`https://bhilaieats-1.onrender.com/api/cards/${cardId}`, {
+          method: 'DELETE',
+        });
+
+        if (response.ok) {
+          fetchFoodItems(); 
+          alert("Item removed successfully.");
+        } else {
+          console.log("Failed to remove Card");
+        }
       }
     } catch (error) {
       console.error('Error removing card:', error);
