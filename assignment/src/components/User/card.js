@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatchCart, useCart } from './ContextReducer';
 
+import './card.css';
+
 export default function Card(props) {
   const [qty, setQty] = useState(1);
   const [size, setSize] = useState('');
@@ -83,16 +85,16 @@ export default function Card(props) {
 
   return (
     <div>
-      <div className="card mt-3 rounded" style={{ width: '22rem', maxHeight: '370px',borderRadius: '50px' }}>
+      <div className="card mt-3 rounded" style={{ width: '22rem', maxHeight: '360px' ,borderRadius: '50px' }}>
         <img src={props.ImgSrc} className="card-img-top" alt="Not visible" style={{ height: '180px', objectFit: 'fill'  }} />
-        <div className="card-body">
+        <div className="card-body6">
           <h5 className="card-title">{props.foodName}</h5>
           <div className="container w-100">
             <button className="m-2 h-50 bg-success rounded" style={{ height: '5px', width: '20px' }} onClick={decreaseQty}>-</button>
               <div className="d-inline h-100 fs-6">{qty}</div>
             <button className="m-2 h-50 bg-success rounded = True" style={{width:"20px"}} onClick={increaseQty}>+</button>
 
-            <select ref={priceRef} className="m-2 h-100 bg-success rounded" style={{width:"80px"}} value={size} onChange={handleSizeChange}>
+            <select ref={priceRef} className="m-2 h-100 bg-rgb(241, 245, 249) rounded" style={{width:"80px"}} value={size} onChange={handleSizeChange}>
               {options.map((option, index) => (
                 <option key={index} value={option.size}>
                   {option.size}
@@ -100,7 +102,7 @@ export default function Card(props) {
               ))}
             </select>
 
-            <div className="d-inline h-100 fs-6"> Rs.{finalPrice} /- </div>
+            <div className="d-inline h-100 fs-6 m-2"> Rs.{finalPrice} /- </div>
             <div>
               <hr />
               <button className="btn btn-success justify-center ms-2 " onClick={handleAddToCart}>

@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../User/Navbarr.css';
 
+import Logo from '../User/Logo.png';
+
 export default function Navbar() {
     const navigate = useNavigate();
 
@@ -18,7 +20,7 @@ export default function Navbar() {
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-orange">
                 <div className="container-fluid">
-                    <img src="https://img.freepik.com/free-vector/delivery-service-with-mask-concept_23-2148505104.jpg?w=740&t=st=1706353061~exp=1706353661~hmac=49b276b5e98074b203d820eeafbb4e2ac9002b7506621881acc9ac5ae6202c0c" alt="." className="navbar-logo" />
+                    <img src={Logo} alt="." className="navbar-logo" />
                     <Link className="navbar-brand fs-2 fst-italic mx-3 me-auto" to="/">
                         BhilaiEats
                     </Link>

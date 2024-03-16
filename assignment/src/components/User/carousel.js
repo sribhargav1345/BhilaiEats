@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Navbarr.css';
+import './carousel.css';
 
 export default function Carousel({ onSearchChange }) {
   const [search, setSearch] = useState('');
@@ -28,7 +28,7 @@ export default function Carousel({ onSearchChange }) {
                 value={search}
                 onChange={handleSearch}
               />
-              <button className="btn btn-orange" type="button" style={{backgroundColor:'orange'}}>
+              <button className="btn btn-orange" type="button" style={{backgroundColor:'orange', color:"black"}}>
                 Search
               </button>
             </div>

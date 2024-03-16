@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <div>
     <footer className="bg-dark text-light py-5" style={{marginTop:"90px"}}>
-      <div className="container" style={{ maxHeight: "150px"}}>
+      <div className="container" style={{ maxHeight: "50px"}}>
         <div className="row" >
           <div className="col-md-4">
             <h5>Customer Support</h5>

@@ -69,8 +69,10 @@ function DynamicOwner() {
               <hr />
               {foodItems && foodItems.length !== 0 ? (
                 foodItems.filter((item) => item.categoryname === category.categoryname && item.name.toLowerCase().includes(search.toLocaleLowerCase())).map((filterItem) => (
-                  <div key={filterItem._id} className='col-12 col-md-6 col-lg-3'>
-                    <Card_owners cardId = {filterItem._id} foodName={filterItem.name} ImgSrc={filterItem.image} options={filterItem.options} handleRemoveItem={handleRemoveItem}/>
+                  <div key={filterItem._id} className='col-12 col-md-6 col-lg-4 mt-3'>
+                    <div style={{ marginRight: '1rem' }}>
+                      <Card_owners cardId = {filterItem._id} foodName={filterItem.name} ImgSrc={filterItem.image} options={filterItem.options} handleRemoveItem={handleRemoveItem}/>
+                    </div>
                   </div>
                 ))
               ) : (

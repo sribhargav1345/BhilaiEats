@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Common_In_All/Navbar_signup';
+
 import './signup.css';
 
 export default function SignUp() {
@@ -63,16 +64,16 @@ export default function SignUp() {
     };
 
     return (
-        <div className='login-container' style={{backgroundColor:"#dfd2d2"}}>
+        <div className='login-container'>
             <Navbar />
             <div className="container">
-                <div className="row justify-content-center mt-5" style={{ height: "700px" }}>
+                <div className="row justify-content-center mt-5">
                     <div className="col-md-5">
-                        <div className="card d-flex flex-row" style={{ width: "700px" }}>
-                            <div className="login-image">
-                                <img src="https://images.unsplash.com/photo-1586511934875-5c5411eebf79?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Zm9vZCUyMGJvd2x8ZW58MHx8MHx8fDA%3D" alt="Signup" style={{ height: "600px", width: "320px" }} />
+                        <div className="card d-flex flex-row" style={{ width: "48vw" }}>
+                            <div className="login-image d-none d-lg-block d-xl-block">
+                                <img src="https://images.unsplash.com/photo-1586511934875-5c5411eebf79?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Zm9vZCUyMGJvd2x8ZW58MHx8MHx8fDA%3D" alt="Signup" />
                             </div>
-                            <div className="card-body" style={{ height: "600px", backgroundColor: "white" }}>
+                            <div className="card-body">
                                 <h2 className="text-center mb-4">Sign Up</h2>
                                 <hr />
                                 <form onSubmit={handleSubmit}>

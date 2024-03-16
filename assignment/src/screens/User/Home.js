@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+
 import Card_shop from '../../components/User/card_shop';
 import Carousel from '../../components/User/carousel';
 import Footer from '../../components/User/Footer';
 import Navbar from '../../components/User/Navbar';
+
 import './Home.css';
 
 export default function Home() {
@@ -36,12 +37,11 @@ export default function Home() {
     <div className="coloring">
       <Navbar />
       <Carousel onSearchChange={handleSearchChange} />
-      <div className="container" style={{ marginTop: '30px' }}>
+      <div className="container" style={{ marginTop: '30px', color: '#333' }}>
         <div className="row">
           <div className="col-12">
-            <h2 className="font-weight-bold mt-6 mb-6 dark-font-color">Restaurants</h2>
-            <hr className="my-2 dark-font-color" />
-
+            <h2 className="font-weight-bold mt-6 mb-6 dark-font-color" style={{color:"black"}}>Restaurants</h2>
+            <hr className="my-2 dark-font-color" style={{ color: "black" }} />
           </div>
         </div>
         {shops && shops.length !== 0 ? (
@@ -55,14 +55,16 @@ export default function Home() {
                     shop_id={filterItem._id}
                     ImgSrc={filterItem.image}
                     description={filterItem.description}
+                    className="card-shop"
                   />
                 </div>
               ))}
           </div>
         ) : (
-          <div>"Backend is not connected, with frontend"</div>
+          <div style={{ color: '#333' }}>"Backend is not connected, with frontend"</div>
         )}
       </div>
+
       <Footer />
     </div>
   );

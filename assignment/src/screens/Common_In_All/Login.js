@@ -5,6 +5,7 @@ import Navbar from '../../components/Common_In_All/Navbar_login';
 import './Login.css';
 
 export default function Login() {
+
   const [credentials, setCredentials] = useState({ email: "", password: "", userType: "user" });
   const navigate = useNavigate();
 
@@ -37,14 +38,12 @@ export default function Login() {
 
     if (!json.success) {
       alert("Enter Valid Credentials");
-      return; 
+      return;
     }
 
     localStorage.setItem("userEmail", credentials.email);
     localStorage.setItem("authToken", json.authToken);
     localStorage.setItem("shopname", json.shopname);
-
-    //console.log(json.authToken);
 
     if (apiUrl === "https://bhilaieats-1.onrender.com/api/loginAdmin") {
       const ownersResponse = await fetch("https://bhilaieats-1.onrender.com/api/owners");
@@ -73,16 +72,16 @@ export default function Login() {
 
   return (
     <div className='coloring'>
-      <div className='login-container' style={{zIndex:-99}}>
-        <Navbar/>
+      <div className='login-container' style={{ zIndex: -99, height: '100vh' }}>
+        <Navbar />
         <div className="container">
-          <div className="row justify-content-center mt-5" style={{height: "510px"}}>
+          <div className="row justify-content-center mt-5">
             <div className="col-md-5">
-              <div className="card d-flex flex-row" style={{ width: "700px"}}>
-                <div className="login-image">
+              <div className="card-responsiveness d-flex flex-row" style={{ width: "44vw" }}>
+                <div className="login-image d-none d-lg-block d-xl-block">
                   <img src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGZvb2QlMjBib3dsfGVufDB8fDB8fHww" alt="Login" style={{ height: "510px", width: "320px" }} />
                 </div>
-                <div className="card-body" style={{height: "510px", backgroundColor:"white"}}>
+                <div className="card-body">
                   <h2 className="text-center">Login</h2>
                   <hr className='mb-3' style={{ borderTop: '1px dotted black' }} />
                   <form onSubmit={handleSubmit}>
@@ -113,4 +112,5 @@ export default function Login() {
       </div>
     </div>
   );
+  
 }

@@ -1,0 +1,16 @@
+.card-body4{
+    height: auto;
+    width: 30vw;
+    min-width: 20vw;
+    background-color: white;
+}
+
+.btn-success {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card5 {
+    padding: 10px;
+}

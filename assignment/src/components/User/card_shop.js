@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './Navbarr.css';
+
+import './card_shop.css';
 
 export default function Card_shop(props) {
   const [isHovered, setIsHovered] = useState(false);
@@ -30,10 +31,11 @@ export default function Card_shop(props) {
         className="card mt-3 coloring"
         style={{
           width: '20rem',
-          maxWidth: '90%', // Ensure card doesn't exceed parent's width
+          maxWidth: '90%', 
           borderRadius: '10px',
           overflow: 'hidden',
           margin: '10px',
+          border: '1px solid rgba(0, 0, 0, 0.15)',
           padding: '10px',
           boxShadow: isHovered ? '0px 4px 8px rgba(0, 0, 0, 0.2)' : 'none',
           transform: isHovered ? 'scale(1.03)' : 'scale(1)',
@@ -41,10 +43,10 @@ export default function Card_shop(props) {
         }}
       >
         <img src={props.ImgSrc} className="card-img-top" alt="Shop" style={{ height: '200px', objectFit: 'cover' }} />
-        <div className="card-body">
-          <h5 className="card-title font-weight-bold text-black">{props.shopName}</h5>
-          <p className="card-text text-success">{props.description}</p>
-          <hr />
+        <div className="card-body2">
+          <h5 className="card-title font-weight-bold text-black" style={{ marginBottom: '0.5rem'}}>{props.shopName}</h5>
+          <p className="card-text text-success" >{props.description}</p>
+          <hr style={{color:"black"}}/>
         </div>
       </div>
     </Link>

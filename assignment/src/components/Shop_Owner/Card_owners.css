@@ -1,7 +1,11 @@
-.card-body6 {
+.card-body3 {
     padding: 20px;
     min-width: 100%; 
     max-width: 19.45vw; 
     height: auto;
     height: auto;
+}
+
+.container2 {
+    min-height: fit-content;
 }

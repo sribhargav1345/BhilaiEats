@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import Navbar3 from '../../components/Shop_Owner/Navbar_owner';
+
+import './Add_item.css';
 
 export default function Add_item() {
     const [formData, setFormData] = useState({
@@ -71,30 +72,30 @@ export default function Add_item() {
     };
 
     return (
-        <div className='login-container' style={{backgroundColor:"#dfd2d2"}}>
+        <div className='login-container'>
             <Navbar3 />
             <div className='container'>
                 <div className="row justify-content-center mt-5">
                     <div className="col-md-6">
-                        <div className="card" style={{ width: "500px", height: "700px"}}>
-                            <div className="card-body" style={{width: "500px", height: "900px", backgroundColor:"white"}}>
-                                <h2 className="text-center mb-4">Add an Item</h2>
-                                <hr />
+                        <div className='card5'>
+                            <div className="card-body4">
+                                <h2 className="text-center m-2" style={{marginTop:'2rem'}}>Add an Item</h2>
+                                <hr className='mx-3'/>
                                 <form onSubmit={handleSubmit}>
-                                    <div className="mb-3">
+                                    <div className="m-3">
                                         <label htmlFor="categoryname" className="form-label">Category Name</label>
                                         <input type="text" className="form-control" name='categoryname' value={formData.categoryname} onChange={onChange} />
                                     </div>
-                                    <div className="mb-3">
+                                    <div className="m-3">
                                         <label htmlFor="name" className="form-label">Name</label>
                                         <input type="text" className="form-control" name='name' value={formData.name} onChange={onChange} />
                                     </div>
-                                    <div className="mb-3">
+                                    <div className="m-3">
                                         <label htmlFor="image" className="form-label">Image URL</label>
                                         <input type="text" className="form-control" name='image' value={formData.image} onChange={onChange} />
                                     </div>
 
-                                    <div className="mb-3">
+                                    <div className="m-3">
                                         <label className="form-label mr-3 ml-3 mb-3">Options</label>
                                         {formData.options.map((option, index) => (
                                             <div key={index} className="mb-2 d-flex flex-row">
@@ -104,11 +105,11 @@ export default function Add_item() {
                                                 <button type="button" className="btn btn-danger btn-sm" style={{ height: "30px", borderRadius: "10px", marginLeft: "10px" }} onClick={() => removeOption(index)}>Remove</button> {/* Added marginLeft */}
                                             </div>
                                         ))}
-                                        <button type="button" className="btn btn-primary mt-2" onClick={addOption}>Add Option</button>
+                                        <button type="button" className="btn btn-primary m-2" onClick={addOption}>Add Option</button>
                                     </div>
 
 
-                                    <button type="submit" className="btn btn-success w-100 mb-3">Submit</button>
+                                    <button type="submit" className="btn btn-success w-75 m-3 mx-4">Submit</button>
                                 </form>
                             </div>
                         </div>

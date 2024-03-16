@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { UseParams } from 'react-router-dom';
 
+import './Card_owners.css';
+
 export default function Card(props) {
   
   const [size, setSize] = useState('');
@@ -24,19 +26,19 @@ export default function Card(props) {
     <div>
       <div className="card mt-3 rounded" style={{ width: '20rem', maxHeight: '360px', borderRadius: '50px' }}>
         <img src={props.ImgSrc} className="card-img-top" alt="Not visible" style={{ height: '180px', objectFit: 'fill' }} />
-        <div className="card-body">
+        <div className="card-body3">
           <h5 className="card-title">{props.foodName}</h5>
-          <div className="container w-100">
-            <select ref={priceRef} className="m-2 h-100 bg-success rounded" value={size} onChange={handleSizeChange}>
+          <div className="container2 w-100 mt-1">
+            <select ref={priceRef} className="m-1 h-100 bg-rgb(241, 245, 249) rounded p-1" value={size} onChange={handleSizeChange}>
               {options.map((option, index) => (
                 <option key={index} value={option.size}>
                   {option.size}
                 </option>
               ))}
             </select>
-            <div className="d-inline h-100 fs-6"> Rs.{finalPrice} /- </div>
+            <div className="d-inline h-100 fs-6 m-2"> Rs.{finalPrice} /- </div>
             <hr/>
-            <button className="btn btn-danger ml-1 mt-1" onClick={handleRemove}>Remove this item</button>
+            <button className="btn btn-danger justify-center m-1" style={{marginTop: 'none'}} onClick={handleRemove}>Remove this item</button>
           </div>
         </div>
       </div>

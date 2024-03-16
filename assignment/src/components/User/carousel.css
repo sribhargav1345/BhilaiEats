@@ -1,0 +1,12 @@
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+.btn.btn-orange{
+    margin-bottom: 26px;
+}
+
+.textcarousel {
+    color: white;
+}

@@ -1,3 +1,8 @@
 .coloring {
-    background-color: rgb(227, 219, 219);
+    background-color: white;
 }
+
+.card-shop {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adjust the values as needed */
+    color: #dfd2d2;
+  }
