@@ -85,14 +85,14 @@ export default function Card(props) {
 
   return (
     <div>
-      <div className="card mt-3 rounded" style={{ width: '22rem', maxHeight: '360px' ,borderRadius: '50px' }}>
+      <div className="card mt-3 rounded" style={{ width: '20rem', maxHeight: '360px' ,borderRadius: '50px' }}>
         <img src={props.ImgSrc} className="card-img-top" alt="Not visible" style={{ height: '180px', objectFit: 'fill'  }} />
         <div className="card-body6">
           <h5 className="card-title">{props.foodName}</h5>
           <div className="container w-100">
-            <button className="m-2 h-50 bg-success rounded" style={{ height: '5px', width: '20px' }} onClick={decreaseQty}>-</button>
-              <div className="d-inline h-100 fs-6">{qty}</div>
-            <button className="m-2 h-50 bg-success rounded = True" style={{width:"20px"}} onClick={increaseQty}>+</button>
+            <button className="h-50 bg-success rounded" style={{ height: '5px', width: '20px' }} onClick={decreaseQty}>-</button>
+              <div className="m-2 d-inline h-100 fs-6">{qty}</div>
+              <button className="mr-4 h-50 bg-success rounded" style={{ width: "20px",marginRight: '7px' }} onClick={increaseQty}>+</button>
 
             <select ref={priceRef} className="m-2 h-100 bg-rgb(241, 245, 249) rounded" style={{width:"80px"}} value={size} onChange={handleSizeChange}>
               {options.map((option, index) => (
@@ -102,7 +102,7 @@ export default function Card(props) {
               ))}
             </select>
 
-            <div className="d-inline h-100 fs-6 m-2"> Rs.{finalPrice} /- </div>
+            <div className="d-inline h-100 fs-6 m-1"> Rs.{finalPrice} /- </div>
             <div>
               <hr />
               <button className="btn btn-success justify-center ms-2 " onClick={handleAddToCart}>
