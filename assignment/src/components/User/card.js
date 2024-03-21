@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useDispatchCart, useCart } from './ContextReducer';
 
 import './card.css';
@@ -11,10 +10,8 @@ export default function Card(props) {
 
   const dispatch = useDispatchCart();
   const data = useCart();
-  const navigate = useNavigate();
   const priceRef = useRef();
   const options = props.options || {};
-  const priceOptions = Object.keys(options);
 
   useEffect(() => {
     if (priceRef.current && !initialSizeSet) {
@@ -23,18 +20,8 @@ export default function Card(props) {
     }
   }, [initialSizeSet]); // useEffect will run only once when initialSizeSet changes
 
-  const handleQtyChange = (e) => {
-    setQty(parseInt(e.target.value));
-  };
-
   const handleSizeChange = (e) => {
     setSize(e.target.value);
-  };
-
-  const handleClick = () => {
-    if (!localStorage.getItem("token")) {
-      navigate("/login");
-    }
   };
 
   function increaseQty() {
@@ -102,7 +89,7 @@ export default function Card(props) {
               ))}
             </select>
 
-            <div className="d-inline h-100 fs-6 m-1"> Rs.{finalPrice} /- </div>
+            <div className="d-inline h-100 fs-6"> Rs.{finalPrice} /- </div>
             <div>
               <hr />
               <button className="btn btn-success justify-center ms-2 " onClick={handleAddToCart}>
