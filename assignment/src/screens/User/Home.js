@@ -61,7 +61,7 @@ export default function Home() {
               ))}
           </div>
         ) : (
-          <div style={{ color: '#333' }}>"Backend is not connected, with frontend"</div>
+          <div style={{ color: '#333' }}>"Please wait..... It's Loading"</div>
         )}
       </div>
 
