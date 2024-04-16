@@ -17,6 +17,8 @@ export default function Cart() {
 
   const handleCheckOut = async () => {
     try {
+
+      alert("Your order is placed, Arriving shortly");
       let userEmail = localStorage.getItem("userEmail");
       let orderedItems = [];
 
