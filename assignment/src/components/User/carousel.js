@@ -36,7 +36,7 @@ export default function Carousel({ onSearchChange }) {
 
           <div className="carousel-item active">
             <img
-              src="https://lyphe.com/app/uploads/2023/10/Image-1-cannabis-muffins.jpeg"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLd-EWdgCG864KHGpeZw9Hwc926-enNsJ_aXMfpHaEtfAvh3O9WyAkh4M-iw&s"
               className="d-block w-100"
               style={{ width: "500px", height: "660px", filter: "brightness(90%)" }}
               alt="Burger"
