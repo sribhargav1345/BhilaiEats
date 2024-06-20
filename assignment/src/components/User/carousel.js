@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './carousel.css';
 
-import bg from '../../Assests/images/Related Pictures/bging.jpg';
+import bg from '../../Assests/images/Related Pictures/bugr.jpg';
 
 export default function Carousel({ onSearchChange }) {
   const [search, setSearch] = useState('');
