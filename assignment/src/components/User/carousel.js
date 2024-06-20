@@ -17,7 +17,7 @@ export default function Carousel({ onSearchChange }) {
       <div id="carouselExampleFade" className="carousel slide carousel-fade" data-bs-ride="carousel">
         <div className="carousel-inner" id="carousel">
           <div className="carousel-caption" style={{ zIndex: "4", top: "55%", left: "05%", transform: "translateY(-50%)" }}>
-            <div className="textcarousel text-dark" style={{ textAlign: "left", fontStyle: "Italic", fontSize: "40px", fontWeight: "300"}}>
+            <div className="textcarousel" style={{ textAlign: "left", fontStyle: "Italic", fontSize: "40px", fontWeight: "300", color: "white"}}>
               <p>Food Delivery at IIT Bhilai</p>
             </div>
             <div className='search-container'>
@@ -40,7 +40,7 @@ export default function Carousel({ onSearchChange }) {
             <img
               src={bg}
               className="d-block w-100"
-              style={{ width: "500px", height: "660px", filter: "brightness(90%)" }}
+              style={{ width: "500px", height: "660px", filter: "brightness(110%)" }}
               alt="Burger"
             />
           </div>
